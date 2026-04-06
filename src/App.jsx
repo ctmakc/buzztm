@@ -1,4 +1,10 @@
 import { useEffect, useState } from "react";
+import adactedLogo from "../assets/real/adacted-logo.png";
+import buzztmLive from "../assets/real/buzztm-live.webp";
+import buzztmTikTok from "../assets/real/buzztm-tiktok.webp";
+import instagramProfile from "../assets/real/instagram-profile.jpg";
+import mmixArticle from "../assets/real/mmix-article.webp";
+import mmixLogo from "../assets/real/mmix-logo.png";
 import { initAnalytics, trackEvent, trackPageView } from "./analytics";
 import { content, DEFAULT_LOCALE, resolveInitialLocale, SUPPORTED_LOCALES } from "./content";
 import { applySeo } from "./seo";
@@ -32,11 +38,11 @@ function useRevealAnimations() {
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
     );
 
     nodes.forEach((node, index) => {
-      node.style.transitionDelay = `${(index % 5) * 45}ms`;
+      node.style.transitionDelay = `${(index % 4) * 55}ms`;
       observer.observe(node);
     });
 
@@ -224,10 +230,9 @@ export default function App() {
         </a>
 
         <nav className="nav" aria-label="Primary">
-          <a href="#offer">{t.nav.offer}</a>
+          <a href="#signal">{t.nav.signal}</a>
+          <a href="#cases">{t.nav.cases}</a>
           <a href="#process">{t.nav.process}</a>
-          <a href="#fit">{t.nav.fit}</a>
-          <a href="#faq">{t.nav.faq}</a>
           <a href="#contact">{t.nav.contact}</a>
         </nav>
 
@@ -246,7 +251,7 @@ export default function App() {
             <h1>{t.hero.title}</h1>
             <p className="hero-lede">{t.hero.lede}</p>
 
-            <div className="stat-row" aria-label="Key performance signals">
+            <div className="stat-row" aria-label="Key signals">
               {t.hero.stats.map(([value, label]) => (
                 <div key={label} className="stat-row__item">
                   <strong>{value}</strong>
@@ -259,75 +264,118 @@ export default function App() {
               <a className="btn btn-primary" href="#contact">
                 {t.cta.primary}
               </a>
-              <a className="btn btn-outline" href="#process">
+              <a className="btn btn-outline" href="#signal">
                 {t.cta.secondary}
               </a>
             </div>
 
-            <div className="signal-links" aria-label="Public channels">
-              {SOCIAL_LINKS.map((item) => (
-                <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                  {item.label}
-                </a>
+            <div className="hero-tags" aria-label="Positioning points">
+              {t.hero.tags.map((item) => (
+                <span key={item}>{item}</span>
               ))}
             </div>
           </div>
 
-          <div className="hero-panel">
-            <div className="hero-panel__badge">{t.hero.panelBadge}</div>
-            <h2>{t.hero.panelTitle}</h2>
-            <ul className="hero-panel__list">
-              {t.hero.panelItems.map((item) => (
+          <div className="hero-media">
+            <div className="hero-media__frame">
+              <img src={buzztmTikTok} alt="Buzztm TikTok visual from the current public site" />
+            </div>
+
+            <div className="hero-media__card hero-media__card--logo">
+              <img src={adactedLogo} alt="Adacted logo from the current public site" />
+              <div>
+                <span>Public mark</span>
+                <strong>{t.hero.publicMark}</strong>
+              </div>
+            </div>
+
+            <div className="hero-media__card hero-media__card--profile">
+              <img src={instagramProfile} alt="Adacted Instagram profile image" />
+              <div>
+                <span>Instagram</span>
+                <strong>@adactedagency</strong>
+              </div>
+            </div>
+
+            <div className="hero-media__ribbon">{t.hero.ribbon}</div>
+          </div>
+        </section>
+
+        <section className="signal-stage reveal" id="signal">
+          <div className="section-head">
+            <p className="eyebrow">{t.signals.eyebrow}</p>
+            <h2>{t.signals.title}</h2>
+            <p>{t.signals.body}</p>
+            <ul className="signal-bullets">
+              {t.signals.points.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <div className="hero-panel__ticker">
-              <span>{t.hero.ticker}</span>
-              <span>{t.hero.ticker}</span>
-            </div>
           </div>
-        </section>
 
-        <section className="offer-grid reveal" id="offer">
-          {t.offerCards.map((card) => (
-            <article key={card.title} className="offer-card">
-              <p className="eyebrow">{card.kicker}</p>
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
+          <div className="signal-layout">
+            <article className="signal-card signal-card--wide">
+              <img src={buzztmLive} alt="Current live Buzztm site screenshot" />
+              <div className="signal-card__body">
+                <span>{t.signals.cards.live.kicker}</span>
+                <h3>{t.signals.cards.live.title}</h3>
+                <p>{t.signals.cards.live.body}</p>
+                <a href="https://www.buzztm.com" target="_blank" rel="noreferrer">
+                  {t.signals.cards.live.link}
+                </a>
+              </div>
             </article>
-          ))}
+
+            <article className="signal-card">
+              <img src={mmixArticle} alt="MMIX TikTok article screenshot" />
+              <div className="signal-card__body">
+                <span>{t.signals.cards.article.kicker}</span>
+                <h3>{t.signals.cards.article.title}</h3>
+                <p>{t.signals.cards.article.body}</p>
+                <a href="https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/" target="_blank" rel="noreferrer">
+                  {t.signals.cards.article.link}
+                </a>
+              </div>
+            </article>
+
+            <article className="signal-card signal-card--stack">
+              <div className="signal-stack__logos">
+                <img src={adactedLogo} alt="Adacted logo" />
+                <img src={mmixLogo} alt="MMIX logo" />
+              </div>
+              <div className="signal-card__body">
+                <span>{t.signals.cards.footprint.kicker}</span>
+                <h3>{t.signals.cards.footprint.title}</h3>
+                <p>{t.signals.cards.footprint.body}</p>
+              </div>
+              <div className="signal-links" aria-label="Public channels">
+                {SOCIAL_LINKS.map((item) => (
+                  <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </article>
+          </div>
         </section>
 
-        <section className="process-section reveal" id="process">
+        <section className="cases-section reveal" id="cases">
           <div className="section-head">
-            <p className="eyebrow">{t.process.eyebrow}</p>
-            <h2>{t.process.title}</h2>
-            <p>{t.process.body}</p>
+            <p className="eyebrow">{t.useCases.eyebrow}</p>
+            <h2>{t.useCases.title}</h2>
+            <p>{t.useCases.body}</p>
           </div>
 
-          <div className="timeline">
-            {t.process.steps.map((step) => (
-              <article key={step.title} className="timeline-card">
-                <span>{step.phase}</span>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="fit-section reveal" id="fit">
-          <div className="section-head">
-            <p className="eyebrow">{t.fit.eyebrow}</p>
-            <h2>{t.fit.title}</h2>
-            <p>{t.fit.body}</p>
-          </div>
-
-          <div className="fit-grid">
-            {t.fit.items.map((item) => (
-              <article key={item.title} className="fit-card">
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
+          <div className="cases-grid">
+            {t.useCases.items.map((item) => (
+              <article key={item.title} className="case-card">
+                <div className="case-mark">{item.code}</div>
+                <div className="case-copy">
+                  <span>{item.kicker}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+                <strong className="case-result">{item.result}</strong>
               </article>
             ))}
           </div>
@@ -346,27 +394,25 @@ export default function App() {
                 <span>{item.label}</span>
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
-                <ul>
-                  {item.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
+                <strong>{item.outcome}</strong>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="faq-section reveal" id="faq">
+        <section className="process-section reveal" id="process">
           <div className="section-head">
-            <p className="eyebrow">{t.faq.eyebrow}</p>
-            <h2>{t.faq.title}</h2>
+            <p className="eyebrow">{t.process.eyebrow}</p>
+            <h2>{t.process.title}</h2>
+            <p>{t.process.body}</p>
           </div>
 
-          <div className="faq-grid">
-            {t.faq.items.map((item) => (
-              <article key={item.q} className="faq-card">
-                <h3>{item.q}</h3>
-                <p>{item.a}</p>
+          <div className="process-track">
+            {t.process.steps.map((step) => (
+              <article key={step.title} className="step-card">
+                <span>{step.phase}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
               </article>
             ))}
           </div>

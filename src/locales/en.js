@@ -1,178 +1,167 @@
 const en = {
   localeName: "English",
   shortLabel: "EN",
-  brandTag: "TikTok reach bursts",
+  brandTag: "TikTok launch bursts",
   seo: {
-    title: "Buzztm | TikTok Reach Bursts for Restricted Markets",
+    title: "Buzztm | TikTok Launch Bursts for Restricted Markets",
     description:
-      "Buzztm helps brands create TikTok buzz waves with coordinated creator-style publishing, launch bursts, and multilingual content packs when paid reach is unavailable or unreliable.",
-    ogTitle: "Buzztm | Coordinated TikTok Reach",
+      "Buzztm packages TikTok launch bursts for brands in restricted markets with real use cases, public proof points, and coordinated short-form distribution.",
+    ogTitle: "Buzztm | TikTok Launch Bursts",
     ogDescription:
-      "Burst-style TikTok distribution for brands that need attention without depending on unstable ad access."
+      "A more visual Buzztm landing focused on public proof, launch scenarios, and coordinated TikTok distribution."
   },
   nav: {
-    offer: "Offer",
+    signal: "Signal",
+    cases: "Use Cases",
     process: "Process",
-    fit: "Best Fit",
-    faq: "FAQ",
     contact: "Contact"
   },
   cta: {
     primary: "Book a strategy call",
-    secondary: "See the launch flow",
+    secondary: "See the proof wall",
     send: "Request launch plan"
   },
   hero: {
-    eyebrow: "Coordinated TikTok distribution for brands that cannot rely on ads",
-    title: "Create a TikTok buzz wave even when paid reach is blocked.",
+    eyebrow: "TikTok-first reach layer for markets where ads are unstable, blocked, or weak",
+    title: "Launch on TikTok even when ads are off the table.",
     lede:
-      "Buzztm packages hooks, creator-style assets, posting choreography, and multilingual launch support into a single burst engine built for regions where the ad cabinet is limited, unstable, or too expensive.",
+      "This version is less pitch deck, more campaign floor: real public signals, clearer use cases, and a tighter visual rhythm around the current Buzztm offer.",
     stats: [
-      ["48h", "Typical burst prep"],
-      ["100s", "Managed posting points"],
-      ["3 lanes", "EN / RU / UK content packs"]
+      ["100s", "Publishing points"],
+      ["1M+", "Views promised on the live site"],
+      ["48h", "Fastest prep window"]
     ],
-    panelBadge: "Launch kit",
-    panelTitle: "Inside the burst",
-    panelItems: [
-      "Hook-first video ideas and opening frames",
-      "Localized copy packs for English, Russian, and Ukrainian",
-      "Coordinated publish windows instead of one isolated account",
-      "Reporting on what theme, angle, and format actually triggered response"
+    tags: [
+      "Real public assets",
+      "Productized launch modes",
+      "Less filler, more campaign shape"
     ],
-    ticker: "Organic reach when ads are blocked  •  Buzz architecture for restricted markets  •  Creator-style launch bursts"
+    publicMark: "Adacted / Buzztm public ecosystem",
+    ribbon: "Mass virality for restricted markets"
   },
-  offerCards: [
-    {
-      kicker: "Why brands come here",
-      title: "Paid reach is not always available where you need it.",
-      body:
-        "Some markets block TikTok ads, some make them financially weak, and some accounts lose consistency without warning. Buzztm is built for that gap."
-    },
-    {
-      kicker: "What Buzztm runs",
-      title: "A managed release across multiple publishing points.",
-      body:
-        "Instead of hoping one page goes viral, the launch uses a coordinated wave of creator-style posts, timing control, and localized framing to manufacture attention density."
-    },
-    {
-      kicker: "What changes",
-      title: "Your offer looks active, discoverable, and hard to ignore.",
-      body:
-        "The goal is not vanity views. The goal is faster product discovery, stronger social proof, and a warmer audience for inbound leads or later paid retargeting."
-    }
-  ],
-  process: {
-    eyebrow: "Operating model",
-    title: "How a Buzztm burst gets shipped",
+  signals: {
+    eyebrow: "Real signal wall",
+    title: "What makes this feel less like a placeholder and more like a working offer",
     body:
-      "The system is structured to move fast without looking improvised: message calibration first, coordinated publishing second, signal reading third.",
-    steps: [
-      {
-        phase: "01",
-        title: "Offer calibration",
-        body: "Clarify the product, target region, response goal, and the angle that should drive the first three seconds."
+      "The current public footprint already contains useful material. The redesign should surface that material instead of burying it under generic agency language.",
+    points: [
+      "The live site explicitly promises content distribution across hundreds of accounts.",
+      "The current benefits block claims reach from 1M views and an alternative to formal advertising.",
+      "The existing niche examples already point to restaurants, fitness, apps, and auto."
+    ],
+    cards: {
+      live: {
+        kicker: "Current live page",
+        title: "The public offer already has a strong niche hook.",
+        body:
+          "The old site is crowded, but the core promise is clear: TikTok visibility in markets where normal ad access is limited.",
+        link: "Open current site"
       },
-      {
-        phase: "02",
-        title: "Creative pack assembly",
-        body: "Prepare localized scripts, captions, visual directions, and variants for different creator-style publishing points."
+      article: {
+        kicker: "Knowledge path",
+        title: "There is already adjacent TikTok expertise in the MMIX ecosystem.",
+        body:
+          "The MMIX article route gives the brand something concrete beyond vague positioning. That is useful support material, not decorative content.",
+        link: "Open article"
       },
-      {
-        phase: "03",
-        title: "Burst launch",
-        body: "Coordinate posting windows, sequencing, and role separation so the wave feels distributed rather than duplicated."
-      },
-      {
-        phase: "04",
-        title: "Signal review",
-        body: "Read the response, isolate the strongest hooks, and decide whether to extend, repeat, or convert the winning angles into a longer cycle."
+      footprint: {
+        kicker: "Public footprint",
+        title: "Social channels and marks make the offer feel anchored.",
+        body:
+          "Instagram, LinkedIn, Facebook, the Adacted mark, and the MMIX path help the page feel attached to something real."
       }
-    ]
+    }
   },
-  fit: {
-    eyebrow: "Best fit",
-    title: "Who this works for",
+  useCases: {
+    eyebrow: "Use-case meat",
+    title: "Three launch shapes pulled from the current public niche list",
     body:
-      "Buzztm is strongest when the offer needs fast awareness in a market where standard ad mechanics are unavailable, weak, or too slow.",
+      "Instead of listing every possible vertical, the page now shows a few concrete scenarios that people can actually picture.",
     items: [
       {
-        title: "Consumer brands entering a blocked market",
-        body: "Launch a product line, promo, or seasonal push without waiting for stable paid-media access."
+        code: "01",
+        kicker: "Restaurants and cafes",
+        title: "Food-led bursts",
+        body: "Short-form waves around signature dishes, new menu items, and venue energy.",
+        result: "Goal: make the place feel talked about now."
       },
       {
-        title: "Restaurants, hospitality, and local offers",
-        body: "Create short-term attention spikes around menus, events, openings, and booking windows."
+        code: "02",
+        kicker: "Fitness and wellness",
+        title: "Routine and result stories",
+        body: "Hooks built around transformation clips, trainer authority, and visible progress.",
+        result: "Goal: convert attention into curiosity and trial."
       },
       {
-        title: "Apps, products, and digital launches",
-        body: "Use coordinated creator-style publishing to get discovery and proof before bigger spend."
-      },
-      {
-        title: "Agencies needing a burst partner",
-        body: "Add a TikTok-reach layer for clients without pretending the normal ad stack will carry the campaign."
+        code: "03",
+        kicker: "Car brands and dealers",
+        title: "Model spotlight bursts",
+        body: "POV clips, detail shots, launches, and creator-style reveals around a specific model or drop.",
+        result: "Goal: create attention density around one release."
       }
     ]
   },
   modes: {
     eyebrow: "Engagement modes",
-    title: "Three practical ways to engage",
-    body: "The site now frames the offer as productized launch modes instead of a vague generic service.",
+    title: "Less generic service page, more explicit buying paths",
+    body:
+      "The niche pattern here is clear: one focused service, a few productized entry points, and visible outcomes.",
     items: [
       {
         label: "Fast proof",
         title: "Signal Sprint",
-        body: "Validate which hooks and creative angles can move in the target market.",
-        points: ["Creative angle testing", "Localized caption pack", "Short reporting memo"],
+        body: "Validate hooks, captions, and angles before a larger coordinated push.",
+        outcome: "Outcome: fast creative clarity",
         featured: false
       },
       {
-        label: "Core offer",
+        label: "Main push",
         title: "Launch Burst",
-        body: "Run a coordinated publication wave designed to manufacture visibility around one focused campaign.",
-        points: ["Burst choreography", "Multi-point publishing plan", "Hook and response analysis"],
+        body: "Coordinated publishing around one product, offer, or market entry.",
+        outcome: "Outcome: attention density in a short window",
         featured: true
       },
       {
-        label: "Extended layer",
+        label: "Carryover",
         title: "Always-On Pulse",
-        body: "Keep the brand warm between bigger pushes with recurring short-form distribution.",
-        points: ["Monthly content rhythm", "Theme retention", "Ongoing insight loop"],
+        body: "Keep the account warm between bursts with lighter creator-style distribution.",
+        outcome: "Outcome: continuity instead of dead space",
         featured: false
       }
     ]
   },
-  faq: {
-    eyebrow: "FAQ",
-    title: "Questions brands ask before the first burst",
-    items: [
+  process: {
+    eyebrow: "How it moves",
+    title: "Three steps, not a long methodology essay",
+    body:
+      "People do not need a textbook here. They need to understand how the launch gets shaped, shipped, and read.",
+    steps: [
       {
-        q: "Is this a replacement for TikTok ads?",
-        a: "No. It is a reach layer for markets where ads are blocked, unstable, or not yet justified. If ads become viable later, the burst can feed the paid layer with stronger social proof and creative learnings."
+        phase: "01",
+        title: "Shape the hook",
+        body: "Pick the market, the offer, and the first-three-seconds angle that can actually travel."
       },
       {
-        q: "Do you only work with one niche?",
-        a: "No. The fit is determined by launch economics and platform constraints, not by one industry. Consumer products, hospitality, local offers, and digital launches are all viable."
+        phase: "02",
+        title: "Build the burst pack",
+        body: "Prepare creator-style variants, captions, timing logic, and launch assets."
       },
       {
-        q: "How fast can we start?",
-        a: "A focused launch can usually be prepared in a few days once the offer, geography, and response goal are clear."
-      },
-      {
-        q: "What do you need from us?",
-        a: "Clear offer positioning, target-market context, existing brand assets if available, and a practical response goal such as traffic, leads, installs, or bookings."
+        phase: "03",
+        title: "Launch and read the signal",
+        body: "Ship the wave, identify what caught, and decide what deserves a second push."
       }
     ]
   },
   contact: {
     eyebrow: "Inbound",
-    title: "Send the campaign context and get the right launch shape back.",
+    title: "Send the market, the offer, and the timing.",
     body:
-      "The rebuilt contact block is designed to qualify instead of just collect. Share your market, goal, and timeline, and Buzztm can respond with the right burst mode.",
+      "The contact block should qualify the campaign quickly instead of asking for a long life story.",
     points: [
-      "Best when you know the market and desired response",
-      "Useful for one-off launches and partner white-label work",
-      "Built around English, Russian, and Ukrainian launch support"
+      "Best when the target market is already known",
+      "Useful for direct brands and partner agencies",
+      "Built around English, Russian, and Ukrainian support"
     ],
     noteDemo: "Demo mode is active. Connect a live form endpoint before production handoff.",
     noteLive: "This request goes directly into the live intake workflow."
@@ -195,13 +184,13 @@ const en = {
       name: "Your name",
       email: "you@company.com",
       company: "Brand or company name",
-      message: "Target market, product, timeline, and the response you want"
+      message: "Target market, offer, timing, and what response you want"
     },
     success: "Thanks. The request was captured.",
-    error: "Could not send right now. Please try again or use the social links below."
+    error: "Could not send right now. Please try again or use the public links below."
   },
   footer:
-    "Buzztm landing rebuild: clearer TikTok-reach positioning, stronger conversion structure, and EN / RU / UK routing aligned to the current live offer."
+    "Buzztm redesign pass two: more air, more real signals, tighter use cases, and fewer generic agency paragraphs."
 };
 
 export default en;

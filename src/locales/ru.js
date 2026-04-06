@@ -1,180 +1,169 @@
 const ru = {
   localeName: "Русский",
   shortLabel: "RU",
-  brandTag: "волны охвата в TikTok",
+  brandTag: "TikTok launch bursts",
   seo: {
-    title: "Buzztm | Всплески охвата TikTok для ограниченных рынков",
+    title: "Buzztm | TikTok launch bursts для ограниченных рынков",
     description:
-      "Buzztm помогает брендам запускать coordinated TikTok bursts: creator-style публикации, мультиязычные пакеты контента и управляемые запусковые волны там, где paid reach недоступен или нестабилен.",
-    ogTitle: "Buzztm | Координированный TikTok охват",
+      "Buzztm упаковывает TikTok launch bursts для рынков с ограниченным рекламным доступом: больше реальных signal blocks, use cases и coordinated distribution.",
+    ogTitle: "Buzztm | TikTok Launch Bursts",
     ogDescription:
-      "Burst-модель продвижения для брендов, которым нельзя опираться только на рекламный кабинет."
+      "Более визуальная версия Buzztm с public proof, launch scenarios и coordinated TikTok distribution."
   },
   nav: {
-    offer: "Оффер",
+    signal: "Сигналы",
+    cases: "Use cases",
     process: "Процесс",
-    fit: "Кому подходит",
-    faq: "FAQ",
     contact: "Контакт"
   },
   cta: {
     primary: "Обсудить запуск",
-    secondary: "Посмотреть flow",
+    secondary: "Открыть proof wall",
     send: "Запросить план запуска"
   },
   hero: {
-    eyebrow: "Координированный TikTok reach для брендов, которые не могут опираться на рекламу",
-    title: "Создайте волну buzz в TikTok, даже когда paid reach не работает.",
+    eyebrow: "TikTok-first reach layer для рынков, где ads нестабильны, заблокированы или слабы",
+    title: "Запускайтесь в TikTok, даже когда ads вне игры.",
     lede:
-      "Buzztm собирает hook-first идеи, creator-style креативы, хореографию публикаций и мультиязычную поддержку в один burst engine для рынков, где доступ к рекламе ограничен, нестабилен или слишком дорогой.",
+      "Эта версия меньше похожа на pitch deck и больше на campaign floor: реальные публичные сигналы, понятные use cases и более живой визуальный ритм вокруг текущего оффера Buzztm.",
     stats: [
-      ["48ч", "Типичная подготовка burst"],
-      ["100+", "Управляемых точек публикации"],
-      ["3 языка", "EN / RU / UK пакеты"]
+      ["100+", "Точек публикации"],
+      ["1M+", "Views в обещании live site"],
+      ["48ч", "Самое быстрое окно подготовки"]
     ],
-    panelBadge: "Launch kit",
-    panelTitle: "Что входит в burst",
-    panelItems: [
-      "Идеи роликов с сильным первым хук-блоком",
-      "Локализованные копирайт-паки на английском, русском и украинском",
-      "Координация publish windows вместо одной слабой страницы",
-      "Разбор того, какой угол, формат и месседж реально дал отклик"
+    tags: [
+      "Реальные public assets",
+      "Productized launch modes",
+      "Меньше filler, больше campaign shape"
     ],
-    ticker: "Organic reach когда ads заблокированы  •  Buzz-архитектура для ограниченных рынков  •  Creator-style launch bursts"
+    publicMark: "Публичная экосистема Adacted / Buzztm",
+    ribbon: "Mass virality для restricted markets"
   },
-  offerCards: [
-    {
-      kicker: "Почему бренды приходят сюда",
-      title: "Paid reach не всегда доступен там, где вам нужен результат.",
-      body:
-        "Где-то TikTok ads недоступны, где-то экономика не сходится, а где-то кабинет работает нестабильно. Buzztm закрывает именно этот разрыв."
-    },
-    {
-      kicker: "Что делает Buzztm",
-      title: "Управляемый запуск через несколько publishing points.",
-      body:
-        "Вместо надежды на один аккаунт запускается скоординированная волна creator-style публикаций, тайминг-контроль и локализованная подача."
-    },
-    {
-      kicker: "Что меняется",
-      title: "Ваш оффер начинает выглядеть заметным и живым.",
-      body:
-        "Цель не в vanity views. Цель в более быстром product discovery, stronger social proof и более теплом inbound-потоке."
-    }
-  ],
-  process: {
-    eyebrow: "Модель работы",
-    title: "Как собирается и запускается Buzztm burst",
+  signals: {
+    eyebrow: "Real signal wall",
+    title: "Почему это выглядит не как заглушка, а как рабочий оффер",
     body:
-      "Логика простая: сначала калибруем месседж, потом делаем координированный запуск, потом читаем сигналы и усиливаем сильное.",
-    steps: [
-      {
-        phase: "01",
-        title: "Калибровка оффера",
-        body: "Фиксируем продукт, рынок, целевое действие и угол, который должен сработать в первые секунды."
+      "У текущего публичного следа уже есть полезный материал. Задача редизайна — вытянуть этот материал наружу, а не прятать под generic agency language.",
+    points: [
+      "Live site прямо обещает дистрибуцию контента через сотни аккаунтов.",
+      "Текущий benefits block обещает reach от 1M views и альтернативу formal advertising.",
+      "Существующие niche examples уже указывают на restaurants, fitness, apps и auto."
+    ],
+    cards: {
+      live: {
+        kicker: "Текущий live page",
+        title: "В публичном оффере уже есть сильный niche hook.",
+        body:
+          "Старый сайт перегружен, но core promise считывается: TikTok visibility на рынках, где обычный ad access ограничен.",
+        link: "Открыть текущий сайт"
       },
-      {
-        phase: "02",
-        title: "Сборка creative pack",
-        body: "Готовим локализованные скрипты, captions, визуальные направления и вариации для разных publishing points."
+      article: {
+        kicker: "Knowledge path",
+        title: "В экосистеме MMIX уже есть adjacent TikTok expertise.",
+        body:
+          "Маршрут через MMIX article дает бренду что-то конкретное кроме абстрактного позиционирования. Это useful support material, а не декоративный контент.",
+        link: "Открыть статью"
       },
-      {
-        phase: "03",
-        title: "Burst launch",
-        body: "Координируем окна публикаций и sequencing так, чтобы волна выглядела распределенной, а не клонированной."
-      },
-      {
-        phase: "04",
-        title: "Разбор сигнала",
-        body: "Смотрим на отклик, выделяем strongest hooks и решаем, что масштабировать или превращать в следующий цикл."
+      footprint: {
+        kicker: "Public footprint",
+        title: "Соцканалы и марки делают оффер привязанным к реальности.",
+        body:
+          "Instagram, LinkedIn, Facebook, знак Adacted и путь через MMIX помогают странице выглядеть как часть реальной системы."
       }
-    ]
+    }
   },
-  fit: {
-    eyebrow: "Best fit",
-    title: "Кому это действительно подходит",
+  useCases: {
+    eyebrow: "Use-case meat",
+    title: "Три launch shape, взятые из текущего публичного niche list",
     body:
-      "Buzztm сильнее всего там, где нужен быстрый awareness на рынке, где стандартная рекламная механика отсутствует, слаба или слишком медленная.",
+      "Вместо длинного списка всех отраслей страница теперь показывает несколько сценариев, которые можно реально представить.",
     items: [
       {
-        title: "Consumer brands в ограниченном рынке",
-        body: "Запуск продукта, сезонного предложения или новой линейки без ожидания стабильного paid-media доступа."
+        code: "01",
+        kicker: "Restaurants and cafes",
+        title: "Food-led bursts",
+        body: "Короткие волны вокруг signature dishes, новых позиций в меню и энергии самого места.",
+        result: "Цель: чтобы место ощущалось обсуждаемым уже сейчас."
       },
       {
-        title: "Рестораны, hospitality и локальные офферы",
-        body: "Краткосрочные всплески внимания вокруг меню, событий, открытий и booking windows."
+        code: "02",
+        kicker: "Fitness and wellness",
+        title: "Routine and result stories",
+        body: "Hooks вокруг transformation clips, authority тренера и видимого прогресса.",
+        result: "Цель: перевести внимание в curiosity и trial."
       },
       {
-        title: "Apps и digital launches",
-        body: "Координированные creator-style публикации для discovery и social proof до большого бюджета."
-      },
-      {
-        title: "Агентства и white-label партнеры",
-        body: "Дополнительный TikTok-reach слой для клиентских запусков без ложных обещаний про обычный ad stack."
+        code: "03",
+        kicker: "Car brands and dealers",
+        title: "Model spotlight bursts",
+        body: "POV clips, detail shots, launches и creator-style reveals вокруг конкретной модели.",
+        result: "Цель: создать density внимания вокруг одного релиза."
       }
     ]
   },
   modes: {
-    eyebrow: "Форматы работы",
-    title: "Три практичных формата",
-    body: "Новый лендинг упаковывает услугу в понятные engagement modes, а не в размытое описание.",
+    eyebrow: "Engagement modes",
+    title: "Меньше generic service page, больше понятных buying paths",
+    body:
+      "Паттерн ниши здесь очевидный: один сфокусированный сервис, несколько productized entry points и видимый outcome.",
     items: [
       {
-        label: "Быстрая проверка",
+        label: "Быстрый proof",
         title: "Signal Sprint",
-        body: "Понять, какие hooks и creative angles вообще двигаются на целевом рынке.",
-        points: ["Тестирование creative angles", "Локализованный caption pack", "Короткий reporting memo"],
+        body: "Проверить hooks, captions и angles до более крупного coordinated push.",
+        outcome: "Outcome: быстрая creative clarity",
         featured: false
       },
       {
-        label: "Основной оффер",
+        label: "Основной push",
         title: "Launch Burst",
-        body: "Координированная publish wave вокруг одной конкретной кампании.",
-        points: ["Burst choreography", "План публикаций по нескольким точкам", "Анализ hooks и отклика"],
+        body: "Координированная публикация вокруг одного продукта, оффера или market entry.",
+        outcome: "Outcome: attention density за короткое окно",
         featured: true
       },
       {
         label: "Продолжение",
         title: "Always-On Pulse",
-        body: "Поддерживать бренд в теплом состоянии между более крупными запусками.",
-        points: ["Ежемесячный ритм контента", "Удержание тем", "Постоянный insight loop"],
+        body: "Держать аккаунт теплым между bursts через более легкую creator-style distribution.",
+        outcome: "Outcome: continuity вместо мертвой зоны",
         featured: false
       }
     ]
   },
-  faq: {
-    eyebrow: "FAQ",
-    title: "Что обычно спрашивают перед первым burst",
-    items: [
+  process: {
+    eyebrow: "Как это двигается",
+    title: "Три шага, а не длинное методологическое сочинение",
+    body:
+      "Людям тут не нужен учебник. Им нужно понять, как launch формируется, отгружается и читается по сигналам.",
+    steps: [
       {
-        q: "Это замена TikTok ads?",
-        a: "Нет. Это reach-слой для рынков, где реклама заблокирована, нестабильна или пока не оправдана экономически. Позже сильные hooks и social proof могут усилить paid layer."
+        phase: "01",
+        title: "Собрать hook",
+        body: "Определить рынок, оффер и angle первых секунд, который реально может разойтись."
       },
       {
-        q: "Вы работаете только с одной нишей?",
-        a: "Нет. Важнее launch economics и platform constraints, чем отрасль. Подходят consumer products, hospitality, локальные офферы и digital launches."
+        phase: "02",
+        title: "Собрать burst pack",
+        body: "Подготовить creator-style variants, captions, timing logic и launch assets."
       },
       {
-        q: "Как быстро можно стартовать?",
-        a: "Если оффер, география и response goal понятны, focused launch обычно можно собрать за несколько дней."
-      },
-      {
-        q: "Что нужно от нас?",
-        a: "Четкое позиционирование продукта, контекст рынка, существующие brand assets при наличии и понятный response goal: трафик, лиды, установки или бронирования."
+        phase: "03",
+        title: "Запустить и прочитать сигнал",
+        body: "Отгрузить волну, увидеть что зацепило, и понять, что заслуживает второго push."
       }
     ]
   },
   contact: {
     eyebrow: "Inbound",
-    title: "Отправьте контекст кампании и получите адекватную форму запуска.",
+    title: "Отправьте рынок, оффер и тайминг.",
     body:
-      "Контактный блок теперь квалифицирует, а не просто собирает email. Опишите рынок, цель и тайминг, и Buzztm ответит подходящим burst mode.",
+      "Контактный блок должен быстро квалифицировать кампанию, а не просить длинную биографию.",
     points: [
-      "Лучше всего работает, когда понятен рынок и desired response",
-      "Подходит и для прямых брендов, и для white-label партнёров",
-      "Опирается на поддержку EN / RU / UK"
+      "Лучше всего работает, когда target market уже понятен",
+      "Подходит прямым брендам и partner agencies",
+      "Опирается на English, Russian и Ukrainian support"
     ],
-    noteDemo: "Сейчас активен demo mode. Для production нужен live form endpoint.",
+    noteDemo: "Сейчас активен demo mode. Для production подключите live form endpoint.",
     noteLive: "Эта заявка сразу уходит в live intake workflow."
   },
   form: {
@@ -183,11 +172,11 @@ const ru = {
     company: "Бренд / компания",
     interest: "Что вам нужно?",
     message: "Контекст кампании",
-    consent: "Я согласен на связь по этому запросу.",
+    consent: "Я согласен на связь по этому launch request.",
     select: "Выберите вариант",
     options: [
-      "Запуск продукта на ограниченном рынке",
-      "Промо burst для ресторана / hospitality",
+      "Запуск продукта на restricted market",
+      "Restaurant / hospitality promo burst",
       "Burst для app или digital product",
       "Agency / partner collaboration"
     ],
@@ -195,13 +184,13 @@ const ru = {
       name: "Ваше имя",
       email: "you@company.com",
       company: "Название бренда или компании",
-      message: "Рынок, продукт, сроки и какой response вы хотите получить"
+      message: "Рынок, оффер, тайминг и какой response вы хотите"
     },
     success: "Спасибо. Запрос сохранен.",
-    error: "Сейчас не удалось отправить. Попробуйте еще раз или используйте соцссылки ниже."
+    error: "Сейчас не удалось отправить. Попробуйте еще раз или используйте public links ниже."
   },
   footer:
-    "Buzztm landing rebuild: понятнее TikTok-reach оффер, сильнее conversion structure и корректная маршрутизация EN / RU / UK под текущий live offer."
+    "Buzztm redesign pass two: больше воздуха, больше реальных сигналов, плотнее use cases и меньше generic agency paragraphs."
 };
 
 export default ru;

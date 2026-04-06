@@ -49,7 +49,7 @@ function setSchema({ locale, canonicalUrl }) {
     name: "Buzztm",
     url: canonicalUrl,
     description:
-      "Coordinated TikTok burst distribution for brands operating in markets where paid reach is blocked, unstable, or inefficient.",
+      "Editorial TikTok launch bursts for brands that need public-proof-driven reach in restricted or unstable markets.",
     sameAs: [
       "https://www.instagram.com/adactedagency/",
       "https://www.linkedin.com/company/73956025",
@@ -82,7 +82,7 @@ export function applySeo({ locale, seo }) {
 
   ensureMeta("name", "description").setAttribute("content", seo.description);
   ensureMeta("name", "robots").setAttribute("content", "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1");
-  ensureMeta("name", "theme-color").setAttribute("content", "#090b11");
+  ensureMeta("name", "theme-color").setAttribute("content", "#f2eee5");
 
   ensureMeta("property", "og:type").setAttribute("content", "website");
   ensureMeta("property", "og:locale").setAttribute("content", locale === "uk" ? "uk_UA" : locale === "ru" ? "ru_RU" : "en_US");

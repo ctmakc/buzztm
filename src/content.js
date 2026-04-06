@@ -1,11 +1,10 @@
 import en from "./locales/en";
 import ru from "./locales/ru";
-import uk from "./locales/uk";
 
-export const SUPPORTED_LOCALES = ["en", "ru", "uk"];
+export const SUPPORTED_LOCALES = ["en", "ru"];
 export const DEFAULT_LOCALE = "en";
 
-export const content = { en, ru, uk };
+export const content = { en, ru };
 
 export function resolveInitialLocale() {
   const url = new URL(window.location.href);
@@ -16,7 +15,6 @@ export function resolveInitialLocale() {
   if (SUPPORTED_LOCALES.includes(stored)) return stored;
 
   const nav = (navigator.language || "").toLowerCase();
-  if (nav.startsWith("uk")) return "uk";
   if (nav.startsWith("ru")) return "ru";
   return DEFAULT_LOCALE;
 }

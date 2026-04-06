@@ -5,6 +5,7 @@ function readEnv(filePath) {
   if (!fs.existsSync(filePath)) return {};
   const out = {};
   const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/);
+
   for (const line of lines) {
     if (!line || line.trim().startsWith("#") || !line.includes("=")) continue;
     const idx = line.indexOf("=");
@@ -12,6 +13,7 @@ function readEnv(filePath) {
     const val = line.slice(idx + 1).trim().replace(/^['"]|['"]$/g, "");
     out[key] = val;
   }
+
   return out;
 }
 
@@ -19,6 +21,7 @@ const localEnv = readEnv(path.resolve(".env"));
 const exampleEnv = readEnv(path.resolve(".env.example"));
 const siteUrl = (process.env.VITE_SITE_URL || localEnv.VITE_SITE_URL || exampleEnv.VITE_SITE_URL || "https://example.com").replace(/\/$/, "");
 const publicDir = path.resolve("public");
+
 fs.mkdirSync(publicDir, { recursive: true });
 
 fs.writeFileSync(path.join(publicDir, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
@@ -30,7 +33,6 @@ const sitemap =
   `    <loc>${siteUrl}/</loc>\n` +
   `    <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}/?lang=en" />\n` +
   `    <xhtml:link rel="alternate" hreflang="ru" href="${siteUrl}/?lang=ru" />\n` +
-  `    <xhtml:link rel="alternate" hreflang="uk" href="${siteUrl}/?lang=uk" />\n` +
   `    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/?lang=en" />\n` +
   `    <changefreq>weekly</changefreq>\n` +
   `    <priority>1.0</priority>\n` +

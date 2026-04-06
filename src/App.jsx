@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import adactedLogo from "../assets/real/adacted-logo.png";
 import buzztmLive from "../assets/real/buzztm-live.webp";
-import buzztmTikTok from "../assets/real/buzztm-tiktok.webp";
-import instagramProfile from "../assets/real/instagram-profile.jpg";
-import mmixArticle from "../assets/real/mmix-article.webp";
 import mmixLogo from "../assets/real/mmix-logo.png";
+import caseEcom from "../assets/stitch/case-ecom.webp";
+import caseInfobiz from "../assets/stitch/case-infobiz.webp";
+import caseService from "../assets/stitch/case-service.webp";
+import heroCollage from "../assets/stitch/hero-collage.webp";
 import { initAnalytics, trackEvent, trackPageView } from "./analytics";
 import { content, DEFAULT_LOCALE, resolveInitialLocale, SUPPORTED_LOCALES } from "./content";
 import { applySeo } from "./seo";
@@ -15,53 +16,25 @@ const SOCIAL_LINKS = [
   { label: "Facebook", href: "https://www.facebook.com/Adacted-102016908383521" }
 ];
 
-const RESOURCE_LINKS = [
-  { label: "TikTok ads article", href: "https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/" },
-  { label: "Український матеріал", href: "https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/" }
+const REFERENCE_LINKS = [
+  { label: "MMIX TikTok article", href: "https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/" },
+  { label: "MMIX article RU/UA", href: "https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/" },
+  { label: "Live site", href: "https://www.buzztm.com" }
 ];
 
-const SIGNAL_PANELS = [
-  {
-    image: buzztmLive,
-    alt: "Current live Buzztm site screenshot",
-    href: "https://www.buzztm.com",
-    key: "live"
-  },
-  {
-    image: mmixArticle,
-    alt: "MMIX TikTok article screenshot",
-    href: "https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/",
-    key: "article"
-  },
-  {
-    image: null,
-    alt: "",
-    href: null,
-    key: "footprint"
-  }
-];
-
-const CASE_VISUALS = [
-  {
-    image: buzztmTikTok,
-    alt: "TikTok themed Buzztm visual"
-  },
-  {
-    image: mmixArticle,
-    alt: "MMIX article screenshot"
-  },
-  {
-    image: buzztmLive,
-    alt: "Current Buzztm live site screenshot"
-  }
-];
+const CASE_MEDIA = [caseEcom, caseInfobiz, caseService];
 
 function useRevealAnimations() {
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const nodes = Array.from(document.querySelectorAll(".reveal"));
 
-    if (reduceMotion) {
+    if (!nodes.length) return;
+
+    const reduceMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion || typeof window.IntersectionObserver !== "function") {
       nodes.forEach((node) => node.classList.add("is-visible"));
       return;
     }
@@ -74,11 +47,11 @@ function useRevealAnimations() {
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
     );
 
     nodes.forEach((node, index) => {
-      node.style.transitionDelay = `${(index % 4) * 60}ms`;
+      node.style.transitionDelay = `${(index % 5) * 70}ms`;
       observer.observe(node);
     });
 
@@ -100,6 +73,16 @@ function LocaleSwitcher({ locale, onChange }) {
           {content[code].shortLabel}
         </button>
       ))}
+    </div>
+  );
+}
+
+function SectionHeader({ eyebrow, title, body, center = false }) {
+  return (
+    <div className={`section-header${center ? " section-header--center" : ""}`}>
+      <p className="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <p>{body}</p>
     </div>
   );
 }
@@ -138,6 +121,7 @@ async function submitLeadForm(form, locale) {
 
   const response = await fetch(endpoint, { method: "POST", body: data });
   let payload = null;
+
   try {
     payload = await response.json();
   } catch {
@@ -209,7 +193,7 @@ function LeadForm({ locale, t }) {
         </label>
         <label className="full">
           <span>{t.form.message}</span>
-          <textarea name="message" rows="4" placeholder={t.form.placeholders.message} />
+          <textarea name="message" rows="5" placeholder={t.form.placeholders.message} />
         </label>
       </div>
 
@@ -231,53 +215,9 @@ function LeadForm({ locale, t }) {
   );
 }
 
-function SignalPanel({ panel, t }) {
-  const card = t.signals.cards[panel.key];
-
-  if (panel.key === "footprint") {
-    return (
-      <article className="proof-panel proof-panel--footprint">
-        <div className="proof-panel__logos">
-          <img src={adactedLogo} alt="Adacted logo" />
-          <img src={mmixLogo} alt="MMIX logo" />
-        </div>
-        <div className="proof-panel__copy">
-          <span>{card.kicker}</span>
-          <h3>{card.title}</h3>
-          <p>{card.body}</p>
-        </div>
-        <div className="proof-panel__links">
-          {SOCIAL_LINKS.map((item) => (
-            <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </article>
-    );
-  }
-
-  return (
-    <article className="proof-panel">
-      <div className="proof-panel__media">
-        <img src={panel.image} alt={panel.alt} />
-      </div>
-      <div className="proof-panel__copy">
-        <span>{card.kicker}</span>
-        <h3>{card.title}</h3>
-        <p>{card.body}</p>
-        <a href={panel.href} target="_blank" rel="noreferrer">
-          {card.link}
-        </a>
-      </div>
-    </article>
-  );
-}
-
 export default function App() {
   const [locale, setLocale] = useState(() => (typeof window === "undefined" ? DEFAULT_LOCALE : resolveInitialLocale()));
   const t = content[locale] || content.en;
-  const marqueeItems = [t.hero.ribbon, ...t.hero.tags, t.hero.publicMark];
 
   useRevealAnimations();
 
@@ -290,14 +230,15 @@ export default function App() {
     url.searchParams.set("lang", locale);
     window.history.replaceState({}, "", url);
     window.localStorage.setItem("locale", locale);
-    applySeo({ locale, seo: t.seo });
+    applySeo({ locale, seo: t.seo, heroImage: heroCollage, faq: t.faq.items });
     trackPageView({ locale, page: "landing" });
   }, [locale, t]);
 
   return (
     <>
-      <div className="page-gradient" />
-      <div className="page-grain" />
+      <div className="page-orb page-orb--cyan" />
+      <div className="page-orb page-orb--rose" />
+      <div className="page-grid" />
 
       <header className="shell topbar reveal">
         <a className="brand" href="#home" aria-label="Buzztm home">
@@ -309,24 +250,25 @@ export default function App() {
         </a>
 
         <nav className="nav" aria-label="Primary">
-          <a href="#signal">{t.nav.signal}</a>
+          <a href="#services">{t.nav.services}</a>
           <a href="#cases">{t.nav.cases}</a>
           <a href="#process">{t.nav.process}</a>
+          <a href="#coverage">{t.nav.coverage}</a>
           <a href="#contact">{t.nav.contact}</a>
         </nav>
 
         <div className="topbar-actions">
           <LocaleSwitcher locale={locale} onChange={setLocale} />
-          <a className="btn btn-outline btn-sm" href="#contact">
+          <a className="btn btn-ghost btn-sm" href="#contact">
             {t.cta.primary}
           </a>
         </div>
       </header>
 
       <main className="shell site-main">
-        <section className="hero reveal" id="home">
+        <section className="hero-panel reveal" id="home">
           <div className="hero-copy">
-            <p className="eyebrow">{t.hero.eyebrow}</p>
+            <p className="eyebrow eyebrow--strong">{t.hero.eyebrow}</p>
             <h1>{t.hero.title}</h1>
             <p className="hero-lede">{t.hero.lede}</p>
 
@@ -334,155 +276,99 @@ export default function App() {
               <a className="btn btn-primary" href="#contact">
                 {t.cta.primary}
               </a>
-              <a className="btn btn-outline" href="#signal">
+              <a className="btn btn-ghost" href="#services">
                 {t.cta.secondary}
               </a>
             </div>
 
-            <div className="stat-row" aria-label="Key signals">
-              {t.hero.stats.map(([value, label]) => (
-                <div key={label} className="stat-row__item">
-                  <strong>{value}</strong>
-                  <span>{label}</span>
+            <div className="hero-stats" aria-label="Key performance signals">
+              {t.hero.stats.map((item) => (
+                <div key={item.label} className="stat-card">
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
                 </div>
               ))}
             </div>
 
-            <div className="marquee-band" aria-hidden="true">
-              <div className="marquee-band__track">
-                {marqueeItems.concat(marqueeItems).map((item, index) => (
-                  <span key={`${item}-${index}`}>{item}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="hero-stage">
-            <figure className="hero-stage__primary">
-              <img src={buzztmTikTok} alt="Buzztm TikTok visual from the current public site" />
-              <figcaption>
-                <span>{t.hero.ribbon}</span>
-                <strong>{t.hero.publicMark}</strong>
-              </figcaption>
-            </figure>
-
-            <div className="hero-stage__stack">
-              <article className="stage-note stage-note--brand">
-                <img src={adactedLogo} alt="Adacted logo from the current public site" />
-                <div>
-                  <span>Public mark</span>
-                  <strong>{t.hero.publicMark}</strong>
-                </div>
-              </article>
-
-              <article className="stage-note">
-                <img src={instagramProfile} alt="Adacted Instagram profile image" />
-                <div>
-                  <span>Instagram</span>
-                  <strong>@adactedagency</strong>
-                </div>
-              </article>
-
-              <article className="stage-note stage-note--wide">
-                <img src={buzztmLive} alt="Current live Buzztm site screenshot" />
-                <div>
-                  <span>Live page</span>
-                  <strong>Current public offer and proof stack</strong>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="proof-section reveal" id="signal">
-          <div className="proof-intro">
-            <p className="eyebrow">{t.signals.eyebrow}</p>
-            <h2>{t.signals.title}</h2>
-            <p>{t.signals.body}</p>
-
-            <ul className="signal-bullets">
-              {t.signals.points.map((item) => (
+            <ul className="tag-row" aria-label="Launch model highlights">
+              {t.hero.tags.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-
-            <div className="proof-links">
-              {RESOURCE_LINKS.map((item) => (
-                <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                  {item.label}
-                </a>
-              ))}
-            </div>
           </div>
 
-          <div className="proof-rail">
-            {SIGNAL_PANELS.map((panel) => (
-              <SignalPanel key={panel.key} panel={panel} t={t} />
-            ))}
-          </div>
-        </section>
+          <div className="hero-visual">
+            <article className="hero-image-card">
+              <img src={heroCollage} alt={t.hero.imageAlt} />
+              <div className="hero-image-overlay">
+                <span>{t.hero.liveLabel}</span>
+                <strong>{t.hero.liveValue}</strong>
+                <p>{t.hero.liveNote}</p>
+              </div>
+            </article>
 
-        <section className="cases-section reveal" id="cases">
-          <div className="section-head section-head--wide">
-            <p className="eyebrow">{t.useCases.eyebrow}</p>
-            <h2>{t.useCases.title}</h2>
-            <p>{t.useCases.body}</p>
-          </div>
+            <article className="floating-card floating-card--proof">
+              <span>{t.hero.proofCard.kicker}</span>
+              <strong>{t.hero.proofCard.title}</strong>
+              <p>{t.hero.proofCard.body}</p>
+            </article>
 
-          <div className="case-stories">
-            {t.useCases.items.map((item, index) => {
-              const visual = CASE_VISUALS[index % CASE_VISUALS.length];
-              return (
-                <article
-                  key={item.title}
-                  className={`case-story${index % 2 === 1 ? " case-story--reverse" : ""}`}
-                >
-                  <div className="case-story__media">
-                    <img src={visual.image} alt={visual.alt} />
-                    <span className="case-story__code">{item.code}</span>
-                  </div>
-
-                  <div className="case-story__content">
-                    <span>{item.kicker}</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                    <strong>{item.result}</strong>
-                  </div>
-                </article>
-              );
-            })}
+            <article className="floating-card floating-card--ops">
+              <div className="logo-stack" aria-label="Partner footprint">
+                <img src={adactedLogo} alt="Adacted logo" />
+                <img src={mmixLogo} alt="MMIX logo" />
+              </div>
+              <span>{t.hero.opsCard.kicker}</span>
+              <strong>{t.hero.opsCard.title}</strong>
+              <p>{t.hero.opsCard.body}</p>
+            </article>
           </div>
         </section>
 
-        <section className="modes-section reveal">
-          <div className="section-head">
-            <p className="eyebrow">{t.modes.eyebrow}</p>
-            <h2>{t.modes.title}</h2>
-            <p>{t.modes.body}</p>
-          </div>
+        <section className="section-block reveal">
+          <SectionHeader
+            eyebrow={t.pain.eyebrow}
+            title={t.pain.title}
+            body={t.pain.body}
+            center
+          />
 
-          <div className="mode-deck">
-            {t.modes.items.map((item) => (
-              <article key={item.title} className={`mode-card${item.featured ? " mode-card--featured" : ""}`}>
-                <span>{item.label}</span>
+          <div className="pain-grid">
+            {t.pain.items.map((item, index) => (
+              <article key={item.title} className="pain-card">
+                <span>{String(index + 1).padStart(2, "0")}</span>
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
-                <strong>{item.outcome}</strong>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="process-section reveal" id="process">
-          <div className="section-head section-head--wide">
-            <p className="eyebrow">{t.process.eyebrow}</p>
-            <h2>{t.process.title}</h2>
-            <p>{t.process.body}</p>
-          </div>
+        <section className="section-block reveal" id="services">
+          <SectionHeader eyebrow={t.services.eyebrow} title={t.services.title} body={t.services.body} />
 
-          <div className="process-track">
+          <div className="service-grid">
+            {t.services.items.map((item) => (
+              <article key={item.title} className={`service-card${item.featured ? " service-card--featured" : ""}`}>
+                <span className="service-label">{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <ul>
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-block reveal" id="process">
+          <SectionHeader eyebrow={t.process.eyebrow} title={t.process.title} body={t.process.body} />
+
+          <div className="process-grid">
             {t.process.steps.map((step) => (
-              <article key={step.title} className="step-card">
+              <article key={step.phase} className="process-card">
                 <span>{step.phase}</span>
                 <h3>{step.title}</h3>
                 <p>{step.body}</p>
@@ -491,30 +377,107 @@ export default function App() {
           </div>
         </section>
 
-        <section className="contact-section reveal" id="contact">
+        <section className="section-block reveal" id="cases">
+          <SectionHeader eyebrow={t.cases.eyebrow} title={t.cases.title} body={t.cases.body} />
+
+          <div className="case-grid">
+            {t.cases.items.map((item, index) => (
+              <article key={item.title} className="case-card">
+                <div className="case-media">
+                  <img src={CASE_MEDIA[index]} alt={item.alt} />
+                  <span>{item.segment}</span>
+                </div>
+                <div className="case-copy">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                  <div className="case-metric">
+                    <strong>{item.metric}</strong>
+                    <span>{item.metricLabel}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-block reveal" id="coverage">
+          <div className="coverage-layout">
+            <div className="coverage-copy">
+              <SectionHeader eyebrow={t.coverage.eyebrow} title={t.coverage.title} body={t.coverage.body} />
+
+              <div className="coverage-grid">
+                {t.coverage.regions.map((item) => (
+                  <article key={item.name} className="coverage-card">
+                    <h3>{item.name}</h3>
+                    <p>{item.body}</p>
+                  </article>
+                ))}
+              </div>
+
+              <ul className="coverage-bullets">
+                {t.coverage.bullets.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <aside className="proof-stack">
+              <article className="proof-stack__shot">
+                <img src={buzztmLive} alt={t.coverage.proofImageAlt} />
+              </article>
+
+              <article className="proof-stack__panel">
+                <span>{t.coverage.panel.kicker}</span>
+                <h3>{t.coverage.panel.title}</h3>
+                <p>{t.coverage.panel.body}</p>
+
+                <div className="inline-logos">
+                  <img src={adactedLogo} alt="Adacted logo" />
+                  <img src={mmixLogo} alt="MMIX logo" />
+                </div>
+
+                <div className="link-pills">
+                  {REFERENCE_LINKS.map((item) => (
+                    <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section className="section-block reveal">
+          <SectionHeader eyebrow={t.faq.eyebrow} title={t.faq.title} body={t.faq.body} center />
+
+          <div className="faq-list">
+            {t.faq.items.map((item) => (
+              <details key={item.q} className="faq-item">
+                <summary>
+                  <span>{item.q}</span>
+                  <span className="faq-symbol">+</span>
+                </summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="contact-panel reveal" id="contact">
           <div className="contact-copy">
-            <p className="eyebrow">{t.contact.eyebrow}</p>
+            <p className="eyebrow eyebrow--strong">{t.contact.eyebrow}</p>
             <h2>{t.contact.title}</h2>
             <p>{t.contact.body}</p>
 
-            <ul className="contact-list">
+            <ul className="contact-points">
               {t.contact.points.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
 
-            <div className="contact-brands" aria-label="Public ecosystem marks">
-              <img src={adactedLogo} alt="Adacted logo" />
-              <img src={mmixLogo} alt="MMIX logo" />
-            </div>
-
-            <div className="contact-links">
+            <div className="link-pills">
               {SOCIAL_LINKS.map((item) => (
-                <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                  {item.label}
-                </a>
-              ))}
-              {RESOURCE_LINKS.map((item) => (
                 <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
                   {item.label}
                 </a>
@@ -522,12 +485,29 @@ export default function App() {
             </div>
           </div>
 
-          <LeadForm locale={locale} t={t} />
+          <div className="contact-form-wrap">
+            <LeadForm locale={locale} t={t} />
+          </div>
         </section>
       </main>
 
-      <footer className="shell footer reveal">
-        <p>{t.footer}</p>
+      <footer className="site-footer">
+        <div className="shell footer-wrap">
+          <div>
+            <strong>Buzztm</strong>
+            <p>{t.footer.note}</p>
+          </div>
+
+          <div className="footer-links">
+            {t.footer.links.map((item) => (
+              <a key={item.label} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="footer-copy">{t.footer.copy}</div>
+        </div>
       </footer>
     </>
   );

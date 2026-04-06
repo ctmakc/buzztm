@@ -3,16 +3,16 @@ import { describe, expect, it } from "vitest";
 import App from "./App";
 
 describe("App", () => {
-  it("renders the new hero and proof CTA", () => {
+  it("renders the new hero and services CTA", () => {
     render(<App />);
 
     expect(
       screen.getByRole("heading", {
-        name: /make the campaign feel live before the ad account even exists/i
+        name: /tikTok campaigns built for revenue/i
       })
     ).toBeInTheDocument();
 
-    expect(screen.getAllByRole("link", { name: /book a strategy call/i }).length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: /see the proof stack/i })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /book strategy session/i }).length).toBeGreaterThan(0);
+    expect(screen.getByRole("link", { name: /see delivery model/i })).toBeInTheDocument();
   });
 });

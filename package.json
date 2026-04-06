@@ -1,0 +1,31 @@
+{
+  "name": "buzztm-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "images:optimize": "node scripts/optimize-images.mjs",
+    "seo:generate": "node scripts/generate-static-seo.mjs",
+    "prebuild": "npm run seo:generate",
+    "cf:pages:ensure": "node scripts/cloudflare-pages-manager.mjs ensure-project",
+    "cf:pages:domains": "node scripts/cloudflare-pages-manager.mjs sync-domains",
+    "namecheap:dns:sync": "node scripts/namecheap-dns-manager.mjs sync-records"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^26.0.0",
+    "sharp": "^0.34.5",
+    "vite": "^5.4.18",
+    "vitest": "^2.1.8"
+  }
+}

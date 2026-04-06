@@ -1,0 +1,10 @@
+{
+  "name": "Buzztm",
+  "short_name": "Buzztm",
+  "start_url": "/?lang=en",
+  "display": "standalone",
+  "background_color": "#090b11",
+  "theme_color": "#090b11",
+  "lang": "en",
+  "icons": []
+}

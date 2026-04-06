@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,follow" />
+  <title>Thank You | Buzztm</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin:0; font-family:"Instrument Sans",system-ui,sans-serif; background:#090b11; color:#f4f1e8; }
+    .wrap { min-height:100svh; display:grid; place-items:center; padding:24px; background:
+      radial-gradient(circle at 12% 12%, rgba(216,255,83,.16), transparent 28%),
+      radial-gradient(circle at 88% 20%, rgba(255,117,89,.18), transparent 24%),
+      linear-gradient(180deg,#090b11,#111621 48%,#090b11); }
+    .card { width:min(760px,100%); border:1px solid rgba(255,255,255,.12); padding:28px; background:rgba(16,20,30,.86); backdrop-filter:blur(18px); }
+    h1 { margin:0 0 12px; font-family:"Syne",system-ui,sans-serif; font-size:clamp(2rem,5vw,3.2rem); line-height:.94; }
+    p { margin:0 0 14px; color:#b8b4a6; line-height:1.65; }
+    .actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:12px 14px; text-decoration:none; font-weight:800; border:1px solid rgba(255,255,255,.15); }
+    .btn-primary { background:linear-gradient(135deg,#d8ff53,#fff08b); color:#090b11; }
+    .btn-ghost { background:rgba(255,255,255,.04); color:#f4f1e8; }
+    small { color:#9d9889; }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1 id="title">Thanks. The launch request is in.</h1>
+      <p id="body">Buzztm can now review the market, offer, and timing you sent and come back with the right burst format or next-step call.</p>
+      <div class="actions">
+        <a class="btn btn-primary" id="backLink" href="/?lang=en">Back to Buzztm</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/adactedagency/" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+      <p><small id="langHint">Language: English</small></p>
+    </div>
+  </div>
+  <script>
+    const copy = {
+      en: {
+        title: "Thanks. The launch request is in.",
+        body: "Buzztm can now review the market, offer, and timing you sent and come back with the right burst format or next-step call.",
+        back: "Back to Buzztm",
+        lang: "Language: English"
+      },
+      ru: {
+        title: "Спасибо. Запрос на запуск получен.",
+        body: "Теперь Buzztm может посмотреть на рынок, оффер и тайминг из вашей заявки и вернуться с подходящим burst format или следующим созвоном.",
+        back: "Вернуться на сайт",
+        lang: "Язык: Русский"
+      },
+      uk: {
+        title: "Дякуємо. Запит на запуск отримано.",
+        body: "Тепер Buzztm може переглянути ринок, офер і таймінг із вашої заявки та повернутися з відповідним burst format або наступним дзвінком.",
+        back: "Повернутися на сайт",
+        lang: "Мова: Українська"
+      }
+    };
+    const url = new URL(location.href);
+    const lang = ["en", "ru", "uk"].includes(url.searchParams.get("lang")) ? url.searchParams.get("lang") : "en";
+    document.documentElement.lang = lang;
+    document.getElementById("title").textContent = copy[lang].title;
+    document.getElementById("body").textContent = copy[lang].body;
+    document.getElementById("backLink").textContent = copy[lang].back;
+    document.getElementById("backLink").href = "/?lang=" + lang;
+    document.getElementById("langHint").textContent = copy[lang].lang;
+  </script>
+</body>
+</html>

@@ -1,155 +1,151 @@
 const uk = {
   localeName: "Українська",
   shortLabel: "UK",
-  brandTag: "TikTok launch bursts",
+  brandTag: "Campaign-led TikTok reach",
   seo: {
-    title: "Buzztm | TikTok launch bursts для обмежених ринків",
+    title: "Buzztm | Editorial TikTok Launch Bursts для обмежених ринків",
     description:
-      "Buzztm упаковує TikTok launch bursts для ринків з обмеженим рекламним доступом: більше реальних signal blocks, use cases і coordinated distribution.",
+      "Buzztm упаковує TikTok launch bursts для обмежених ринків через більш візуальний editorial-лендинг з public proof, реальними use cases і coordinated short-form distribution.",
     ogTitle: "Buzztm | TikTok Launch Bursts",
     ogDescription:
-      "Більш візуальна версія Buzztm з public proof, launch scenarios і coordinated TikTok distribution."
+      "Більш зібрана версія Buzztm: більше повітря, крупніші візуали, сильніший public proof і зрозуміліші launch modes."
   },
   nav: {
-    signal: "Сигнали",
+    signal: "Proof",
     cases: "Use cases",
     process: "Процес",
     contact: "Контакт"
   },
   cta: {
     primary: "Обговорити запуск",
-    secondary: "Відкрити proof wall",
+    secondary: "Відкрити proof stack",
     send: "Запросити план запуску"
   },
   hero: {
-    eyebrow: "TikTok-first reach layer для ринків, де ads нестабільні, заблоковані або слабкі",
-    title: "Запускайтесь у TikTok, навіть коли ads поза грою.",
+    eyebrow: "Editorial campaign board для TikTok-запусків на ринках, де ads нестабільні або заблоковані",
+    title: "Зробіть так, щоб кампанія виглядала живою ще до того, як з'явиться ad account.",
     lede:
-      "Ця версія менше схожа на pitch deck і більше на campaign floor: реальні публічні сигнали, зрозумілі use cases та більш живий візуальний ритм навколо поточного оферу Buzztm.",
+      "Buzztm подається як короткий TikTok burst із public proof, реальними сигналами та більш зібраним launch rhythm для брендів, яким потрібен reach навіть коли звичайний media buying не тягне.",
     stats: [
-      ["100+", "Точок публікації"],
-      ["1M+", "Views в обіцянці live site"],
+      ["100s", "Точок публікації в live-офері"],
+      ["1M+", "Views, згадані на поточному сайті"],
       ["48г", "Найшвидше вікно підготовки"]
     ],
-    tags: [
-      "Реальні public assets",
-      "Productized launch modes",
-      "Менше filler, більше campaign shape"
-    ],
-    publicMark: "Публічна екосистема Adacted / Buzztm",
-    ribbon: "Mass virality для restricted markets"
+    tags: ["Public proof", "Image-led sections", "Чіткі launch paths"],
+    publicMark: "Публічний слід Adacted / Buzztm",
+    ribbon: "TikTok launch bursts для restricted markets"
   },
   signals: {
-    eyebrow: "Real signal wall",
-    title: "Чому це виглядає не як заглушка, а як робочий офер",
+    eyebrow: "Proof, не filler",
+    title: "Чистіша сторінка, зібрана навколо публічних фактів, а не agency-заглушок",
     body:
-      "У поточного публічного сліду вже є корисний матеріал. Завдання редизайну — витягнути цей матеріал назовні, а не ховати його під generic agency language.",
+      "Старий сайт уже мав корисний матеріал. У новій версії цей матеріал винесено вперед через великі кадри, спокійніший ритм і читабельний proof stack.",
     points: [
-      "Live site прямо обіцяє дистрибуцію контенту через сотні акаунтів.",
-      "Поточний benefits block обіцяє reach від 1M views і альтернативу formal advertising.",
-      "Наявні niche examples уже вказують на restaurants, fitness, apps та auto."
+      "Live page уже обіцяє дистрибуцію через сотні акаунтів.",
+      "Публічний benefits block посилається на охоплення від 1M views і альтернативу formal ad access.",
+      "Поточний niche list уже вказує на restaurants, fitness, apps та auto."
     ],
     cards: {
       live: {
         kicker: "Поточний live page",
-        title: "У публічному офері вже є сильний niche hook.",
+        title: "Нішевий promise був реальним. Слабкою була подача.",
         body:
-          "Старий сайт перевантажений, але core promise читається: TikTok visibility на ринках, де звичайний ad access обмежений.",
+          "Попередня версія була перевантажена, але core offer читався завжди: TikTok visibility для ринків, де звичайні рекламні канали нестабільні.",
         link: "Відкрити поточний сайт"
       },
       article: {
         kicker: "Knowledge path",
-        title: "В екосистемі MMIX уже є adjacent TikTok expertise.",
+        title: "В екосистемі MMIX уже є сусідня TikTok-експертиза.",
         body:
-          "Маршрут через MMIX article дає бренду щось конкретне крім абстрактного позиціонування. Це useful support material, а не декоративний контент.",
+          "MMIX article додає фактури й показує, що навколо оферу вже є публічний контур знань, а не лише абстрактне позиціонування.",
         link: "Відкрити статтю"
       },
       footprint: {
         kicker: "Public footprint",
-        title: "Соцканали та марки роблять офер прив'язаним до реальності.",
+        title: "Соцканали та партнерські marks роблять офер приземленим.",
         body:
-          "Instagram, LinkedIn, Facebook, знак Adacted і шлях через MMIX допомагають сторінці виглядати як частина реальної системи."
+          "Instagram, LinkedIn, Facebook, знак Adacted і посилання на MMIX допомагають сторінці виглядати як робочий бізнес-шар, а не порожня оболонка."
       }
     }
   },
   useCases: {
     eyebrow: "Use-case meat",
-    title: "Три launch shape, взяті з поточного публічного niche list",
+    title: "Три конкретні сценарії запуску з уже наявного публічного niche list",
     body:
-      "Замість довгого списку всіх галузей сторінка тепер показує кілька сценаріїв, які можна реально уявити.",
+      "Замість спроби охопити всі вертикалі сторінка тепер показує три сценарії, які простіше уявити, обговорити і купити.",
     items: [
       {
         code: "01",
         kicker: "Restaurants and cafes",
         title: "Food-led bursts",
-        body: "Короткі хвилі навколо signature dishes, нових позицій меню та енергії самого місця.",
-        result: "Ціль: щоб місце відчувалося обговорюваним уже зараз."
+        body: "Короткі хвилі навколо signature dishes, атмосфери місця, menu drops і локальних приводів для розмови.",
+        result: "Ціль результату: щоб про місце заговорили прямо зараз."
       },
       {
         code: "02",
         kicker: "Fitness and wellness",
         title: "Routine and result stories",
-        body: "Hooks навколо transformation clips, authority тренера та видимого прогресу.",
-        result: "Ціль: перевести увагу в curiosity і trial."
+        body: "Authority clips, прогрес, transformation hooks і повторювані trainer-led формати.",
+        result: "Ціль результату: перевести увагу в trial та вхідний інтерес."
       },
       {
         code: "03",
         kicker: "Car brands and dealers",
         title: "Model spotlight bursts",
-        body: "POV clips, detail shots, launches і creator-style reveals навколо конкретної моделі.",
-        result: "Ціль: створити density уваги навколо одного релізу."
+        body: "POV clips, detail shots, walkarounds, reveal-моменти й creator-style handoffs навколо одного релізу.",
+        result: "Ціль результату: стиснути увагу навколо одного launch moment."
       }
     ]
   },
   modes: {
-    eyebrow: "Engagement modes",
-    title: "Менше generic service page, більше зрозумілих buying paths",
+    eyebrow: "Buying paths",
+    title: "Три зрозуміліші точки входу замість одного generic services block",
     body:
-      "Патерн ніші тут очевидний: один сфокусований сервіс, кілька productized entry points і видимий outcome.",
+      "Структура тепер працює як launch menu: швидкий proof, основний burst і continuity між хвилями.",
     items: [
       {
         label: "Швидкий proof",
         title: "Signal Sprint",
-        body: "Перевірити hooks, captions і angles до більшого coordinated push.",
+        body: "Швидко перевірити перші hooks, captions і angles до ширшої coordinated wave.",
         outcome: "Outcome: швидка creative clarity",
         featured: false
       },
       {
         label: "Основний push",
         title: "Launch Burst",
-        body: "Координована публікація навколо одного продукту, оферу або market entry.",
-        outcome: "Outcome: attention density за коротке вікно",
+        body: "Запустити концентрований publishing burst навколо одного продукту, одного оферу або одного market entry.",
+        outcome: "Outcome: щільна увага за коротке вікно",
         featured: true
       },
       {
-        label: "Продовження",
+        label: "Carryover",
         title: "Always-On Pulse",
-        body: "Тримати акаунт теплим між bursts через легшу creator-style distribution.",
-        outcome: "Outcome: continuity замість мертвої зони",
+        body: "Тримати акаунт живим між великими хвилями через легшу creator-style continuity.",
+        outcome: "Outcome: імпульс без мертвої паузи",
         featured: false
       }
     ]
   },
   process: {
     eyebrow: "Як це рухається",
-    title: "Три кроки, а не довге методологічне есе",
+    title: "Три кроки, які реально дочитують",
     body:
-      "Людям тут не потрібен підручник. Їм потрібно зрозуміти, як launch формується, відвантажується і читається по сигналах.",
+      "Тут не треба топити відвідувача в методології. Треба швидко показати, як launch збирається, пакується і зчитується після релізу.",
     steps: [
       {
         phase: "01",
         title: "Зібрати hook",
-        body: "Визначити ринок, офер і angle перших секунд, який реально може розійтися."
+        body: "Зафіксувати ринок, офер і angle перших секунд, який справді може розійтися."
       },
       {
         phase: "02",
         title: "Зібрати burst pack",
-        body: "Підготувати creator-style variants, captions, timing logic і launch assets."
+        body: "Підготувати creator-style variants, captions, timing logic і assets для хвилі."
       },
       {
         phase: "03",
         title: "Запустити і прочитати сигнал",
-        body: "Відвантажити хвилю, побачити що зачепило, і зрозуміти, що заслуговує другого push."
+        body: "Відвантажити burst, побачити що спрацювало і вирішити, що варте другого заходу."
       }
     ]
   },
@@ -157,14 +153,14 @@ const uk = {
     eyebrow: "Inbound",
     title: "Надішліть ринок, офер і таймінг.",
     body:
-      "Контактний блок має швидко кваліфікувати кампанію, а не просити довгу біографію.",
+      "Ця форма потрібна для швидкої кваліфікації запуску: ринок, офер, таймінг і який відгук кампанія має викликати.",
     points: [
       "Найкраще працює, коли target market уже зрозумілий",
       "Підходить прямим брендам і partner agencies",
-      "Спирається на English, Russian та Ukrainian support"
+      "Доступна підтримка на English, Russian та Ukrainian"
     ],
-    noteDemo: "Зараз активний demo mode. Для production підключіть live form endpoint.",
-    noteLive: "Ця заявка одразу йде в live intake workflow."
+    noteDemo: "Запити зараз проходять ручний review перед призначенням launch call.",
+    noteLive: "Ця заявка одразу потрапляє в live intake workflow."
   },
   form: {
     name: "Ім'я",
@@ -190,7 +186,7 @@ const uk = {
     error: "Зараз не вдалося відправити. Спробуйте ще раз або використайте public links нижче."
   },
   footer:
-    "Buzztm redesign pass two: більше повітря, більше реальних сигналів, щільніші use cases і менше generic agency paragraphs."
+    "Buzztm перебудовано в легшу editorial campaign board-подачу: більше візуального ритму, ясніший proof і менше placeholder agency-щільності."
 };
 
 export default uk;

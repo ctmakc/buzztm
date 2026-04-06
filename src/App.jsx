@@ -20,6 +20,42 @@ const RESOURCE_LINKS = [
   { label: "Український матеріал", href: "https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/" }
 ];
 
+const SIGNAL_PANELS = [
+  {
+    image: buzztmLive,
+    alt: "Current live Buzztm site screenshot",
+    href: "https://www.buzztm.com",
+    key: "live"
+  },
+  {
+    image: mmixArticle,
+    alt: "MMIX TikTok article screenshot",
+    href: "https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/",
+    key: "article"
+  },
+  {
+    image: null,
+    alt: "",
+    href: null,
+    key: "footprint"
+  }
+];
+
+const CASE_VISUALS = [
+  {
+    image: buzztmTikTok,
+    alt: "TikTok themed Buzztm visual"
+  },
+  {
+    image: mmixArticle,
+    alt: "MMIX article screenshot"
+  },
+  {
+    image: buzztmLive,
+    alt: "Current Buzztm live site screenshot"
+  }
+];
+
 function useRevealAnimations() {
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -42,7 +78,7 @@ function useRevealAnimations() {
     );
 
     nodes.forEach((node, index) => {
-      node.style.transitionDelay = `${(index % 4) * 55}ms`;
+      node.style.transitionDelay = `${(index % 4) * 60}ms`;
       observer.observe(node);
     });
 
@@ -195,9 +231,53 @@ function LeadForm({ locale, t }) {
   );
 }
 
+function SignalPanel({ panel, t }) {
+  const card = t.signals.cards[panel.key];
+
+  if (panel.key === "footprint") {
+    return (
+      <article className="proof-panel proof-panel--footprint">
+        <div className="proof-panel__logos">
+          <img src={adactedLogo} alt="Adacted logo" />
+          <img src={mmixLogo} alt="MMIX logo" />
+        </div>
+        <div className="proof-panel__copy">
+          <span>{card.kicker}</span>
+          <h3>{card.title}</h3>
+          <p>{card.body}</p>
+        </div>
+        <div className="proof-panel__links">
+          {SOCIAL_LINKS.map((item) => (
+            <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article className="proof-panel">
+      <div className="proof-panel__media">
+        <img src={panel.image} alt={panel.alt} />
+      </div>
+      <div className="proof-panel__copy">
+        <span>{card.kicker}</span>
+        <h3>{card.title}</h3>
+        <p>{card.body}</p>
+        <a href={panel.href} target="_blank" rel="noreferrer">
+          {card.link}
+        </a>
+      </div>
+    </article>
+  );
+}
+
 export default function App() {
   const [locale, setLocale] = useState(() => (typeof window === "undefined" ? DEFAULT_LOCALE : resolveInitialLocale()));
   const t = content[locale] || content.en;
+  const marqueeItems = [t.hero.ribbon, ...t.hero.tags, t.hero.publicMark];
 
   useRevealAnimations();
 
@@ -216,9 +296,8 @@ export default function App() {
 
   return (
     <>
-      <div className="page-orb page-orb--lime" />
-      <div className="page-orb page-orb--coral" />
-      <div className="page-grid" />
+      <div className="page-gradient" />
+      <div className="page-grain" />
 
       <header className="shell topbar reveal">
         <a className="brand" href="#home" aria-label="Buzztm home">
@@ -238,7 +317,7 @@ export default function App() {
 
         <div className="topbar-actions">
           <LocaleSwitcher locale={locale} onChange={setLocale} />
-          <a className="btn btn-ghost btn-sm" href="#contact">
+          <a className="btn btn-outline btn-sm" href="#contact">
             {t.cta.primary}
           </a>
         </div>
@@ -251,15 +330,6 @@ export default function App() {
             <h1>{t.hero.title}</h1>
             <p className="hero-lede">{t.hero.lede}</p>
 
-            <div className="stat-row" aria-label="Key signals">
-              {t.hero.stats.map(([value, label]) => (
-                <div key={label} className="stat-row__item">
-                  <strong>{value}</strong>
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-
             <div className="cta-row">
               <a className="btn btn-primary" href="#contact">
                 {t.cta.primary}
@@ -269,115 +339,118 @@ export default function App() {
               </a>
             </div>
 
-            <div className="hero-tags" aria-label="Positioning points">
-              {t.hero.tags.map((item) => (
-                <span key={item}>{item}</span>
+            <div className="stat-row" aria-label="Key signals">
+              {t.hero.stats.map(([value, label]) => (
+                <div key={label} className="stat-row__item">
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </div>
               ))}
+            </div>
+
+            <div className="marquee-band" aria-hidden="true">
+              <div className="marquee-band__track">
+                {marqueeItems.concat(marqueeItems).map((item, index) => (
+                  <span key={`${item}-${index}`}>{item}</span>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="hero-media">
-            <div className="hero-media__frame">
+          <div className="hero-stage">
+            <figure className="hero-stage__primary">
               <img src={buzztmTikTok} alt="Buzztm TikTok visual from the current public site" />
-            </div>
-
-            <div className="hero-media__card hero-media__card--logo">
-              <img src={adactedLogo} alt="Adacted logo from the current public site" />
-              <div>
-                <span>Public mark</span>
+              <figcaption>
+                <span>{t.hero.ribbon}</span>
                 <strong>{t.hero.publicMark}</strong>
-              </div>
-            </div>
+              </figcaption>
+            </figure>
 
-            <div className="hero-media__card hero-media__card--profile">
-              <img src={instagramProfile} alt="Adacted Instagram profile image" />
-              <div>
-                <span>Instagram</span>
-                <strong>@adactedagency</strong>
-              </div>
-            </div>
+            <div className="hero-stage__stack">
+              <article className="stage-note stage-note--brand">
+                <img src={adactedLogo} alt="Adacted logo from the current public site" />
+                <div>
+                  <span>Public mark</span>
+                  <strong>{t.hero.publicMark}</strong>
+                </div>
+              </article>
 
-            <div className="hero-media__ribbon">{t.hero.ribbon}</div>
+              <article className="stage-note">
+                <img src={instagramProfile} alt="Adacted Instagram profile image" />
+                <div>
+                  <span>Instagram</span>
+                  <strong>@adactedagency</strong>
+                </div>
+              </article>
+
+              <article className="stage-note stage-note--wide">
+                <img src={buzztmLive} alt="Current live Buzztm site screenshot" />
+                <div>
+                  <span>Live page</span>
+                  <strong>Current public offer and proof stack</strong>
+                </div>
+              </article>
+            </div>
           </div>
         </section>
 
-        <section className="signal-stage reveal" id="signal">
-          <div className="section-head">
+        <section className="proof-section reveal" id="signal">
+          <div className="proof-intro">
             <p className="eyebrow">{t.signals.eyebrow}</p>
             <h2>{t.signals.title}</h2>
             <p>{t.signals.body}</p>
+
             <ul className="signal-bullets">
               {t.signals.points.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
+
+            <div className="proof-links">
+              {RESOURCE_LINKS.map((item) => (
+                <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div className="signal-layout">
-            <article className="signal-card signal-card--wide">
-              <img src={buzztmLive} alt="Current live Buzztm site screenshot" />
-              <div className="signal-card__body">
-                <span>{t.signals.cards.live.kicker}</span>
-                <h3>{t.signals.cards.live.title}</h3>
-                <p>{t.signals.cards.live.body}</p>
-                <a href="https://www.buzztm.com" target="_blank" rel="noreferrer">
-                  {t.signals.cards.live.link}
-                </a>
-              </div>
-            </article>
-
-            <article className="signal-card">
-              <img src={mmixArticle} alt="MMIX TikTok article screenshot" />
-              <div className="signal-card__body">
-                <span>{t.signals.cards.article.kicker}</span>
-                <h3>{t.signals.cards.article.title}</h3>
-                <p>{t.signals.cards.article.body}</p>
-                <a href="https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/" target="_blank" rel="noreferrer">
-                  {t.signals.cards.article.link}
-                </a>
-              </div>
-            </article>
-
-            <article className="signal-card signal-card--stack">
-              <div className="signal-stack__logos">
-                <img src={adactedLogo} alt="Adacted logo" />
-                <img src={mmixLogo} alt="MMIX logo" />
-              </div>
-              <div className="signal-card__body">
-                <span>{t.signals.cards.footprint.kicker}</span>
-                <h3>{t.signals.cards.footprint.title}</h3>
-                <p>{t.signals.cards.footprint.body}</p>
-              </div>
-              <div className="signal-links" aria-label="Public channels">
-                {SOCIAL_LINKS.map((item) => (
-                  <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            </article>
+          <div className="proof-rail">
+            {SIGNAL_PANELS.map((panel) => (
+              <SignalPanel key={panel.key} panel={panel} t={t} />
+            ))}
           </div>
         </section>
 
         <section className="cases-section reveal" id="cases">
-          <div className="section-head">
+          <div className="section-head section-head--wide">
             <p className="eyebrow">{t.useCases.eyebrow}</p>
             <h2>{t.useCases.title}</h2>
             <p>{t.useCases.body}</p>
           </div>
 
-          <div className="cases-grid">
-            {t.useCases.items.map((item) => (
-              <article key={item.title} className="case-card">
-                <div className="case-mark">{item.code}</div>
-                <div className="case-copy">
-                  <span>{item.kicker}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </div>
-                <strong className="case-result">{item.result}</strong>
-              </article>
-            ))}
+          <div className="case-stories">
+            {t.useCases.items.map((item, index) => {
+              const visual = CASE_VISUALS[index % CASE_VISUALS.length];
+              return (
+                <article
+                  key={item.title}
+                  className={`case-story${index % 2 === 1 ? " case-story--reverse" : ""}`}
+                >
+                  <div className="case-story__media">
+                    <img src={visual.image} alt={visual.alt} />
+                    <span className="case-story__code">{item.code}</span>
+                  </div>
+
+                  <div className="case-story__content">
+                    <span>{item.kicker}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.body}</p>
+                    <strong>{item.result}</strong>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -388,7 +461,7 @@ export default function App() {
             <p>{t.modes.body}</p>
           </div>
 
-          <div className="modes-grid">
+          <div className="mode-deck">
             {t.modes.items.map((item) => (
               <article key={item.title} className={`mode-card${item.featured ? " mode-card--featured" : ""}`}>
                 <span>{item.label}</span>
@@ -401,7 +474,7 @@ export default function App() {
         </section>
 
         <section className="process-section reveal" id="process">
-          <div className="section-head">
+          <div className="section-head section-head--wide">
             <p className="eyebrow">{t.process.eyebrow}</p>
             <h2>{t.process.title}</h2>
             <p>{t.process.body}</p>
@@ -429,6 +502,11 @@ export default function App() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+
+            <div className="contact-brands" aria-label="Public ecosystem marks">
+              <img src={adactedLogo} alt="Adacted logo" />
+              <img src={mmixLogo} alt="MMIX logo" />
+            </div>
 
             <div className="contact-links">
               {SOCIAL_LINKS.map((item) => (

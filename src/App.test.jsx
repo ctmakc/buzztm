@@ -8,11 +8,11 @@ describe("App", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /launch on tiktok even when ads are off the table/i
+        name: /make the campaign feel live before the ad account even exists/i
       })
     ).toBeInTheDocument();
 
     expect(screen.getAllByRole("link", { name: /book a strategy call/i }).length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: /see the proof wall/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /see the proof stack/i })).toBeInTheDocument();
   });
 });

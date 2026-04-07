@@ -50,6 +50,18 @@ const POST_SERVICE_MAP = {
 };
 
 const MENU_KEYS = new Set(["services", "blog"]);
+const DEFAULT_FORM_ENDPOINT = "/api/lead";
+
+function HomeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true">
+      <path
+        d="M4.75 10.25 12 4.5l7.25 5.75v8.25a1 1 0 0 1-1 1H5.75a1 1 0 0 1-1-1zm4.5 9.25h5.5v-5.75a1 1 0 0 0-1-1h-3.5a1 1 0 0 0-1 1z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
 
 function useRevealAnimations() {
   useEffect(() => {
@@ -253,7 +265,7 @@ function PageIntro({ page, locale }) {
 }
 
 async function submitLeadForm(form, locale) {
-  const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
+  const endpoint = import.meta.env.VITE_FORM_ENDPOINT || DEFAULT_FORM_ENDPOINT;
   const provider = (import.meta.env.VITE_FORM_PROVIDER || "").toLowerCase();
   const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
   const data = new FormData(form);
@@ -271,11 +283,6 @@ async function submitLeadForm(form, locale) {
     const value = new URLSearchParams(window.location.search).get(key);
     if (value) data.append(key, value);
   });
-
-  if (!endpoint) {
-    await new Promise((resolve) => setTimeout(resolve, 450));
-    return { ok: true, demo: true };
-  }
 
   if (provider === "web3forms" && accessKey) {
     data.append("access_key", accessKey);
@@ -298,7 +305,7 @@ async function submitLeadForm(form, locale) {
 
 function LeadForm({ locale, t, compact = false }) {
   const [status, setStatus] = useState("idle");
-  const liveMode = Boolean(import.meta.env.VITE_FORM_ENDPOINT);
+  const liveMode = Boolean(import.meta.env.VITE_FORM_ENDPOINT || DEFAULT_FORM_ENDPOINT);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -1138,9 +1145,25 @@ export default function App() {
             const href = buildPageHref(item, locale);
 
             if (!MENU_KEYS.has(item)) {
+              const isHome = item === "home";
               return (
-                <a key={item} href={href} className={route.navKey === item ? "is-active" : ""} onClick={() => setOpenMenu(null)}>
-                  {t.nav[item]}
+                <a
+                  key={item}
+                  href={href}
+                  className={`${route.navKey === item ? "is-active" : ""}${isHome ? " nav-home-link" : ""}`}
+                  aria-label={isHome ? t.nav[item] : undefined}
+                  onClick={() => setOpenMenu(null)}
+                >
+                  {isHome ? (
+                    <>
+                      <span className="nav-home-icon">
+                        <HomeIcon />
+                      </span>
+                      <span className="sr-only">{t.nav[item]}</span>
+                    </>
+                  ) : (
+                    t.nav[item]
+                  )}
                 </a>
               );
             }

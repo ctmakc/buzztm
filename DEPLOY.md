@@ -7,8 +7,9 @@
 1. Runs `npm ci`, `npm test`, and `npm run build`.
 2. Ensures the Pages project exists with the expected build settings.
 3. Uploads `dist/` to Cloudflare Pages.
-4. On `main`, attaches the configured custom domains.
-5. Optionally syncs DNS records in Cloudflare or Namecheap.
+4. Uploads `functions/` as Cloudflare Pages Functions for the live lead intake endpoint.
+5. On `main`, attaches the configured custom domains.
+6. Optionally syncs DNS records in Cloudflare or Namecheap.
 
 ## Required secrets
 
@@ -34,6 +35,8 @@ If DNS remains on Namecheap, also provide:
   Needed only for Cloudflare DNS sync
 - `VITE_SITE_URL`
   Example: `https://www.buzztm.com`
+- `N8N_FORM_WEBHOOK_URL`
+  Cloudflare Pages runtime env for the private lead-intake webhook used by `/api/lead`
 - `NAMECHEAP_DOMAIN`
   Example: `buzztm.com`
 
@@ -58,7 +61,7 @@ When `DNS_PROVIDER=namecheap`:
 
 ```bash
 export CLOUDFLARE_PAGES_PROJECT=buzztm
-export CLOUDFLARE_PAGES_DOMAINS=buzztm.com,www.buzztm.com
+export CLOUDFLARE_PAGES_DOMAINS=www.buzztm.com
 export VITE_SITE_URL=https://www.buzztm.com
 export DNS_PROVIDER=namecheap
 export NAMECHEAP_DOMAIN=buzztm.com

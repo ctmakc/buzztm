@@ -48,6 +48,8 @@ jobs:
         run: npm run build
         env:
           VITE_SITE_URL: ${{ vars.VITE_SITE_URL || 'https://example.com' }}
+          VITE_GTM_ID: ${{ vars.VITE_GTM_ID || '' }}
+          VITE_GA_ID: ${{ vars.VITE_GA_ID || '' }}
 
       - name: Resolve Pages deploy flags
         run: |

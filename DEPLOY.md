@@ -35,6 +35,10 @@ If DNS remains on Namecheap, also provide:
   Needed only for Cloudflare DNS sync
 - `VITE_SITE_URL`
   Example: `https://www.buzztm.com`
+- `VITE_GTM_ID`
+  Recommended when routing Google measurement through Tag Manager. Example: `GTM-PJCKMKNR`
+- `VITE_GA_ID`
+  Optional direct GA4 fallback when GTM is not used. Example: `G-XXXXXXXXXX`
 - `N8N_FORM_WEBHOOK_URL`
   Cloudflare Pages runtime env for the private lead-intake webhook used by `/api/lead`
 - `NAMECHEAP_DOMAIN`
@@ -63,6 +67,7 @@ When `DNS_PROVIDER=namecheap`:
 export CLOUDFLARE_PAGES_PROJECT=buzztm
 export CLOUDFLARE_PAGES_DOMAINS=www.buzztm.com
 export VITE_SITE_URL=https://www.buzztm.com
+export VITE_GTM_ID=GTM-PJCKMKNR
 export DNS_PROVIDER=namecheap
 export NAMECHEAP_DOMAIN=buzztm.com
 ```

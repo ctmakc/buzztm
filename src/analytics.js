@@ -9,16 +9,41 @@ function loadScript(src, id) {
   document.head.appendChild(s);
 }
 
+function ensureDataLayer() {
+  window.dataLayer = window.dataLayer || [];
+  return window.dataLayer;
+}
+
+function pushDataLayerEvent(payload) {
+  if (typeof window === "undefined") return;
+  ensureDataLayer().push(payload);
+}
+
 export function initAnalytics() {
   if (initialized || typeof window === "undefined") return;
   initialized = true;
 
+  const gtmId = import.meta.env.VITE_GTM_ID;
   const gaId = import.meta.env.VITE_GA_ID;
   const pixelId = import.meta.env.VITE_META_PIXEL_ID;
 
-  if (gaId) {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function gtag(){ window.dataLayer.push(arguments); };
+  if (gtmId) {
+    ensureDataLayer();
+    pushDataLayerEvent({
+      "gtm.start": Date.now(),
+      event: "gtm.js"
+    });
+    loadScript(
+      `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(gtmId)}`,
+      "gtm-script"
+    );
+  }
+
+  if (gaId && !gtmId) {
+    ensureDataLayer();
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
     window.gtag("js", new Date());
     window.gtag("config", gaId, { send_page_view: false });
     loadScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`, "ga4-script");
@@ -38,7 +63,17 @@ export function initAnalytics() {
 }
 
 export function trackPageView({ locale, page }) {
-  if (window.gtag) {
+  if (window.dataLayer) {
+    pushDataLayerEvent({
+      event: "page_view",
+      page_title: document.title,
+      page_location: window.location.href,
+      locale,
+      page_name: page
+    });
+  }
+
+  if (window.gtag && !import.meta.env.VITE_GTM_ID) {
     window.gtag("event", "page_view", {
       page_title: document.title,
       page_location: window.location.href,
@@ -52,7 +87,14 @@ export function trackPageView({ locale, page }) {
 }
 
 export function trackEvent(name, params = {}) {
-  if (window.gtag) {
+  if (window.dataLayer) {
+    pushDataLayerEvent({
+      event: name,
+      ...params
+    });
+  }
+
+  if (window.gtag && !import.meta.env.VITE_GTM_ID) {
     window.gtag("event", name, params);
   }
 

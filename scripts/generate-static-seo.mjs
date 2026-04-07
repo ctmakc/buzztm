@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { PAGE_PATHS, SITE_PAGES } from "../src/site.js";
 
 function readEnv(filePath) {
   if (!fs.existsSync(filePath)) return {};
@@ -17,9 +18,30 @@ function readEnv(filePath) {
   return out;
 }
 
+function buildPageEntry(siteUrl, page) {
+  const pagePath = PAGE_PATHS[page];
+  const loc = `${siteUrl}${pagePath === "/" ? "/" : pagePath}`;
+
+  return (
+    `  <url>\n` +
+    `    <loc>${loc}</loc>\n` +
+    `    <xhtml:link rel="alternate" hreflang="en" href="${loc}?lang=en" />\n` +
+    `    <xhtml:link rel="alternate" hreflang="ru" href="${loc}?lang=ru" />\n` +
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}?lang=en" />\n` +
+    `    <changefreq>weekly</changefreq>\n` +
+    `    <priority>${page === "home" ? "1.0" : "0.8"}</priority>\n` +
+    `  </url>\n`
+  );
+}
+
 const localEnv = readEnv(path.resolve(".env"));
 const exampleEnv = readEnv(path.resolve(".env.example"));
-const siteUrl = (process.env.VITE_SITE_URL || localEnv.VITE_SITE_URL || exampleEnv.VITE_SITE_URL || "https://example.com").replace(/\/$/, "");
+const siteUrl = (
+  process.env.VITE_SITE_URL ||
+  localEnv.VITE_SITE_URL ||
+  exampleEnv.VITE_SITE_URL ||
+  "https://example.com"
+).replace(/\/$/, "");
 const publicDir = path.resolve("public");
 
 fs.mkdirSync(publicDir, { recursive: true });
@@ -29,14 +51,7 @@ fs.writeFileSync(path.join(publicDir, "robots.txt"), `User-agent: *\nAllow: /\n\
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
-  `  <url>\n` +
-  `    <loc>${siteUrl}/</loc>\n` +
-  `    <xhtml:link rel="alternate" hreflang="en" href="${siteUrl}/?lang=en" />\n` +
-  `    <xhtml:link rel="alternate" hreflang="ru" href="${siteUrl}/?lang=ru" />\n` +
-  `    <xhtml:link rel="alternate" hreflang="x-default" href="${siteUrl}/?lang=en" />\n` +
-  `    <changefreq>weekly</changefreq>\n` +
-  `    <priority>1.0</priority>\n` +
-  `  </url>\n` +
+  SITE_PAGES.map((page) => buildPageEntry(siteUrl, page)).join("") +
   `  <url>\n` +
   `    <loc>${siteUrl}/thank-you.html</loc>\n` +
   `    <changefreq>monthly</changefreq>\n` +

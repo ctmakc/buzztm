@@ -184,12 +184,18 @@ img {
   padding: 0.6rem 0.8rem;
   color: var(--muted);
   font-size: 0.92rem;
+  border-radius: 999px;
 }
 
 .nav a:hover,
 .link-pills a:hover,
 .footer-links a:hover {
   color: var(--text);
+}
+
+.nav a.is-active {
+  color: #031010;
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--cyan-soft) 100%);
 }
 
 .topbar-actions {
@@ -548,7 +554,9 @@ p {
 .service-grid,
 .process-grid,
 .case-grid,
-.coverage-grid {
+.coverage-grid,
+.deliverable-grid,
+.story-grid {
   display: grid;
   gap: 1rem;
 }
@@ -566,11 +574,17 @@ p {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.deliverable-grid,
+.story-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .pain-card,
 .service-card,
 .process-card,
 .case-card,
-.coverage-card {
+.coverage-card,
+.info-card {
   display: grid;
   gap: 0.85rem;
   padding: 1.35rem;
@@ -589,8 +603,14 @@ p {
 .process-card h3,
 .case-card h3,
 .coverage-card h3,
+.info-card h3,
 .proof-stack__panel h3 {
   font-size: 1.4rem;
+}
+
+.info-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
 }
 
 .service-card ul,
@@ -719,6 +739,29 @@ p {
   gap: 1rem;
   padding: 1.35rem;
   border-radius: 24px;
+}
+
+.text-link {
+  color: var(--cyan-soft);
+  font-weight: 700;
+}
+
+.text-link:hover {
+  color: var(--text);
+}
+
+.cta-band {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.cta-band > div:first-child {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 42rem;
 }
 
 .faq-list {
@@ -942,6 +985,8 @@ textarea:focus {
   .service-grid,
   .process-grid,
   .case-grid,
+  .deliverable-grid,
+  .story-grid,
   .footer-wrap {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -982,6 +1027,8 @@ textarea:focus {
   .process-grid,
   .case-grid,
   .coverage-grid,
+  .deliverable-grid,
+  .story-grid,
   .form-grid,
   .footer-wrap {
     grid-template-columns: 1fr;
@@ -1008,7 +1055,8 @@ textarea:focus {
   }
 
   .cta-row,
-  .topbar-actions {
+  .topbar-actions,
+  .cta-band {
     width: 100%;
   }
 

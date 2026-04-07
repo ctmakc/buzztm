@@ -56,7 +56,7 @@ function setAgencySchema({ locale, canonicalUrl, seo }) {
       "https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/"
     ],
     areaServed: ["Europe", "CIS", "GCC", "MENA"],
-    knowsLanguage: locale === "ru" ? ["English", "Russian"] : ["English", "Russian"],
+    knowsLanguage: locale === "ru" ? ["Russian", "English"] : ["English", "Russian"],
     serviceType: [
       "TikTok growth strategy",
       "UGC production",
@@ -68,7 +68,14 @@ function setAgencySchema({ locale, canonicalUrl, seo }) {
 }
 
 function setFaqSchema(faq = []) {
-  let node = document.head.querySelector('script[data-seo-schema="faq-page"]');
+  const existing = document.head.querySelector('script[data-seo-schema="faq-page"]');
+
+  if (!faq.length) {
+    if (existing) existing.remove();
+    return;
+  }
+
+  let node = existing;
   if (!node) {
     node = document.createElement("script");
     node.type = "application/ld+json";
@@ -90,18 +97,20 @@ function setFaqSchema(faq = []) {
   });
 }
 
-export function applySeo({ locale, seo, heroImage, faq }) {
+export function applySeo({ locale, seo, faq }) {
   const url = new URL(window.location.href);
   url.searchParams.set("lang", locale);
   const canonicalUrl = url.toString();
-  const imageUrl = heroImage ? new URL(heroImage, window.location.origin).toString() : "";
 
   document.title = seo.title;
   document.documentElement.lang = locale;
 
   ensureMeta("name", "description").setAttribute("content", seo.description);
   ensureMeta("name", "keywords").setAttribute("content", seo.keywords || "");
-  ensureMeta("name", "robots").setAttribute("content", "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1");
+  ensureMeta("name", "robots").setAttribute(
+    "content",
+    "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+  );
   ensureMeta("name", "theme-color").setAttribute("content", "#081018");
 
   ensureMeta("property", "og:type").setAttribute("content", "website");
@@ -110,12 +119,12 @@ export function applySeo({ locale, seo, heroImage, faq }) {
   ensureMeta("property", "og:title").setAttribute("content", seo.ogTitle);
   ensureMeta("property", "og:description").setAttribute("content", seo.ogDescription);
   ensureMeta("property", "og:url").setAttribute("content", canonicalUrl);
-  if (imageUrl) ensureMeta("property", "og:image").setAttribute("content", imageUrl);
+  ensureMeta("property", "og:image").setAttribute("content", `${url.origin}/og-cover.jpg`);
 
   ensureMeta("name", "twitter:card").setAttribute("content", "summary_large_image");
   ensureMeta("name", "twitter:title").setAttribute("content", seo.ogTitle);
   ensureMeta("name", "twitter:description").setAttribute("content", seo.ogDescription);
-  if (imageUrl) ensureMeta("name", "twitter:image").setAttribute("content", imageUrl);
+  ensureMeta("name", "twitter:image").setAttribute("content", `${url.origin}/og-cover.jpg`);
 
   ensureLink("canonical").setAttribute("href", canonicalUrl);
   setAlternates(url.origin, url.pathname || "/");

@@ -9,20 +9,21 @@ import heroCollage from "../assets/stitch/hero-collage.webp";
 import { initAnalytics, trackEvent, trackPageView } from "./analytics";
 import { content, DEFAULT_LOCALE, resolveInitialLocale, SUPPORTED_LOCALES } from "./content";
 import { applySeo } from "./seo";
-
-const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://www.instagram.com/adactedagency/" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/73956025" },
-  { label: "Facebook", href: "https://www.facebook.com/Adacted-102016908383521" }
-];
-
-const REFERENCE_LINKS = [
-  { label: "MMIX TikTok article", href: "https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/" },
-  { label: "MMIX article RU/UA", href: "https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/" },
-  { label: "Live site", href: "https://www.buzztm.com" }
-];
+import { PAGE_PATHS, SITE_PAGES, resolvePageFromPath } from "./site";
 
 const CASE_MEDIA = [caseEcom, caseInfobiz, caseService];
+
+const FOOTPRINT_LINKS = [
+  { label: "Instagram", href: "https://www.instagram.com/adactedagency/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/73956025" },
+  { label: "Facebook", href: "https://www.facebook.com/Adacted-102016908383521" },
+  { label: "MMIX article", href: "https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/" }
+];
+
+function buildPageHref(page, locale) {
+  const path = PAGE_PATHS[page] || "/";
+  return `${path}?lang=${locale}`;
+}
 
 function useRevealAnimations() {
   useEffect(() => {
@@ -87,6 +88,70 @@ function SectionHeader({ eyebrow, title, body, center = false }) {
   );
 }
 
+function PageIntro({ page, locale, t }) {
+  return (
+    <section className="hero-panel reveal">
+      <div className="hero-copy">
+        <p className="eyebrow eyebrow--strong">{page.intro.eyebrow}</p>
+        <h1>{page.intro.title}</h1>
+        <p className="hero-lede">{page.intro.body}</p>
+
+        {page.intro.actions?.length ? (
+          <div className="cta-row">
+            {page.intro.actions.map((item, index) => (
+              <a
+                key={item.page}
+                className={`btn ${index === 0 ? "btn-primary" : "btn-ghost"}`}
+                href={buildPageHref(item.page, locale)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        ) : null}
+
+        {page.intro.metrics?.length ? (
+          <div className="hero-stats">
+            {page.intro.metrics.map((item) => (
+              <div key={item.label} className="stat-card">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
+
+      <div className="hero-visual">
+        <article className="hero-image-card">
+          <img src={page.intro.image === "live" ? buzztmLive : heroCollage} alt={page.intro.imageAlt} />
+          <div className="hero-image-overlay">
+            <span>{page.intro.overlay.kicker}</span>
+            <strong>{page.intro.overlay.title}</strong>
+            <p>{page.intro.overlay.body}</p>
+          </div>
+        </article>
+
+        <article className="floating-card floating-card--proof">
+          <span>{page.intro.aside.kicker}</span>
+          <strong>{page.intro.aside.title}</strong>
+          <p>{page.intro.aside.body}</p>
+        </article>
+
+        <article className="floating-card floating-card--ops">
+          <div className="logo-stack" aria-label="Partner footprint">
+            <img src={adactedLogo} alt="Adacted logo" />
+            <img src={mmixLogo} alt="MMIX logo" />
+          </div>
+          <span>{page.intro.footprint.kicker}</span>
+          <strong>{page.intro.footprint.title}</strong>
+          <p>{page.intro.footprint.body}</p>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 async function submitLeadForm(form, locale) {
   const endpoint = import.meta.env.VITE_FORM_ENDPOINT;
   const provider = (import.meta.env.VITE_FORM_PROVIDER || "").toLowerCase();
@@ -134,8 +199,6 @@ async function submitLeadForm(form, locale) {
 function LeadForm({ locale, t }) {
   const [status, setStatus] = useState("idle");
   const liveMode = Boolean(import.meta.env.VITE_FORM_ENDPOINT);
-  const redirectOnSuccess = String(import.meta.env.VITE_ENABLE_FORM_REDIRECT || "false") === "true";
-  const thankYouUrl = import.meta.env.VITE_THANK_YOU_URL || "/thank-you.html";
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -148,12 +211,6 @@ function LeadForm({ locale, t }) {
         setStatus("success");
         trackEvent("generate_lead", { form_name: "lead_form", locale, mode: liveMode ? "live" : "demo" });
         event.currentTarget.reset();
-
-        if (redirectOnSuccess) {
-          const nextUrl = new URL(thankYouUrl, window.location.origin);
-          nextUrl.searchParams.set("lang", locale);
-          window.location.assign(nextUrl.toString());
-        }
       })
       .catch(() => {
         setStatus("error");
@@ -215,9 +272,391 @@ function LeadForm({ locale, t }) {
   );
 }
 
+function HomePage({ t, locale }) {
+  const page = t.pages.home;
+
+  return (
+    <>
+      <PageIntro page={page} locale={locale} t={t} />
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.pain.eyebrow} title={page.pain.title} body={page.pain.body} center />
+        <div className="pain-grid">
+          {page.pain.items.map((item, index) => (
+            <article key={item.title} className="pain-card">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.pages.eyebrow} title={page.pages.title} body={page.pages.body} />
+        <div className="service-grid">
+          {page.pages.items.map((item) => (
+            <article key={item.title} className="service-card">
+              <span className="service-label">{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <a className="text-link" href={buildPageHref(item.page, locale)}>
+                {item.link}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <div className="coverage-layout">
+          <div className="coverage-copy">
+            <SectionHeader eyebrow={page.geo.eyebrow} title={page.geo.title} body={page.geo.body} />
+            <div className="coverage-grid">
+              {page.geo.regions.map((item) => (
+                <article key={item.name} className="coverage-card">
+                  <h3>{item.name}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+            <ul className="coverage-bullets">
+              {page.geo.points.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <aside className="proof-stack">
+            <article className="proof-stack__shot">
+              <img src={buzztmLive} alt={page.geo.imageAlt} />
+            </article>
+            <article className="proof-stack__panel">
+              <span>{page.geo.panel.kicker}</span>
+              <h3>{page.geo.panel.title}</h3>
+              <p>{page.geo.panel.body}</p>
+              <div className="inline-logos">
+                <img src={adactedLogo} alt="Adacted logo" />
+                <img src={mmixLogo} alt="MMIX logo" />
+              </div>
+              <div className="link-pills">
+                {FOOTPRINT_LINKS.map((item) => (
+                  <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <div className="cta-band">
+          <div>
+            <p className="eyebrow">{page.cta.eyebrow}</p>
+            <h2>{page.cta.title}</h2>
+            <p>{page.cta.body}</p>
+          </div>
+          <div className="cta-row">
+            <a className="btn btn-primary" href={buildPageHref("contact", locale)}>
+              {page.cta.primary}
+            </a>
+            <a className="btn btn-ghost" href={buildPageHref("services", locale)}>
+              {page.cta.secondary}
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function ServicesPage({ t, locale }) {
+  const page = t.pages.services;
+
+  return (
+    <>
+      <PageIntro page={page} locale={locale} t={t} />
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.packages.eyebrow} title={page.packages.title} body={page.packages.body} />
+        <div className="service-grid">
+          {page.packages.items.map((item) => (
+            <article key={item.title} className={`service-card${item.featured ? " service-card--featured" : ""}`}>
+              <span className="service-label">{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <ul>
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.process.eyebrow} title={page.process.title} body={page.process.body} />
+        <div className="process-grid">
+          {page.process.steps.map((step) => (
+            <article key={step.phase} className="process-card">
+              <span>{step.phase}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.deliverables.eyebrow} title={page.deliverables.title} body={page.deliverables.body} />
+        <div className="deliverable-grid">
+          {page.deliverables.items.map((item) => (
+            <article key={item.title} className="info-card">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.faq.eyebrow} title={page.faq.title} body={page.faq.body} center />
+        <div className="faq-list">
+          {page.faq.items.map((item) => (
+            <details key={item.q} className="faq-item">
+              <summary>
+                <span>{item.q}</span>
+                <span className="faq-symbol">+</span>
+              </summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <div className="cta-band">
+          <div>
+            <p className="eyebrow">{page.cta.eyebrow}</p>
+            <h2>{page.cta.title}</h2>
+            <p>{page.cta.body}</p>
+          </div>
+          <a className="btn btn-primary" href={buildPageHref("contact", locale)}>
+            {page.cta.primary}
+          </a>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function AboutPage({ t, locale }) {
+  const page = t.pages.about;
+
+  return (
+    <>
+      <PageIntro page={page} locale={locale} t={t} />
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.story.eyebrow} title={page.story.title} body={page.story.body} />
+        <div className="story-grid">
+          {page.story.points.map((item) => (
+            <article key={item.title} className="info-card">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.principles.eyebrow} title={page.principles.title} body={page.principles.body} />
+        <div className="story-grid">
+          {page.principles.items.map((item) => (
+            <article key={item.title} className="info-card">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <div className="coverage-layout">
+          <div className="coverage-copy">
+            <SectionHeader eyebrow={page.footprint.eyebrow} title={page.footprint.title} body={page.footprint.body} />
+            <ul className="coverage-bullets">
+              {page.footprint.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <aside className="proof-stack">
+            <article className="proof-stack__panel">
+              <span>{page.footprint.panel.kicker}</span>
+              <h3>{page.footprint.panel.title}</h3>
+              <p>{page.footprint.panel.body}</p>
+              <div className="inline-logos">
+                <img src={adactedLogo} alt="Adacted logo" />
+                <img src={mmixLogo} alt="MMIX logo" />
+              </div>
+              <div className="link-pills">
+                {FOOTPRINT_LINKS.map((item) => (
+                  <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <div className="cta-band">
+          <div>
+            <p className="eyebrow">{page.cta.eyebrow}</p>
+            <h2>{page.cta.title}</h2>
+            <p>{page.cta.body}</p>
+          </div>
+          <a className="btn btn-primary" href={buildPageHref("contact", locale)}>
+            {page.cta.primary}
+          </a>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function CasesPage({ t, locale }) {
+  const page = t.pages.cases;
+
+  return (
+    <>
+      <PageIntro page={page} locale={locale} t={t} />
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.cases.eyebrow} title={page.cases.title} body={page.cases.body} />
+        <div className="case-grid">
+          {page.cases.items.map((item, index) => (
+            <article key={item.title} className="case-card">
+              <div className="case-media">
+                <img src={CASE_MEDIA[index % CASE_MEDIA.length]} alt={item.alt} />
+                <span>{item.segment}</span>
+              </div>
+              <div className="case-copy">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <div className="case-metric">
+                  <strong>{item.metric}</strong>
+                  <span>{item.metricLabel}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.verticals.eyebrow} title={page.verticals.title} body={page.verticals.body} />
+        <div className="story-grid">
+          {page.verticals.items.map((item) => (
+            <article key={item.title} className="info-card">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <div className="cta-band">
+          <div>
+            <p className="eyebrow">{page.cta.eyebrow}</p>
+            <h2>{page.cta.title}</h2>
+            <p>{page.cta.body}</p>
+          </div>
+          <div className="cta-row">
+            <a className="btn btn-primary" href={buildPageHref("services", locale)}>
+              {page.cta.primary}
+            </a>
+            <a className="btn btn-ghost" href={buildPageHref("contact", locale)}>
+              {page.cta.secondary}
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function ContactPage({ t, locale }) {
+  const page = t.pages.contact;
+
+  return (
+    <>
+      <PageIntro page={page} locale={locale} t={t} />
+
+      <section className="contact-panel reveal">
+        <div className="contact-copy">
+          <p className="eyebrow eyebrow--strong">{page.qualify.eyebrow}</p>
+          <h2>{page.qualify.title}</h2>
+          <p>{page.qualify.body}</p>
+
+          <ul className="contact-points">
+            {page.qualify.points.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+
+          <div className="link-pills">
+            {FOOTPRINT_LINKS.map((item) => (
+              <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="contact-form-wrap">
+          <LeadForm locale={locale} t={t} />
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={page.faq.eyebrow} title={page.faq.title} body={page.faq.body} center />
+        <div className="faq-list">
+          {page.faq.items.map((item) => (
+            <details key={item.q} className="faq-item">
+              <summary>
+                <span>{item.q}</span>
+                <span className="faq-symbol">+</span>
+              </summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function renderPage({ currentPage, t, locale }) {
+  if (currentPage === "services") return <ServicesPage t={t} locale={locale} />;
+  if (currentPage === "about") return <AboutPage t={t} locale={locale} />;
+  if (currentPage === "cases") return <CasesPage t={t} locale={locale} />;
+  if (currentPage === "contact") return <ContactPage t={t} locale={locale} />;
+  return <HomePage t={t} locale={locale} />;
+}
+
 export default function App() {
   const [locale, setLocale] = useState(() => (typeof window === "undefined" ? DEFAULT_LOCALE : resolveInitialLocale()));
+  const currentPage = typeof window === "undefined" ? "home" : resolvePageFromPath(window.location.pathname);
   const t = content[locale] || content.en;
+  const page = t.pages[currentPage];
 
   useRevealAnimations();
 
@@ -230,9 +669,9 @@ export default function App() {
     url.searchParams.set("lang", locale);
     window.history.replaceState({}, "", url);
     window.localStorage.setItem("locale", locale);
-    applySeo({ locale, seo: t.seo, heroImage: heroCollage, faq: t.faq.items });
-    trackPageView({ locale, page: "landing" });
-  }, [locale, t]);
+    applySeo({ locale, seo: page.seo, faq: page.faq?.items || [] });
+    trackPageView({ locale, page: currentPage });
+  }, [locale, currentPage, page]);
 
   return (
     <>
@@ -241,7 +680,7 @@ export default function App() {
       <div className="page-grid" />
 
       <header className="shell topbar reveal">
-        <a className="brand" href="#home" aria-label="Buzztm home">
+        <a className="brand" href={buildPageHref("home", locale)} aria-label="Buzztm home">
           <span className="brand-mark">BZ</span>
           <span className="brand-copy">
             <strong>Buzztm</strong>
@@ -250,246 +689,26 @@ export default function App() {
         </a>
 
         <nav className="nav" aria-label="Primary">
-          <a href="#services">{t.nav.services}</a>
-          <a href="#cases">{t.nav.cases}</a>
-          <a href="#process">{t.nav.process}</a>
-          <a href="#coverage">{t.nav.coverage}</a>
-          <a href="#contact">{t.nav.contact}</a>
+          {SITE_PAGES.map((item) => (
+            <a
+              key={item}
+              href={buildPageHref(item, locale)}
+              className={currentPage === item ? "is-active" : ""}
+            >
+              {t.nav[item]}
+            </a>
+          ))}
         </nav>
 
         <div className="topbar-actions">
           <LocaleSwitcher locale={locale} onChange={setLocale} />
-          <a className="btn btn-ghost btn-sm" href="#contact">
+          <a className="btn btn-ghost btn-sm" href={buildPageHref("contact", locale)}>
             {t.cta.primary}
           </a>
         </div>
       </header>
 
-      <main className="shell site-main">
-        <section className="hero-panel reveal" id="home">
-          <div className="hero-copy">
-            <p className="eyebrow eyebrow--strong">{t.hero.eyebrow}</p>
-            <h1>{t.hero.title}</h1>
-            <p className="hero-lede">{t.hero.lede}</p>
-
-            <div className="cta-row">
-              <a className="btn btn-primary" href="#contact">
-                {t.cta.primary}
-              </a>
-              <a className="btn btn-ghost" href="#services">
-                {t.cta.secondary}
-              </a>
-            </div>
-
-            <div className="hero-stats" aria-label="Key performance signals">
-              {t.hero.stats.map((item) => (
-                <div key={item.label} className="stat-card">
-                  <strong>{item.value}</strong>
-                  <span>{item.label}</span>
-                </div>
-              ))}
-            </div>
-
-            <ul className="tag-row" aria-label="Launch model highlights">
-              {t.hero.tags.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="hero-visual">
-            <article className="hero-image-card">
-              <img src={heroCollage} alt={t.hero.imageAlt} />
-              <div className="hero-image-overlay">
-                <span>{t.hero.liveLabel}</span>
-                <strong>{t.hero.liveValue}</strong>
-                <p>{t.hero.liveNote}</p>
-              </div>
-            </article>
-
-            <article className="floating-card floating-card--proof">
-              <span>{t.hero.proofCard.kicker}</span>
-              <strong>{t.hero.proofCard.title}</strong>
-              <p>{t.hero.proofCard.body}</p>
-            </article>
-
-            <article className="floating-card floating-card--ops">
-              <div className="logo-stack" aria-label="Partner footprint">
-                <img src={adactedLogo} alt="Adacted logo" />
-                <img src={mmixLogo} alt="MMIX logo" />
-              </div>
-              <span>{t.hero.opsCard.kicker}</span>
-              <strong>{t.hero.opsCard.title}</strong>
-              <p>{t.hero.opsCard.body}</p>
-            </article>
-          </div>
-        </section>
-
-        <section className="section-block reveal">
-          <SectionHeader
-            eyebrow={t.pain.eyebrow}
-            title={t.pain.title}
-            body={t.pain.body}
-            center
-          />
-
-          <div className="pain-grid">
-            {t.pain.items.map((item, index) => (
-              <article key={item.title} className="pain-card">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block reveal" id="services">
-          <SectionHeader eyebrow={t.services.eyebrow} title={t.services.title} body={t.services.body} />
-
-          <div className="service-grid">
-            {t.services.items.map((item) => (
-              <article key={item.title} className={`service-card${item.featured ? " service-card--featured" : ""}`}>
-                <span className="service-label">{item.label}</span>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <ul>
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block reveal" id="process">
-          <SectionHeader eyebrow={t.process.eyebrow} title={t.process.title} body={t.process.body} />
-
-          <div className="process-grid">
-            {t.process.steps.map((step) => (
-              <article key={step.phase} className="process-card">
-                <span>{step.phase}</span>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block reveal" id="cases">
-          <SectionHeader eyebrow={t.cases.eyebrow} title={t.cases.title} body={t.cases.body} />
-
-          <div className="case-grid">
-            {t.cases.items.map((item, index) => (
-              <article key={item.title} className="case-card">
-                <div className="case-media">
-                  <img src={CASE_MEDIA[index]} alt={item.alt} />
-                  <span>{item.segment}</span>
-                </div>
-                <div className="case-copy">
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                  <div className="case-metric">
-                    <strong>{item.metric}</strong>
-                    <span>{item.metricLabel}</span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section-block reveal" id="coverage">
-          <div className="coverage-layout">
-            <div className="coverage-copy">
-              <SectionHeader eyebrow={t.coverage.eyebrow} title={t.coverage.title} body={t.coverage.body} />
-
-              <div className="coverage-grid">
-                {t.coverage.regions.map((item) => (
-                  <article key={item.name} className="coverage-card">
-                    <h3>{item.name}</h3>
-                    <p>{item.body}</p>
-                  </article>
-                ))}
-              </div>
-
-              <ul className="coverage-bullets">
-                {t.coverage.bullets.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <aside className="proof-stack">
-              <article className="proof-stack__shot">
-                <img src={buzztmLive} alt={t.coverage.proofImageAlt} />
-              </article>
-
-              <article className="proof-stack__panel">
-                <span>{t.coverage.panel.kicker}</span>
-                <h3>{t.coverage.panel.title}</h3>
-                <p>{t.coverage.panel.body}</p>
-
-                <div className="inline-logos">
-                  <img src={adactedLogo} alt="Adacted logo" />
-                  <img src={mmixLogo} alt="MMIX logo" />
-                </div>
-
-                <div className="link-pills">
-                  {REFERENCE_LINKS.map((item) => (
-                    <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-              </article>
-            </aside>
-          </div>
-        </section>
-
-        <section className="section-block reveal">
-          <SectionHeader eyebrow={t.faq.eyebrow} title={t.faq.title} body={t.faq.body} center />
-
-          <div className="faq-list">
-            {t.faq.items.map((item) => (
-              <details key={item.q} className="faq-item">
-                <summary>
-                  <span>{item.q}</span>
-                  <span className="faq-symbol">+</span>
-                </summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section className="contact-panel reveal" id="contact">
-          <div className="contact-copy">
-            <p className="eyebrow eyebrow--strong">{t.contact.eyebrow}</p>
-            <h2>{t.contact.title}</h2>
-            <p>{t.contact.body}</p>
-
-            <ul className="contact-points">
-              {t.contact.points.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-
-            <div className="link-pills">
-              {SOCIAL_LINKS.map((item) => (
-                <a key={item.label} href={item.href} target="_blank" rel="noreferrer">
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="contact-form-wrap">
-            <LeadForm locale={locale} t={t} />
-          </div>
-        </section>
-      </main>
+      <main className="shell site-main">{renderPage({ currentPage, t, locale })}</main>
 
       <footer className="site-footer">
         <div className="shell footer-wrap">
@@ -499,9 +718,9 @@ export default function App() {
           </div>
 
           <div className="footer-links">
-            {t.footer.links.map((item) => (
-              <a key={item.label} href={item.href}>
-                {item.label}
+            {SITE_PAGES.map((item) => (
+              <a key={item} href={buildPageHref(item, locale)}>
+                {t.nav[item]}
               </a>
             ))}
           </div>

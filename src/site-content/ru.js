@@ -1157,4 +1157,1861 @@ const ru = {
   }
 };
 
+const RU_EXTRA_SERVICE_PACKAGES = [
+  {
+    key: "ugcProduction",
+    label: "Creative ops",
+    title: "UGC Production for TikTok Ads",
+    body: "Creator scripting, shot planning, edits, subtitles и ad-ready delivery для recurring paid testing.",
+    bullets: [
+      "Creator briefs и scripts",
+      "Ad-ready edit packaging",
+      "Subtitle и hook variants",
+      "Fast refresh cycles для paid media"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  },
+  {
+    key: "creatorWhitelisting",
+    label: "Creator network",
+    title: "Creator Whitelisting and Seeding",
+    body: "Поиск creators, whitelisting workflow и превращение seeded content в управляемое paid distribution.",
+    bullets: [
+      "Creator sourcing и fit checks",
+      "Whitelisting workflow setup",
+      "Seeded content planning",
+      "Paid amplification logic"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  },
+  {
+    key: "tiktokShopLaunch",
+    label: "Commerce",
+    title: "TikTok Shop Launch Campaigns",
+    body: "Запуск Shop-офферов через commerce creative, creator coordination и conversion-led promo sequencing.",
+    bullets: [
+      "Shop offer framing",
+      "Commerce creator briefs",
+      "Product page narrative alignment",
+      "Launch-week promo sequencing"
+    ],
+    featured: true,
+    link: "Открыть service page"
+  },
+  {
+    key: "landingLocalization",
+    label: "Conversion",
+    title: "Landing Page Localization",
+    body: "Адаптация page copy, CTA flow, proof blocks и value proposition под конкретный рынок.",
+    bullets: [
+      "Localized value proposition",
+      "CTA и proof adaptation",
+      "Offer framing по рынкам",
+      "Copy refinement для EN / RU buyer"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  },
+  {
+    key: "leadGenFunnels",
+    label: "Demand capture",
+    title: "TikTok Lead Generation Funnels",
+    body: "Lead capture paths для consultations, demos, registrations и high-intent inbound offers.",
+    bullets: [
+      "Lead magnet и form strategy",
+      "Ad-to-form alignment",
+      "Qualification messaging",
+      "Call-booking funnel flow"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  },
+  {
+    key: "retargetingRecovery",
+    label: "Efficiency",
+    title: "Retargeting and Conversion Recovery",
+    body: "Возврат warm traffic через tighter retargeting, remarketing creatives и conversion-stage page fixes.",
+    bullets: [
+      "Retargeting segment logic",
+      "Bottom-funnel creative refresh",
+      "Recovery CTA sequencing",
+      "Drop-off diagnosis и fixes"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  },
+  {
+    key: "analyticsAttribution",
+    label: "Measurement",
+    title: "TikTok Analytics and Attribution",
+    body: "Более чистый reporting layer вокруг traffic quality, lead intent и market-by-market learning.",
+    bullets: [
+      "UTM и event hygiene",
+      "Lead-source clarity",
+      "Signal review dashboards",
+      "Market-level reporting structure"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  },
+  {
+    key: "creativeStrategy",
+    label: "Strategy",
+    title: "TikTok Creative Strategy and Hook Testing",
+    body: "Коммерческая работа над angle, hooks, proof sequence и testing logic до того, как production начинает съедать budget.",
+    bullets: [
+      "Offer-angle development",
+      "Hook matrix и testing plan",
+      "Proof и CTA sequencing",
+      "Creative brief для production team"
+    ],
+    featured: true,
+    link: "Открыть service page"
+  },
+  {
+    key: "sparkAdsOps",
+    label: "Paid ops",
+    title: "TikTok Spark Ads Operations",
+    body: "Spark Ads setup, creator-asset amplification, audience structure и live optimization вокруг коммерческого outcome.",
+    bullets: [
+      "Spark Ads setup и governance",
+      "Creator-asset amplification",
+      "Audience и budget structure",
+      "Optimization review cadence"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  },
+  {
+    key: "communitySeeding",
+    label: "Community",
+    title: "Comment Seeding and Community Ops",
+    body: "Поддержка launch через social proof в comments, moderation logic и community cues, которые усиливают buyer confidence.",
+    bullets: [
+      "Comment seeding playbooks",
+      "Moderation и escalation logic",
+      "Trust-signal scripting",
+      "Community response workflows"
+    ],
+    featured: false,
+    link: "Открыть service page"
+  }
+];
+
+ru.pages.services.packages.items = [...ru.pages.services.packages.items, ...RU_EXTRA_SERVICE_PACKAGES];
+ru.pages.services.intro.metrics[0].value = "13 offers";
+ru.pages.services.packages.title = "Тринадцать service lines вокруг TikTok growth, conversion и rollout.";
+ru.pages.services.packages.body =
+  "Теперь service layer покрывает strategy, proof, production, paid launch, Spark Ads ops, community proof, Shop campaigns, localization, lead funnels, retargeting, analytics и market expansion.";
+ru.pages.services.seo.title = "TikTok Agency Services | 13 офферов Buzztm";
+ru.pages.services.seo.description =
+  "Смотрите 13 service pages Buzztm: TikTok creative strategy, UGC production, creator whitelisting, Spark Ads ops, comment seeding, TikTok Shop launches, landing localization, lead funnels, retargeting, analytics и multi-geo rollout.";
+ru.pages.services.seo.keywords =
+  "tiktok agency services, tiktok creative strategy, ugc production for tiktok ads, creator whitelisting agency, spark ads management, comment seeding service, tiktok shop launch service, landing page localization, tiktok lead generation, retargeting agency, analytics attribution service";
+ru.pages.home.seo.keywords +=
+  ", tiktok creative strategy, spark ads management, comment seeding, tiktok shop agency, ugc production for tiktok, creator whitelisting, lead generation funnel agency, retargeting and attribution";
+
+const ruServiceCatalog = new Map(ru.pages.services.packages.items.map((item) => [item.key, item]));
+const serviceLinkItems = (keys) =>
+  keys.map((key) => {
+    const item = ruServiceCatalog.get(key);
+    return {
+      key,
+      label: item.label,
+      title: item.title,
+      body: item.body,
+      link: "Открыть service page"
+    };
+  });
+
+const RU_GEO_DETAILS = {
+  uae: {
+    key: "uae",
+    marketName: "UAE",
+    seo: {
+      title: "TikTok Agency UAE | Buzztm Launch Services",
+      description:
+        "Buzztm помогает UAE launches через bilingual market framing, UGC production, landing localization, lead funnels и commercial rollout planning.",
+      ogTitle: "TikTok Agency UAE | Buzztm",
+      ogDescription:
+        "Коммерческий TikTok launch partner для UAE-focused offers, creator campaigns и conversion-led rollout.",
+      keywords:
+        "tiktok agency uae, tiktok marketing agency dubai, ugc production uae, tiktok ads uae, tiktok lead generation uae"
+    },
+    hero: {
+      eyebrow: "GEO page",
+      title: "TikTok agency support for UAE launches",
+      body:
+        "Эта страница сделана под бренды, которые заходят в UAE и которым нужны TikTok creative, localized landing logic и коммерческий launch sequencing, а не generic social media management.",
+      stats: [
+        { value: "GCC fit", label: "Под Gulf market adaptation" },
+        { value: "EN / RU", label: "Полезно для bilingual inbound и founder-led teams" },
+        { value: "Launch-led", label: "Про коммерческий rollout, а не vanity reach" }
+      ]
+    },
+    marketPanel: {
+      title: "Где Buzztm уместен в UAE work",
+      points: [
+        "Short-form launch support для offers, которым нужен conversion, а не просто content volume",
+        "Полезно, когда TikTok creative, landing copy и qualification flow нужно адаптировать под рынок",
+        "Сильный fit для UAE entry pushes, campaign resets и lead-generation funnels"
+      ]
+    },
+    searchIntent: {
+      eyebrow: "Search fit",
+      title: "UAE query обычно означает execution плюс market adaptation.",
+      body:
+        "Люди, которые ищут TikTok agency в UAE, обычно хотят больше, чем posting. Им нужны creators, ad logic, landing alignment и адаптация message под рынок.",
+      items: [
+        {
+          title: "Localized persuasion здесь критична",
+          body: "Один и тот же creative angle редко продает в UAE без другой proof framing и CTA логики."
+        },
+        {
+          title: "Lead quality важнее impression volume",
+          body: "Коммерческий вопрос в том, дает ли рынок qualified calls, registrations и sales-ready demand."
+        },
+        {
+          title: "Launch windows слишком дорогие для guesswork",
+          body: "Поэтому signal testing, retargeting и landing alignment надо строить с самого начала."
+        }
+      ]
+    },
+    services: {
+      eyebrow: "Relevant services",
+      title: "Что обычно подходит под UAE TikTok work",
+      body: "Эти service lines чаще всего нужны, когда target market — UAE или wider GCC demand capture.",
+      items: serviceLinkItems(["launchBurst", "landingLocalization", "leadGenFunnels", "retargetingRecovery"])
+    },
+    faq: {
+      eyebrow: "UAE FAQ",
+      title: "Что обычно спрашивают по UAE launches",
+      body: "Эти вопросы помогают понять, нужен ли рынку local persuasion layer или просто cleaner execution.",
+      items: [
+        {
+          q: "Нужен ли здесь Arabic?",
+          a: "Не всегда. Иногда UAE launch path может работать на English, но page, proof и CTA все равно нужно адаптировать под регион."
+        },
+        {
+          q: "Это только под e-commerce?",
+          a: "Нет. Это также подходит для consultations, lead funnels, events, courses и service offers."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен UAE launch plan?",
+      title: "Через intake form задайте offer, market entry point и какой коммерческий result важен.",
+      body: "Этого хватает, чтобы понять, нужен ли первым шагом testing, launch execution, localization или retargeting cleanup.",
+      primary: "Book UAE strategy call"
+    }
+  },
+  saudiArabia: {
+    key: "saudiArabia",
+    marketName: "Saudi Arabia",
+    seo: {
+      title: "TikTok Agency Saudi Arabia | Buzztm Growth Support",
+      description:
+        "Buzztm помогает Saudi Arabia launches через TikTok planning, creator production, localization, lead funnels и staged commercial rollout.",
+      ogTitle: "TikTok Agency Saudi Arabia | Buzztm",
+      ogDescription:
+        "TikTok launch support для Saudi-market growth, creator ads и conversion-focused execution.",
+      keywords:
+        "tiktok agency saudi arabia, tiktok ads saudi, creator marketing saudi arabia, lead generation saudi tiktok"
+    },
+    hero: {
+      eyebrow: "GEO page",
+      title: "TikTok agency support for Saudi Arabia campaigns",
+      body:
+        "Saudi-focused launches обычно требуют более сильного market framing, более deliberate proof и cleaner conversion paths, чем может дать broad social package.",
+      stats: [
+        { value: "High intent", label: "Под demand capture и launch pushes" },
+        { value: "Structured rollout", label: "Под multi-step commercial sequences" },
+        { value: "Creator-led", label: "Полезно, когда creators несут trust" }
+      ]
+    },
+    marketPanel: {
+      title: "Где Buzztm уместен в Saudi-market work",
+      points: [
+        "Creator-led launch systems для products, offers и consultations в Saudi demand",
+        "Полезно, когда landing logic и lead qualification должны совпадать с creative promise",
+        "Сильный fit, когда нужен коммерческий TikTok operator, а не generic monthly posting"
+      ]
+    },
+    searchIntent: {
+      eyebrow: "Search fit",
+      title: "Saudi TikTok queries обычно означают buyer, готового к execution.",
+      body:
+        "Такие buyer обычно ищут не vague awareness campaigns. Им нужен launch support, funnel logic и система превращения short-form traffic в qualified demand.",
+      items: [
+        {
+          title: "Offer framing должно ощущаться local enough",
+          body: "Proof и CTA style здесь часто требуют более сильной адаптации, чем ожидает команда."
+        },
+        {
+          title: "Lead funnels требуют более жесткой qualification",
+          body: "Коммерческие campaigns в Saudi часто выигрывают от tighter filtering до sales step."
+        },
+        {
+          title: "Post-click experience критичен",
+          body: "Качество traffic быстро падает, когда landing page ощущается translated, но не market-ready."
+        }
+      ]
+    },
+    services: {
+      eyebrow: "Relevant services",
+      title: "Service lines, которые обычно подходят Saudi-market rollout",
+      body: "Эти сервисы чаще всего комбинируются с Saudi entry и expansion plans.",
+      items: serviceLinkItems(["launchBurst", "creatorWhitelisting", "landingLocalization", "analyticsAttribution"])
+    },
+    faq: {
+      eyebrow: "Saudi FAQ",
+      title: "Что обычно нужно прояснить сначала",
+      body: "Это помогает понять, первый шаг — testing, production или conversion cleanup.",
+      items: [
+        {
+          q: "Это работает только для products?",
+          a: "Нет. TikTok lead-generation funnels подходят и для consultations, booked calls, applications и service offers."
+        },
+        {
+          q: "Вы закрываете creator sourcing тоже?",
+          a: "Да. Creator sourcing и whitelisting можно включить прямо в delivery."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Планируете Saudi rollout?",
+      title: "Отправьте offer, audience и target outcome, чтобы первый market move был заскоуплен правильно.",
+      body: "Этого достаточно, чтобы понять, нужен ли сначала signal testing, creator production или main launch execution.",
+      primary: "Book Saudi strategy call"
+    }
+  },
+  germany: {
+    key: "germany",
+    marketName: "Germany",
+    seo: {
+      title: "TikTok Agency Germany | Buzztm Localized Launch Support",
+      description:
+        "Buzztm помогает Germany-focused TikTok launches через UGC production, landing localization, conversion-led rollout и multi-market expansion logic.",
+      ogTitle: "TikTok Agency Germany | Buzztm",
+      ogDescription:
+        "Localized TikTok growth support для Germany campaigns, creator ads и conversion-ready rollout systems.",
+      keywords:
+        "tiktok agency germany, tiktok ads germany, landing localization germany, ugc production germany"
+    },
+    hero: {
+      eyebrow: "GEO page",
+      title: "TikTok agency support for Germany launches",
+      body:
+        "Germany-focused launch work обычно требует более четкого offer framing, stronger proof discipline и landing layer, которая ощущается commercially native, а не mechanically translated.",
+      stats: [
+        { value: "Localization", label: "Message и page adaptation очень важны" },
+        { value: "Offer clarity", label: "Сильнее всего для offers с ясным коммерческим ask" },
+        { value: "Expansion-ready", label: "Под wider EU rollout plans" }
+      ]
+    },
+    marketPanel: {
+      title: "Где Buzztm уместен в Germany work",
+      points: [
+        "Полезно для offers, где нужен sharper localization между ad promise и page logic",
+        "Сильный fit для EU launch waves, где Germany — primary proving market",
+        "Собрано под commercial TikTok execution, а не под social presence management"
+      ]
+    },
+    searchIntent: {
+      eyebrow: "Search fit",
+      title: "Germany search обычно означает localization плюс accountability.",
+      body:
+        "Типовой провал здесь не в reach. Он в misalignment между creator content, landing copy, qualification flow и тем, чему рынок реально доверяет.",
+      items: [
+        {
+          title: "Localized copy должно продавать, а не просто переводить",
+          body: "Именно здесь landing localization и funnel adaptation становятся критичны."
+        },
+        {
+          title: "Creative testing лучше делать до большой rollout",
+          body: "Germany pushes выигрывают от проверки promise-market fit до volume production."
+        },
+        {
+          title: "Analytics должны отделять noise от intent",
+          body: "Attribution и signal reviews особенно важны, когда несколько рынков идут параллельно."
+        }
+      ]
+    },
+    services: {
+      eyebrow: "Relevant services",
+      title: "Services, которые чаще всего поддерживают Germany-focused campaigns",
+      body: "Эти service lines наиболее уместны, когда challenge — localization плюс conversion quality.",
+      items: serviceLinkItems(["signalSprint", "landingLocalization", "leadGenFunnels", "analyticsAttribution"])
+    },
+    faq: {
+      eyebrow: "Germany FAQ",
+      title: "Вопросы, связанные с Germany-focused launches",
+      body: "Они обычно помогают понять, bottleneck в messaging, page trust или rollout discipline.",
+      items: [
+        {
+          q: "Germany — это обычно first market или expansion market?",
+          a: "И так, и так. Структура сайта поддерживает и first-market validation, и second-stage multi-geo expansion."
+        },
+        {
+          q: "Вы помогаете и на landing side тоже?",
+          a: "Да. Landing localization и conversion alignment входят в коммерческий path, а не идут отдельным слоем."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен Germany rollout path?",
+      title: "Через intake form опишите offer, market priority и где ломается conversion quality.",
+      body: "Этого достаточно, чтобы понять, нужен ли первым шагом testing, localization или active launch execution.",
+      primary: "Book Germany strategy call"
+    }
+  },
+  poland: {
+    key: "poland",
+    marketName: "Poland",
+    seo: {
+      title: "TikTok Agency Poland | Buzztm Growth and Funnel Support",
+      description:
+        "Buzztm помогает брендам входить в Poland через TikTok creator production, lead funnels, landing localization и conversion-ready market rollout.",
+      ogTitle: "TikTok Agency Poland | Buzztm",
+      ogDescription:
+        "Poland-focused TikTok growth support для creator ads, landing adaptation и commercial launch systems.",
+      keywords:
+        "tiktok agency poland, tiktok ads poland, lead generation tiktok poland, ugc production poland"
+    },
+    hero: {
+      eyebrow: "GEO page",
+      title: "TikTok agency support for Poland campaigns",
+      body:
+        "Poland launch work часто лежит между regional expansion и localized lead generation, поэтому message adaptation и landing logic тут так же важны, как и сам creative.",
+      stats: [
+        { value: "Regional fit", label: "Под CEE expansion paths" },
+        { value: "Lead capture", label: "Сильный fit для inbound и booked-call funnels" },
+        { value: "Creator-ready", label: "Под short-form proof и trust building" }
+      ]
+    },
+    marketPanel: {
+      title: "Где Buzztm уместен в Poland work",
+      points: [
+        "Полезно для founder-led brands и service offers, которые заходят в Poland через direct-response angle",
+        "Работает, когда creative hook и landing CTA требуют tighter market adaptation",
+        "Хорошо подходит, когда Poland — часть wider Eastern Europe rollout"
+      ]
+    },
+    searchIntent: {
+      eyebrow: "Search fit",
+      title: "Poland query часто означает conversion-focused rollout, а не content volume.",
+      body:
+        "Ключевая проблема тут обычно не в том, как получить impressions, а в том, как сделать short-form traffic конвертящимся в новом рынке.",
+      items: [
+        {
+          title: "Page copy часто становится утечкой",
+          body: "Poland campaigns быстро теряют quality, когда landing page не продолжает тот же коммерческий narrative."
+        },
+        {
+          title: "Lead funnels требуют более чистого friction design",
+          body: "Form, CTA и qualification step должны ощущаться deliberate, а не generic."
+        },
+        {
+          title: "Regional expansion требует repeatable logic",
+          body: "Поэтому signal reviews и attribution важны между market waves."
+        }
+      ]
+    },
+    services: {
+      eyebrow: "Relevant services",
+      title: "Services, которые чаще всего подходят под Poland-focused rollout",
+      body: "Эти offers обычно являются стартовой точкой для Poland entry и optimization work.",
+      items: serviceLinkItems(["signalSprint", "ugcProduction", "leadGenFunnels", "retargetingRecovery"])
+    },
+    faq: {
+      eyebrow: "Poland FAQ",
+      title: "Что buyer обычно спрашивает сначала",
+      body: "Это помогает понять, проблема в market fit, creative quality или conversion structure.",
+      items: [
+        {
+          q: "Это подходит для service business и consultations?",
+          a: "Да. Poland-targeted lead funnels можно строить под booked calls, applications и consultation-driven offers."
+        },
+        {
+          q: "Это только под Polish-language funnels?",
+          a: "Не обязательно. Правильный language mix зависит от audience, но localization sales path все равно важна."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Планируете Poland launch?",
+      title: "Отправьте offer, audience и desired result, чтобы первый market move был чистым коммерчески.",
+      body: "Этого хватает, чтобы понять, нужен ли сначала proof, production, localization или funnel recovery.",
+      primary: "Book Poland strategy call"
+    }
+  },
+  kazakhstan: {
+    key: "kazakhstan",
+    marketName: "Kazakhstan",
+    seo: {
+      title: "TikTok Agency Kazakhstan | Buzztm EN/RU Launch Support",
+      description:
+        "Buzztm поддерживает Kazakhstan launches через EN/RU messaging, TikTok creator production, landing adaptation и lead-focused rollout.",
+      ogTitle: "TikTok Agency Kazakhstan | Buzztm",
+      ogDescription:
+        "Kazakhstan-focused TikTok support для bilingual execution, creator ads и conversion-led launch systems.",
+      keywords:
+        "tiktok agency kazakhstan, tiktok ads kazakhstan, bilingual tiktok agency, russian english tiktok marketing"
+    },
+    hero: {
+      eyebrow: "GEO page",
+      title: "TikTok agency support for Kazakhstan launches",
+      body:
+        "Kazakhstan launch work часто выигрывает от bilingual EN/RU execution, stronger landing alignment и более ясного signal reading между creator, paid и conversion layers.",
+      stats: [
+        { value: "EN / RU", label: "Bilingual execution часто дает преимущество" },
+        { value: "Lead-ready", label: "Под consultations, services и offer funnels" },
+        { value: "Expansion fit", label: "Под CIS-focused rollout planning" }
+      ]
+    },
+    marketPanel: {
+      title: "Где Buzztm уместен в Kazakhstan work",
+      points: [
+        "Полезно, когда рынок требует bilingual persuasion и более явного conversion path",
+        "Сильный fit для CIS-facing launches, где landing и ad logic должны быть синхронны",
+        "Под commercial rollout, а не под generic awareness management"
+      ]
+    },
+    searchIntent: {
+      eyebrow: "Search fit",
+      title: "Kazakhstan queries часто указывают на bilingual execution problems.",
+      body:
+        "Проблема обычно не только в трафике. Она в том, как структурировать message, page и CTA так, чтобы рынок реально конвертился.",
+      items: [
+        {
+          title: "Bilingual execution меняет funnel",
+          body: "Language adaptation — это не просто copy. Она меняет proof hierarchy и CTA tone."
+        },
+        {
+          title: "Warm traffic требует recovery logic",
+          body: "Retargeting и conversion recovery становятся важны, когда first touchpoint шумный."
+        },
+        {
+          title: "Attribution держит expansion честной",
+          body: "Tracking помогает отделять real demand от vanity signal в CIS pushes."
+        }
+      ]
+    },
+    services: {
+      eyebrow: "Relevant services",
+      title: "Services, которые чаще всего подходят Kazakhstan-focused campaigns",
+      body: "Эти сервисы чаще всего нужны, когда target market — Kazakhstan или adjacent CIS demand.",
+      items: serviceLinkItems(["launchBurst", "landingLocalization", "retargetingRecovery", "analyticsAttribution"])
+    },
+    faq: {
+      eyebrow: "Kazakhstan FAQ",
+      title: "Что обычно нужно прояснить по Kazakhstan campaigns",
+      body: "Первые вопросы обычно показывают, bottleneck в language, proof или conversion flow.",
+      items: [
+        {
+          q: "EN/RU bilingual execution действительно важна здесь?",
+          a: "Очень часто да. Она влияет на hook, proof framing и то, как buyer читает page после click."
+        },
+        {
+          q: "Это подходит и для product, и для service offers?",
+          a: "Да. Service mix поддерживает product pushes, consultations, lead generation и multi-step conversion funnels."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Планируете Kazakhstan rollout?",
+      title: "Через intake form задайте offer, language mix и какой conversion signal важнее всего.",
+      body: "Это поможет определить, нужен ли первым шагом launch execution, localization, retargeting или analytics cleanup.",
+      primary: "Book Kazakhstan strategy call"
+    }
+  },
+  romania: {
+    key: "romania",
+    marketName: "Romania",
+    seo: {
+      title: "TikTok Agency Romania | Buzztm Growth and Localization Support",
+      description:
+        "Buzztm поддерживает Romania-focused TikTok campaigns через creator production, landing adaptation, lead funnels и multi-market launch planning.",
+      ogTitle: "TikTok Agency Romania | Buzztm",
+      ogDescription:
+        "Romania-focused TikTok launch support для conversion-led campaigns, creator ads и localized rollout.",
+      keywords:
+        "tiktok agency romania, tiktok ads romania, landing page localization romania, lead generation tiktok romania"
+    },
+    hero: {
+      eyebrow: "GEO page",
+      title: "TikTok agency support for Romania launches",
+      body:
+        "Romania launch work обычно требует более четкого offer sequencing, localized landing adaptation и более сильного моста между creator content и conversion logic.",
+      stats: [
+        { value: "CEE fit", label: "Под wider Eastern Europe rollout" },
+        { value: "Conversion-led", label: "Под lead и sales quality" },
+        { value: "Localized", label: "Page и CTA adaptation — часть системы" }
+      ]
+    },
+    marketPanel: {
+      title: "Где Buzztm уместен в Romania work",
+      points: [
+        "Полезно, когда Romania — часть wider CEE launch pattern, но ей нужен свой landing и proof layer",
+        "Сильный fit для offers, которым нужен clean path от ad promise к booked call или purchase intent",
+        "Под campaign logic, creator production и market adaptation как одну систему"
+      ]
+    },
+    searchIntent: {
+      eyebrow: "Search fit",
+      title: "Romania queries обычно означают buyer, которому нужен market-ready execution.",
+      body:
+        "Типовая проблема тут не в нехватке traffic. Она в слабой continuity между hook, page и коммерческим next step.",
+      items: [
+        {
+          title: "Localization формирует trust",
+          body: "Page должна ощущаться built for buyer, а не скопированной с другого GEO."
+        },
+        {
+          title: "Lead funnels требуют cleaner next steps",
+          body: "Form design, proof и CTA pacing напрямую меняют conversion quality."
+        },
+        {
+          title: "Retargeting защищает дорогой click",
+          body: "Recovery sequences важны, как только warm traffic становится значимой."
+        }
+      ]
+    },
+    services: {
+      eyebrow: "Relevant services",
+      title: "Services, которые обычно подходят под Romania-focused work",
+      body: "Эти сервисы наиболее релевантны, когда launch challenge — localized conversion quality.",
+      items: serviceLinkItems(["ugcProduction", "landingLocalization", "leadGenFunnels", "multiGeoScale"])
+    },
+    faq: {
+      eyebrow: "Romania FAQ",
+      title: "Что buyer обычно хочет понять сначала",
+      body: "Эти вопросы помогают разделить page problems, creative problems и rollout problems.",
+      items: [
+        {
+          q: "Romania может быть частью broader regional rollout?",
+          a: "Да. Эта структура рассчитана на бренды, которые идут по нескольким CEE markets без полного rebuild системы каждый раз."
+        },
+        {
+          q: "Вы закрываете только ads или post-click conversion тоже?",
+          a: "И то, и другое. Landing localization и conversion recovery — часть того же коммерческого system."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен Romania launch path?",
+      title: "Отправьте offer, target buyer и current conversion bottleneck через intake form.",
+      body: "Этого достаточно, чтобы понять, нужен ли первым шагом UGC production, localization, lead funnels или expansion support.",
+      primary: "Book Romania strategy call"
+    }
+  }
+};
+
+const geoLinkItems = (keys) =>
+  keys.map((key) => {
+    const item = RU_GEO_DETAILS[key];
+    return {
+      key,
+      label: item.marketName,
+      title: item.hero.title,
+      body: item.hero.body,
+      link: "Открыть market page"
+    };
+  });
+
+Object.assign(ru.serviceDetails.signalSprint, {
+  marketCoverage: {
+    eyebrow: "Market links",
+    title: "Где Signal Sprint обычно помогает первым делом",
+    body: "Эти market pages показывают, где proof-first работа чаще всего является самым умным первым шагом."
+  },
+  relatedMarkets: geoLinkItems(["germany", "poland", "romania"]),
+  faq: {
+    eyebrow: "Service FAQ",
+    title: "Вопросы вокруг proof-first testing",
+    body: "Они обычно решают, нужен ли сначала validation или уже active rollout.",
+    items: [
+      {
+        q: "Signal Sprint подходит только новым брендам?",
+        a: "Нет. Он также полезен established brands, когда они заходят в новый рынок или исправляют weak conversion до scale."
+      },
+      {
+        q: "Сюда входят landing updates тоже?",
+        a: "Да. Смысл в том, чтобы тестировать ad promise и landing promise вместе."
+      }
+    ]
+  }
+});
+
+Object.assign(ru.serviceDetails.launchBurst, {
+  marketCoverage: {
+    eyebrow: "Market links",
+    title: "Где Launch Burst чаще всего уместен",
+    body: "Эти рынки чаще всего требуют concentrated creator production, launch rhythm и conversion alignment."
+  },
+  relatedMarkets: geoLinkItems(["uae", "saudiArabia", "kazakhstan"]),
+  faq: {
+    eyebrow: "Service FAQ",
+    title: "Вопросы вокруг active launch execution",
+    body: "Они помогают понять, готова ли команда к main push.",
+    items: [
+      {
+        q: "Launch Burst можно запускать рядом с internal team?",
+        a: "Да. Он может быть operating arm, пока internal team держит strategy или reporting ownership."
+      },
+      {
+        q: "Сюда входит paid launch iteration?",
+        a: "Да. Paid launch setup и recurring signal reviews — часть модели."
+      }
+    ]
+  }
+});
+
+Object.assign(ru.serviceDetails.multiGeoScale, {
+  marketCoverage: {
+    eyebrow: "Market links",
+    title: "Рынки, где disciplined expansion особенно важен",
+    body: "Эти страницы отражают expansion-style rollout, под который и собран сервис."
+  },
+  relatedMarkets: geoLinkItems(["uae", "germany", "romania"]),
+  faq: {
+    eyebrow: "Service FAQ",
+    title: "Вопросы вокруг multi-geo rollout",
+    body: "Они обычно проясняют, готова ли система к expansion или ей еще нужен proof.",
+    items: [
+      {
+        q: "Нужно ли использовать это до proven first market?",
+        a: "Обычно нет. Multi-Geo Scale сильнее всего, когда один рынок уже показал usable signal."
+      },
+      {
+        q: "Localization входит в сервис?",
+        a: "Да. Message, proof, CTA и page logic адаптируются под каждый рынок как часть rollout."
+      }
+    ]
+  }
+});
+
+Object.assign(ru.serviceDetails, {
+  ugcProduction: {
+    seo: {
+      title: "UGC Production for TikTok Ads | Buzztm Services",
+      description:
+        "Buzztm производит ad-ready TikTok UGC: scripting, creator direction, editing, hooks, subtitles и refresh cycles для paid growth teams.",
+      ogTitle: "UGC Production for TikTok Ads | Buzztm",
+      ogDescription:
+        "Recurring creator production и edit packaging для коммерческого TikTok testing и paid media.",
+      keywords:
+        "ugc production for tiktok ads, tiktok creator production service, tiktok ad creatives agency"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "UGC Production for TikTok Ads",
+      body:
+        "Production service для брендов, которым нужны creator-led TikTok assets под paid testing, landing alignment и recurring refresh cycles.",
+      stats: [
+        { value: "Ad-ready", label: "Под testing и paid distribution" },
+        { value: "Recurring", label: "Под repeated content refresh" },
+        { value: "Systemized", label: "Scripts, edits и hooks живут в одной loop" }
+      ],
+      highlights: [
+        "Лучше всего, когда internal team понимает offer, но ей не хватает execution bandwidth",
+        "Полезно брендам, которым нужен creator volume без потери коммерческой дисциплины",
+        "Построено вокруг performance angles, а не generic social content"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Более чистый и repeatable creator asset pipeline.",
+      body:
+        "Задача не в том, чтобы получить больше footage. Задача — получить больше usable hooks, больше edit variants и больше ad-ready creative.",
+      items: [
+        {
+          title: "Превратить product insight в creator scripts",
+          body: "Первый выигрыш здесь — скорость от идеи до ad-ready shoot brief."
+        },
+        {
+          title: "Построить repeatable edit system",
+          body: "Hook variants, subtitles и cutdowns делаются под testing, а не как one-off posting."
+        },
+        {
+          title: "Оставить production привязанной к conversion logic",
+          body: "Creative становится ценнее, когда строится вокруг page promise и коммерческого CTA."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Практичная creator production loop для paid teams.",
+      body:
+        "Scope центрируется на scripting, creator direction, editing и asset packaging под активное campaign use.",
+      items: [
+        "Creator script и shot brief development",
+        "Creative angle planning по campaign objective",
+        "Editing, subtitles и versioning",
+        "Asset packaging под paid testing",
+        "Refresh planning для ongoing campaign cycles"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда bottleneck в production bandwidth или creative consistency.",
+      body:
+        "Этот сервис для teams, которые уже знают, что TikTok важен, но им нужен более организованный способ производить usable creative на скорости.",
+      items: [
+        {
+          title: "Paid media teams с тонкими creator ops",
+          body: "Полезно, когда ad team нужно больше testable assets, чем internal production system может создать."
+        },
+        {
+          title: "Founders и growth leads с ясным offer",
+          body: "Четкий offer делает scripting и creator direction намного сильнее."
+        },
+        {
+          title: "Бренды, планирующие weekly refresh cycles",
+          body: "Особенно полезно, когда campaign fatigue уже начинает проявляться."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где creator production чаще всего требует local adaptation",
+      body: "Эти страницы показывают, где ad-ready UGC особенно часто требует market-specific framing."
+    },
+    relatedMarkets: geoLinkItems(["uae", "poland", "romania"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг UGC production",
+      body: "Они помогают отделить generic content needs от paid-growth production needs.",
+      items: [
+        {
+          q: "Это про organic content или paid creative production?",
+          a: "В первую очередь это собрано под paid testing и performance-led rollout, хотя часть assets можно использовать и органически."
+        },
+        {
+          q: "Вы source creators тоже?",
+          a: "Да. Creator sourcing можно включать сюда или связывать с whitelisting service."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен ad-ready creator pipeline?",
+      title: "Через intake form опишите offer, volume needs и как часто creative должна обновляться.",
+      body: "Этого хватает, чтобы понять, нужна ли one-off batch или recurring UGC production loop.",
+      primary: "Запросить UGC Production"
+    }
+  },
+  creatorWhitelisting: {
+    seo: {
+      title: "Creator Whitelisting and Seeding | Buzztm Services",
+      description:
+        "Buzztm помогает брендам source creators, выстраивать whitelisting и превращать seeded content в controllable paid distribution.",
+      ogTitle: "Creator Whitelisting and Seeding | Buzztm",
+      ogDescription:
+        "Creator sourcing, whitelisting setup и seeded paid amplification для TikTok launches.",
+      keywords:
+        "creator whitelisting agency, tiktok creator seeding service, paid creator amplification"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "Creator Whitelisting and Seeding",
+      body:
+        "Сервис для брендов, которым нужны creators, distribution rights и seeded content, собранные так, чтобы paid team могла это реально масштабировать.",
+      stats: [
+        { value: "Rights-aware", label: "Под whitelisting и usage clarity" },
+        { value: "Trust-led", label: "Полезно, когда creators несут proof layer" },
+        { value: "Paid-ready", label: "Под amplification, а не loose influencer outreach" }
+      ],
+      highlights: [
+        "Лучше всего, когда creator trust важен так же сильно, как performance execution",
+        "Полезно для seeded launch pushes и paid amplification",
+        "Построено так, чтобы sourcing, rights и media logic были связаны"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Creator distribution system, с которым paid media может реально работать.",
+      body:
+        "Задача — перевести scattered creator outreach в repeatable seeding и whitelisting process, который поддерживает launch scale.",
+      items: [
+        {
+          title: "Искать creators по fit, а не только по reach",
+          body: "Creators должны матчиться с commercial angle и audience pressure, а не только с vanity metrics."
+        },
+        {
+          title: "Чисто выстроить whitelisting",
+          body: "Usage rights и access должны быть достаточно аккуратными для active media buying."
+        },
+        {
+          title: "Превратить seeded content в amplification layer",
+          body: "Результат должен поддерживать и trust, и paid expansion."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Creator sourcing и distribution structure.",
+      body:
+        "Scope покрывает creator discovery, fit filtering, whitelisting planning и seeded campaign coordination.",
+      items: [
+        "Creator discovery и fit review",
+        "Offer-aligned creator briefing",
+        "Whitelisting workflow support",
+        "Seeded content planning и coordination",
+        "Paid amplification guidance"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда trust transfer от creators — ключевой коммерческий lever.",
+      body:
+        "Это особенно полезно для launches, где creator endorsement и controllable paid distribution одинаково важны.",
+      items: [
+        {
+          title: "Product launches с creator trust angle",
+          body: "Особенно уместно, когда creators должны нести proof или social validation."
+        },
+        {
+          title: "Shop и DTC campaigns",
+          body: "Работает хорошо, когда seeded content должна стать частью paid acquisition system."
+        },
+        {
+          title: "Рынки, где direct brand creative ощущается слишком холодной",
+          body: "Creator-mediated entry снижает сопротивление в trust-sensitive markets."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где creator trust часто важнее",
+      body: "Эти страницы показывают, где whitelisting и seeding обычно становятся более коммерчески значимыми."
+    },
+    relatedMarkets: geoLinkItems(["saudiArabia", "uae", "kazakhstan"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг creator whitelisting",
+      body: "Они обычно помогают понять, нужна ли команде creator sourcing, media rights или оба слоя.",
+      items: [
+        {
+          q: "Это просто influencer outreach?",
+          a: "Нет. Сервис строится вокруг creator fit, whitelisting access и paid amplification logic."
+        },
+        {
+          q: "Это можно сочетать с UGC production?",
+          a: "Да. Creator whitelisting часто идет рядом с recurring UGC production и launch execution."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен creator distribution layer?",
+      title: "Через intake form задайте offer, creator profile и входит ли paid amplification в план.",
+      body: "Этого достаточно, чтобы заскоупить правильную creator sourcing и whitelisting setup.",
+      primary: "Запросить Creator Whitelisting"
+    }
+  },
+  tiktokShopLaunch: {
+    seo: {
+      title: "TikTok Shop Launch Campaigns | Buzztm Services",
+      description:
+        "Buzztm поддерживает TikTok Shop launches через commerce creative, creator coordination, product-page alignment и launch-week promo sequencing.",
+      ogTitle: "TikTok Shop Launch Campaigns | Buzztm",
+      ogDescription:
+        "Commerce-focused TikTok Shop launch support для product offers, которым нужны creator proof и conversion discipline.",
+      keywords:
+        "tiktok shop agency, tiktok shop launch service, tiktok commerce creative, tiktok shop ads"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "TikTok Shop Launch Campaigns",
+      body:
+        "Commerce-focused launch service для брендов, использующих TikTok Shop и short-form creative, чтобы продвинуть products в концентрированном promotional window.",
+      stats: [
+        { value: "Commerce-led", label: "Построено вокруг product и offer movement" },
+        { value: "Launch-week", label: "Сильный fit для концентрированных campaign windows" },
+        { value: "Creator-assisted", label: "Полезно, когда social proof двигает purchase intent" }
+      ],
+      highlights: [
+        "Лучше всего для Shop offers, которым нужен stronger creative и offer sequencing",
+        "Полезно, когда creator proof и product-page logic должны двигаться вместе",
+        "Построено под conversion, а не под generic product awareness"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Shop launch path, который ощущается коммерчески собранным.",
+      body:
+        "Сервис выстраивает commerce creative, product-page story, creator proof и launch timing в одну conversion-led sequence.",
+      items: [
+        {
+          title: "Прояснить product-angle, который стоит пушить",
+          body: "Старт идет от commercial reason to buy, а не только от visual style продукта."
+        },
+        {
+          title: "Скоординировать creators и offers вокруг одного окна",
+          body: "Launch sequence сильнее, когда creators, pages и promo logic усиливают одну и ту же message."
+        },
+        {
+          title: "Защитить warm traffic recovery steps",
+          body: "Retargeting и CTA sequencing быстро становятся важными, как только product interest начинает формироваться."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Commerce launch layer для TikTok Shop pushes.",
+      body:
+        "Scope покрывает product-angle framing, creator planning, page support и launch-week sequencing.",
+      items: [
+        "Product-angle и offer framing",
+        "Commerce creator briefs и scripts",
+        "Product-page и CTA alignment",
+        "Launch-week campaign sequencing",
+        "Warm-traffic recovery planning"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда offer ясный и launch window важен.",
+      body:
+        "Этот сервис работает лучше всего для commerce teams с конкретным product push, а не vague always-on growth plan.",
+      items: [
+        {
+          title: "Product drops и promo windows",
+          body: "Концентрированное offer window дает кампании более ясную коммерческую гравитацию."
+        },
+        {
+          title: "Creator-led commerce launches",
+          body: "Полезно, когда sale зависит от social proof и demo-style short-form content."
+        },
+        {
+          title: "Teams, которым нужен tighter Shop conversion logic",
+          body: "Особенно полезно, когда traffic уже есть, но purchase flow discipline слабая."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где Shop-style launch windows особенно важны",
+      body: "Эти страницы показывают, где commerce launch discipline и creator proof особенно полезны."
+    },
+    relatedMarkets: geoLinkItems(["uae", "saudiArabia", "germany"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг TikTok Shop launches",
+      body: "Они помогают понять, challenge в product framing, creator content или самой launch sequence.",
+      items: [
+        {
+          q: "Это только для больших e-commerce brands?",
+          a: "Нет. Это подходит и для smaller product launches, если offer и commercial window уже понятны."
+        },
+        {
+          q: "Вы помогаете после первой launch week тоже?",
+          a: "Да. Сервис можно продолжать в retargeting, UGC refresh cycles и wider rollout support."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Планируете Shop launch?",
+      title: "Через intake form задайте product, offer window и target conversion outcome.",
+      body: "Этого хватает, чтобы понять, нужен ли сначала creator production, Shop sequencing или conversion recovery.",
+      primary: "Запросить TikTok Shop Launch"
+    }
+  },
+  landingLocalization: {
+    seo: {
+      title: "Landing Page Localization | Buzztm Services",
+      description:
+        "Buzztm локализует landing pages для TikTok campaigns через адаптацию CTA flow, proof, copy и value proposition под target market.",
+      ogTitle: "Landing Page Localization | Buzztm",
+      ogDescription:
+        "Landing-page adaptation для TikTok campaigns, которым нужен stronger market fit и cleaner post-click conversion.",
+      keywords:
+        "landing page localization service, tiktok landing page agency, localized landing page conversion"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "Landing Page Localization",
+      body:
+        "Сервис для campaigns, где ad уже может получать click, но page все еще ощущается translated, generic или коммерчески слабой для target market.",
+      stats: [
+        { value: "Post-click", label: "Под conversion после click" },
+        { value: "Localized", label: "Message и proof меняются по рынкам" },
+        { value: "Commercial", label: "Про trust и action, а не cosmetic translation" }
+      ],
+      highlights: [
+        "Сильнее всего, когда traffic quality выглядит лучше, чем conversion rate",
+        "Полезно, когда одна page растягивается сразу на несколько рынков",
+        "Построено так, чтобы page продолжала exact promise, открытую в ad"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Page, которая ощущается built for buyer, реально приходящего на нее.",
+      body:
+        "Задача — адаптировать proof, structure, copy и CTA logic так, чтобы page конвертировала как часть campaign, а не вопреки ей.",
+      items: [
+        {
+          title: "Синхронизировать page с creative promise",
+          body: "Click сильнее, когда page продолжает ту же коммерческую историю."
+        },
+        {
+          title: "Изменить proof и CTA hierarchy под рынок",
+          body: "Рынку часто нужны другие trust signals и другая скорость ask."
+        },
+        {
+          title: "Снизить дорогой post-click drop-off",
+          body: "Небольшие изменения copy и flow могут спасти много media spend."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Conversion-layer localization pass для paid traffic.",
+      body:
+        "Scope фокусируется на value proposition, proof sequence, CTA flow и market-specific selling language.",
+      items: [
+        "Value proposition rewrite под target market",
+        "Proof и trust-block adaptation",
+        "CTA sequence и form-flow review",
+        "Headline и section-order refinement",
+        "Offer-language alignment с live ads"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда page — главный источник leakage.",
+      body:
+        "Этот сервис для teams, которые подозревают, что creative уже делает достаточно, а landing experience — нет.",
+      items: [
+        {
+          title: "Multi-market pages, которые растянули слишком сильно",
+          body: "Полезно, когда одна page пытается делать работу сразу нескольких market-specific pages."
+        },
+        {
+          title: "Bilingual и expansion campaigns",
+          body: "Localization становится коммерчески важнее, когда появляется несколько language layers."
+        },
+        {
+          title: "Lead и application funnels со слабым completion",
+          body: "Самый большой выигрыш тут часто в CTA clarity и proof ordering."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где post-click localization особенно важна",
+      body: "Эти страницы отражают рынки, где более сильный landing layer особенно быстро меняет conversion quality."
+    },
+    relatedMarkets: geoLinkItems(["germany", "uae", "romania"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг landing localization",
+      body: "Они помогают понять, нужна ли page translation, persuasion changes или более полный funnel rewrite.",
+      items: [
+        {
+          q: "Это просто copy translation?",
+          a: "Нет. Работа идет вокруг offer framing, proof ordering, CTA flow и trust-building в target market."
+        },
+        {
+          q: "Это можно сделать без полного rebuild site?",
+          a: "Часто да. Многим campaigns хватает targeted page adaptation, а не полного rebuild."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен stronger post-click path?",
+      title: "Через intake form объясните, для какого рынка эта page и где именно leaks conversion.",
+      body: "Этого достаточно, чтобы понять, нужна ли локализация, CTA restructuring или proof adaptation first.",
+      primary: "Запросить Landing Localization"
+    }
+  },
+  leadGenFunnels: {
+    seo: {
+      title: "TikTok Lead Generation Funnels | Buzztm Services",
+      description:
+        "Buzztm строит TikTok lead generation funnels для booked calls, consultations, registrations и других high-intent inbound actions.",
+      ogTitle: "TikTok Lead Generation Funnels | Buzztm",
+      ogDescription:
+        "Lead-capture funnel design для TikTok traffic, которой нужна cleaner qualification и stronger conversion.",
+      keywords:
+        "tiktok lead generation funnels, tiktok lead gen agency, consultation funnel tiktok, booked calls tiktok"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "TikTok Lead Generation Funnels",
+      body:
+        "Сервис для брендов, использующих TikTok для генерации consultations, booked calls, applications, registrations и других high-intent inbound actions.",
+      stats: [
+        { value: "Lead-led", label: "Под inbound capture, а не product checkout" },
+        { value: "Qualification", label: "Message и form flow фильтруют по fit" },
+        { value: "Commercial", label: "Фокус на lead quality, а не raw volume" }
+      ],
+      highlights: [
+        "Лучше всего для services, consultations, applications и info-product funnels",
+        "Полезно, когда ad clicks уже есть, но inbound quality слишком мягкая",
+        "Построено вокруг полного path от hook до form completion"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Более чистый путь от short-form interest к qualified inbound.",
+      body:
+        "Задача — выровнять ad promise, landing logic и form sequence так, чтобы arriving leads были ближе к real buying intent.",
+      items: [
+        {
+          title: "Сделать lead promise более точной",
+          body: "Ad должна привлекать правильный inquiry, а не просто любой curiosity click."
+        },
+        {
+          title: "Сконструировать form path, которая квалифицирует, а не пугает",
+          body: "Правильная friction может поднять quality, не убивая flow."
+        },
+        {
+          title: "Поднять sales usefulness inbound",
+          body: "Более точный funnel messaging снижает wasted follow-up effort downstream."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Lead-capture funnel, выровненная под TikTok traffic.",
+      body:
+        "Scope покрывает hook-to-form continuity, qualification logic, CTA framing и funnel clarity.",
+      items: [
+        "Lead magnet или offer framing",
+        "Ad-to-page message alignment",
+        "Form и CTA sequence design",
+        "Qualification-layer copy refinement",
+        "Follow-up intent signal guidance"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда коммерческая цель — conversation, application или qualified inquiry.",
+      body:
+        "Это лучше всего работает для business, которым не нужен direct checkout, но нужен cleaner sales-ready inbound.",
+      items: [
+        {
+          title: "Consultation и booked-call offers",
+          body: "Полезно, когда funnel должна квалифицировать lead до human sales step."
+        },
+        {
+          title: "Applications и registrations",
+          body: "Особенно полезно, когда offer требует commitment или fit check до next step."
+        },
+        {
+          title: "Service и info-product campaigns",
+          body: "Хорошо работает там, где реальная sale происходит после lead capture."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где lead-generation funnels особенно нуждаются в market adaptation",
+      body: "Эти страницы отражают рынки, где inbound quality сильно зависит от form flow и message discipline."
+    },
+    relatedMarkets: geoLinkItems(["uae", "saudiArabia", "poland"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг lead-generation funnels",
+      body: "Они помогают понять, проблема в weak lead promise или в weak qualification design.",
+      items: [
+        {
+          q: "TikTok может работать для booked calls и consultations?",
+          a: "Да, если creative promise, page logic и qualification flow собраны вокруг buyer intent, а не просто attention."
+        },
+        {
+          q: "Это только для B2B offers?",
+          a: "Нет. Это также работает для education, services, coaching и других offers, где sale идет после form step."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен better lead quality?",
+      title: "Через intake form опишите offer, current funnel и что делает lead реально ценной.",
+      body: "Это позволяет понять, где first fix — в hook, page, form или follow-up logic.",
+      primary: "Запросить Lead Funnel Service"
+    }
+  },
+  retargetingRecovery: {
+    seo: {
+      title: "Retargeting and Conversion Recovery | Buzztm Services",
+      description:
+        "Buzztm улучшает retargeting и conversion recovery через segment logic, remarketing creatives, recovery CTAs и post-click fixes.",
+      ogTitle: "Retargeting and Conversion Recovery | Buzztm",
+      ogDescription:
+        "Recover warm traffic через tighter remarketing, creative refresh и conversion-path cleanup.",
+      keywords:
+        "retargeting agency tiktok, conversion recovery service, remarketing creative service, warm traffic recovery"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "Retargeting and Conversion Recovery",
+      body:
+        "Сервис для брендов, у которых уже есть достаточно warm traffic для deliberate recovery layer, но еще нет достаточной funnel discipline, чтобы превращать ее в conversion эффективно.",
+      stats: [
+        { value: "Warm traffic", label: "Под recovery после first touch" },
+        { value: "Bottom funnel", label: "Фокус на decision-stage conversion" },
+        { value: "Efficiency", label: "Защищает media spend от leakage" }
+      ],
+      highlights: [
+        "Лучше всего после того, как campaigns уже производят достаточно traffic для meaningful segmentation",
+        "Полезно, когда remarketing ощущается generic или disconnected from original promise",
+        "Построено для recovery intent, а не для повторения impressions"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Более deliberate second-step conversion layer.",
+      body:
+        "Retargeting работает лучше, когда second touch объясняет что-то новое, снижает friction или меняет ask в правильный момент.",
+      items: [
+        {
+          title: "Сделать warm audiences понятнее",
+          body: "Segmentation важна, потому что не каждый click заслуживает одной и той же recovery message."
+        },
+        {
+          title: "Использовать recovery creatives с конкретной job",
+          body: "Задача — снять friction, усилить proof или ввести правильный next-step CTA."
+        },
+        {
+          title: "Снизить wasted paid traffic",
+          body: "Более tight recovery layer часто улучшает economics всего campaign."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Recovery layer для warm traffic.",
+      body:
+        "Scope покрывает segmentation logic, bottom-funnel creative, CTA design и post-click fixes, которые поднимают conversion quality.",
+      items: [
+        "Retargeting segment map",
+        "Recovery-message и offer planning",
+        "Remarketing creative refresh",
+        "Bottom-funnel CTA и page refinement",
+        "Signal review и efficiency recommendations"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда у бренда уже есть и traffic, и leakage.",
+      body:
+        "Этот сервис наиболее полезен, когда уже есть достаточная campaign activity, чтобы оправдать более precise recovery logic.",
+      items: [
+        {
+          title: "Бренды с repeat visitors, но weak conversion",
+          body: "Retargeting и page cleanup часто возвращают value, за которую бренд уже заплатил."
+        },
+        {
+          title: "Teams с busy top funnel и soft bottom funnel",
+          body: "Особенно полезно, когда awareness и clicks обгоняют реальные business results."
+        },
+        {
+          title: "Launches, входящие в optimization mode",
+          body: "Recovery layer часто становится важнее после того, как first push уже стартовал."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где recovery logic становится важной раньше",
+      body: "Эти страницы отражают рынки, где warm traffic достаточно дорогая, чтобы conversion recovery mattered fast."
+    },
+    relatedMarkets: geoLinkItems(["uae", "kazakhstan", "romania"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг retargeting и recovery",
+      body: "Они помогают понять, проблема в audience quality, recovery logic или page friction.",
+      items: [
+        {
+          q: "Retargeting полезна до того, как first launch стабилизировался?",
+          a: "Обычно она становится полезнее после того, как first launch уже создал достаточно traffic и signal."
+        },
+        {
+          q: "Сюда входят page fixes тоже?",
+          a: "Да. Recovery часто ломается из-за того, что post-click experience слишком generic или слабая."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен stronger recovery from warm traffic?",
+      title: "Через intake form покажите, где traffic протекает после first touch.",
+      body: "Этого достаточно, чтобы заскоупить, priority сейчас — segmentation, creative recovery или page friction cleanup.",
+      primary: "Запросить Retargeting Recovery"
+    }
+  },
+  analyticsAttribution: {
+    seo: {
+      title: "TikTok Analytics and Attribution | Buzztm Services",
+      description:
+        "Buzztm улучшает TikTok analytics и attribution через event hygiene, UTM structure, lead-source clarity и market-by-market signal reviews.",
+      ogTitle: "TikTok Analytics and Attribution | Buzztm",
+      ogDescription:
+        "Более чистый reporting layer для lead quality, rollout learning и коммерческого signal across TikTok campaigns.",
+      keywords:
+        "tiktok analytics service, attribution service for tiktok, lead source reporting, campaign signal dashboard"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "TikTok Analytics and Attribution",
+      body:
+        "Measurement service для брендов, которым нужна более чистая видимость traffic quality, lead intent, market performance и того, какие launch moves реально дают коммерческий signal.",
+      stats: [
+        { value: "Signal-led", label: "Под коммерческие decisions" },
+        { value: "Cross-market", label: "Полезно для multi-geo reporting" },
+        { value: "Funnel-aware", label: "Трекит то, что важно после click" }
+      ],
+      highlights: [
+        "Сильнее всего, когда reporting уже есть, но она все еще не дает clear action",
+        "Полезно для teams, ведущих сразу несколько services, funnels или markets",
+        "Построено вокруг decision quality, а не dashboard decoration"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Reporting layer, которая реально меняет decisions.",
+      body:
+        "Задача не в том, чтобы нарисовать больше charts. Задача — сделать attribution чище, signal reviews сильнее и бюджетные решения быстрее.",
+      items: [
+        {
+          title: "Прояснить, откуда реально приходят хорошие leads",
+          body: "Lead-source visibility особенно важна, когда campaigns и markets начинают накладываться."
+        },
+        {
+          title: "Улучшить market-by-market learning",
+          body: "Более чистая reporting structure делает expansion менее зависимой от guesswork."
+        },
+        {
+          title: "Связать media activity с business outcomes",
+          body: "Traffic metrics полезны только когда связаны с qualified demand и sales movement."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Более чистая measurement и review structure.",
+      body:
+        "Scope фокусируется на attribution hygiene, event logic, lead-source clarity и signal review structure.",
+      items: [
+        "UTM structure и traffic hygiene",
+        "Event и source tracking review",
+        "Lead-quality reporting structure",
+        "Market-by-market dashboard logic",
+        "Signal review framework для next-step decisions"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда team нужен cleaner learning, а не просто more data.",
+      body:
+        "Этот сервис полезен, когда traffic уже идет, но decisions все еще слишком субъективны или слишком медленны.",
+      items: [
+        {
+          title: "Teams, ведущие несколько services или markets",
+          body: "Чем больше moving pieces, тем важнее attribution hygiene."
+        },
+        {
+          title: "Бренды с leads, но низкой ясностью",
+          body: "Полезно, когда leads приходят, но команда не понимает, какой campaign path заслуживает credit."
+        },
+        {
+          title: "Multi-geo rollout programs",
+          body: "Expansion decisions становятся сильнее, когда reporting разделена по market и launch wave."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где attribution обычно становится важнее",
+      body: "Эти страницы отражают rollout situations, где более чистая measurement улучшает expansion discipline."
+    },
+    relatedMarkets: geoLinkItems(["germany", "kazakhstan", "saudiArabia"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг analytics и attribution",
+      body: "Они помогают понять, проблема в tracking hygiene, reporting structure или decision cadence.",
+      items: [
+        {
+          q: "Это просто dashboard setup?",
+          a: "Нет. Ценность в том, чтобы сделать reporting useful для budget, market и funnel decisions."
+        },
+        {
+          q: "Это важно и для smaller launch programs?",
+          a: "Да, особенно когда один небольшой launch должен научить команду, что делать дальше."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен cleaner signal from campaigns?",
+      title: "Через intake form объясните, что уже трекается и что все еще выглядит неясным.",
+      body: "Это помогает понять, first fix сейчас в source hygiene, event tracking или signal review structure.",
+      primary: "Запросить Analytics Support"
+    }
+  }
+});
+
+Object.assign(ru.serviceDetails, {
+  creativeStrategy: {
+    seo: {
+      title: "TikTok Creative Strategy and Hook Testing | Buzztm Services",
+      description:
+        "Buzztm выстраивает TikTok creative strategy через offer angles, hook systems, proof sequencing и testing plans до production и media scale.",
+      ogTitle: "TikTok Creative Strategy and Hook Testing | Buzztm",
+      ogDescription:
+        "Коммерческая creative strategy и hook testing для брендов, которым нужен sharper angle до того, как сильнее давить бюджетом.",
+      keywords:
+        "tiktok creative strategy, hook testing service, tiktok creative testing agency, tiktok offer strategy"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "TikTok Creative Strategy and Hook Testing",
+      body:
+        "Strategy service для брендов, которым пока не нужно больше random footage. Им нужен более чистый message, более сильные hooks и tighter testing plan до production scale.",
+      stats: [
+        { value: "Offer-led", label: "Стартует от angle, которую реально стоит пушить" },
+        { value: "Testing-first", label: "Собрано под controlled creative learning" },
+        { value: "Commercial", label: "Про qualified demand, а не decorative reach" }
+      ],
+      highlights: [
+        "Лучше всего, когда команда уже производит, но все еще учится слишком медленно",
+        "Полезно до больших UGC или paid-launch commitments",
+        "Построено так, чтобы соединить hook design с proof и CTA logic"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Creative system, которую стоит масштабировать.",
+      body:
+        "Задача — определить, какие angles заслуживают production, какие hooks заслуживают budget и как proof должна появляться до того, как buyer отвалится.",
+      items: [
+        {
+          title: "Прояснить коммерческий angle",
+          body: "Самая сильная creative обычно растет из более четкого positioning, а не из более громкого монтажа."
+        },
+        {
+          title: "Сократить wasted production volume",
+          body: "Testing plan делает production более выборочной и более полезной."
+        },
+        {
+          title: "Поднять learning speed",
+          body: "Более чистая hook logic дает более быстрый signal из каждого launch cycle."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Strategy до более тяжелой production и scale.",
+      body:
+        "Scope покрывает offer framing, hook architecture, testing lanes и proof logic, которые потом кормят production и paid rollout.",
+      items: [
+        "Offer-angle и buyer-pressure mapping",
+        "Hook matrix и opening-line planning",
+        "Proof и CTA sequencing",
+        "Testing plan по creative lanes",
+        "Production briefing support"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда bottleneck в message clarity, а не в media buying.",
+      body:
+        "Это особенно полезно брендам, которые понимают, что TikTok важен, но еще не собрали creative system, которую действительно стоит усиливать.",
+      items: [
+        {
+          title: "Teams перед новым launch push",
+          body: "Полезно, когда offer уже есть, но creative angle все еще слишком vague."
+        },
+        {
+          title: "Бренды, застрявшие в слабой creative iteration loop",
+          body: "Strategy reset часто улучшает все downstream."
+        },
+        {
+          title: "Founders, которым нужна sharper messaging discipline",
+          body: "Особенно уместно, когда product сильный, а short-form story — нет."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где hook и message discipline особенно важны в самом начале",
+      body: "Эти страницы отражают launches, где первый angle должен быть правильным до scale."
+    },
+    relatedMarkets: geoLinkItems(["germany", "uae", "poland"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг creative strategy",
+      body: "Они обычно помогают понять, нужен ли команде strategy, production или paid ops first.",
+      items: [
+        {
+          q: "Это отдельный слой от UGC production?",
+          a: "Да. Этот сервис определяет, что вообще стоит производить и тестировать до более крупного creator-production cycle."
+        },
+        {
+          q: "Это можно запускать как короткий discovery sprint?",
+          a: "Да. Часто это лучший первый шаг до Launch Burst, Spark Ads ops или UGC production."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужны sharper hooks до более тяжелого spend?",
+      title: "Через intake form опишите offer, buyer и что именно остается неясным в creative angle.",
+      body: "Этого достаточно, чтобы понять, нужен ли первым ходом strategy, testing, production или launch execution.",
+      primary: "Запросить Creative Strategy"
+    }
+  },
+  sparkAdsOps: {
+    seo: {
+      title: "TikTok Spark Ads Operations | Buzztm Services",
+      description:
+        "Buzztm ведет Spark Ads operations: creator-asset amplification, account setup, audience structure, budget logic и optimization support.",
+      ogTitle: "TikTok Spark Ads Operations | Buzztm",
+      ogDescription:
+        "Spark Ads setup и paid amplification для TikTok campaigns, которым нужна controllable creator-led distribution.",
+      keywords:
+        "tiktok spark ads management, spark ads agency, spark ads operations, creator amplification tiktok"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "TikTok Spark Ads Operations",
+      body:
+        "Operations service для брендов, использующих Spark Ads, чтобы усиливать creator assets через более чистый setup, audience structure, spend logic и launch oversight.",
+      stats: [
+        { value: "Paid-ready", label: "Собрано под active media execution" },
+        { value: "Creator-led", label: "Сильный fit для amplified creator assets" },
+        { value: "Controlled", label: "Полезно там, где важны governance и optimization" }
+      ],
+      highlights: [
+        "Лучше всего, когда creators и paid distribution должны жить в одном operating loop",
+        "Полезно для launches на Spark Ads, а не для loose organic-only creator work",
+        "Построено вокруг amplification discipline, а не ad-account theatre"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Более чистую paid amplification system.",
+      body:
+        "Задача — сделать creator-led paid distribution более controllable, проще для optimization и менее зависимой от messy manual work.",
+      items: [
+        {
+          title: "Правильно настроить Spark Ads",
+          body: "Более чистые access и campaign structure уменьшают avoidable launch friction."
+        },
+        {
+          title: "Усиливать правильные assets",
+          body: "Не весь creator content заслуживает budget. Смысл — быстро понять, что реально стоит усиливать."
+        },
+        {
+          title: "Поднять optimization cadence",
+          body: "Campaign decisions должны идти из signal, а не из noise."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Практичный Spark Ads operating layer.",
+      body:
+        "Scope покрывает campaign structure, access flow, asset amplification, audience logic и optimization review.",
+      items: [
+        "Spark Ads setup и permissions support",
+        "Creator-asset amplification planning",
+        "Audience и budget structure",
+        "Launch и optimization cadence",
+        "Signal review и next-step recommendations"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда paid amplification уже часть модели.",
+      body:
+        "Этот сервис особенно полезен, когда creators или creator assets уже есть, но нет более чистого способа их distribute и optimize.",
+      items: [
+        {
+          title: "Creator-led performance launches",
+          body: "Полезно там, где creator assets — центральная часть paid acquisition path."
+        },
+        {
+          title: "Бренды, использующие Spark Ads на нескольких offers",
+          body: "Чем больше assets и audiences, тем важнее operations discipline."
+        },
+        {
+          title: "Teams, которым нужен ongoing launch oversight",
+          body: "Особенно уместно, когда paid execution живет каждую неделю."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где controlled paid amplification важна быстрее",
+      body: "Эти страницы отражают launches, где creator-led paid media требует более сильной operating discipline."
+    },
+    relatedMarkets: geoLinkItems(["uae", "saudiArabia", "germany"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг Spark Ads operations",
+      body: "Они помогают понять, main need сейчас — creator sourcing, ad ops или launch sequencing.",
+      items: [
+        {
+          q: "Это то же самое, что creator whitelisting?",
+          a: "Нет. Whitelisting больше про access и rights structure, а Spark Ads ops — про paid amplification и ongoing execution."
+        },
+        {
+          q: "Это можно запускать вместе с Launch Burst?",
+          a: "Да. Spark Ads ops часто становится paid-distribution layer внутри более широкого launch program."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен cleaner Spark Ads execution?",
+      title: "Через intake form опишите creator setup, ad-account state и что именно требует amplification control.",
+      body: "Этого достаточно, чтобы понять, first priority сейчас — setup, governance, campaign structure или optimization cadence.",
+      primary: "Запросить Spark Ads Ops"
+    }
+  },
+  communitySeeding: {
+    seo: {
+      title: "Comment Seeding and Community Ops | Buzztm Services",
+      description:
+        "Buzztm поддерживает TikTok launches через comment seeding, moderation logic, trust-signal scripting и community operations вокруг creator-led campaigns.",
+      ogTitle: "Comment Seeding and Community Ops | Buzztm",
+      ogDescription:
+        "Усильте social proof и buyer confidence через структурированный comment-layer и community operations.",
+      keywords:
+        "comment seeding service, community management tiktok ads, tiktok moderation service, social proof operations"
+    },
+    hero: {
+      eyebrow: "Service detail",
+      title: "Comment Seeding and Community Ops",
+      body:
+        "Support-layer для launches, где comment section, скорость moderation и видимая buyer response реально влияют на trust и conversion.",
+      stats: [
+        { value: "Trust-led", label: "Построено вокруг visible proof и reassurance" },
+        { value: "Operational", label: "Полезно для launches с активным comment flow" },
+        { value: "Conversion-aware", label: "Поддерживает buyer confidence после first touch" }
+      ],
+      highlights: [
+        "Лучше всего, когда social proof в comments меняет buying confidence",
+        "Полезно для launches, которым нужна более быстрая moderation и escalation logic",
+        "Построено для поддержки conversion, а не для community optics"
+      ]
+    },
+    outcomes: {
+      eyebrow: "Что должен дать сервис",
+      title: "Более здоровый proof-layer вокруг live campaigns.",
+      body:
+        "Смысл в том, чтобы comment flow и community response поддерживали sale, а не отвлекали от нее и не разрушали trust.",
+      items: [
+        {
+          title: "Усилить видимую buyer confidence",
+          body: "Comment layer часто становится частью proof stack."
+        },
+        {
+          title: "Быстрее обрабатывать friction",
+          body: "Ясная moderation и escalation logic снижают avoidable trust damage."
+        },
+        {
+          title: "Поддерживать conversion-stage questions",
+          body: "Хорошие ответы могут приблизить buyer к next step."
+        }
+      ]
+    },
+    scope: {
+      eyebrow: "Что обычно входит",
+      title: "Community operations layer для active launches.",
+      body:
+        "Scope покрывает comment seeding, response logic, moderation rules и trust-signal scripting вокруг campaign traffic.",
+      items: [
+        "Comment seeding playbooks",
+        "Moderation и escalation structure",
+        "Trust-signal response scripts",
+        "FAQ и objection handling logic",
+        "Community feedback review"
+      ]
+    },
+    fit: {
+      eyebrow: "Best fit",
+      title: "Сильнее всего, когда comment flow влияет на conversion quality.",
+      body:
+        "Этот сервис полезен, когда buyers читают comments, публично поднимают objections или требуют visible reassurance до конверсии.",
+      items: [
+        {
+          title: "Trust-sensitive consumer offers",
+          body: "Особенно уместно, когда продукт или сервис вызывает видимые objections или skepticism."
+        },
+        {
+          title: "Creator-led launches с активным engagement",
+          body: "Полезно, когда creator content приводит volume, которой нужен структурированный response."
+        },
+        {
+          title: "Campaigns с meaningful community signal",
+          body: "Чем сильнее buyers смотрят на public reaction, тем важнее этот layer."
+        }
+      ]
+    },
+    marketCoverage: {
+      eyebrow: "Market links",
+      title: "Рынки, где comment-layer trust особенно важен",
+      body: "Эти страницы отражают launches, где public response и moderation quality быстро влияют на buyer confidence."
+    },
+    relatedMarkets: geoLinkItems(["saudiArabia", "poland", "romania"]),
+    faq: {
+      eyebrow: "Service FAQ",
+      title: "Вопросы вокруг community ops",
+      body: "Они помогают понять, проблема сейчас в moderation, proof или objection handling.",
+      items: [
+        {
+          q: "Это просто generic community management?",
+          a: "Нет. Работа собрана вокруг campaign trust, conversion support и launch-specific moderation logic."
+        },
+        {
+          q: "Это работает и вместе с paid launches?",
+          a: "Да. Чаще всего это полезно именно когда paid traffic приводит больше людей в comment layer."
+        }
+      ]
+    },
+    cta: {
+      eyebrow: "Нужен stronger social proof вокруг live campaigns?",
+      title: "Через intake form опишите offer, comment pressure и какие objections или trust gaps всплывают чаще всего.",
+      body: "Этого достаточно, чтобы понять, first fix сейчас в moderation, proof scripting или response operations.",
+      primary: "Запросить Community Ops"
+    }
+  }
+});
+
+ru.geoDetails = RU_GEO_DETAILS;
+ru.pages.home.serviceCluster = {
+  eyebrow: "Search-driven service cluster",
+  title: "Сайт теперь покрывает больше high-intent TikTok service searches, а не один generic agency pitch.",
+  body:
+    "Эти service pages закрывают коммерческие поиски вокруг creative strategy, Spark Ads, community proof, UGC production, Shop launches, landing localization, lead funnels, creator whitelisting, retargeting и attribution.",
+  items: serviceLinkItems([
+    "creativeStrategy",
+    "sparkAdsOps",
+    "ugcProduction",
+    "creatorWhitelisting",
+    "tiktokShopLaunch",
+    "landingLocalization",
+    "leadGenFunnels",
+    "retargetingRecovery",
+    "communitySeeding"
+  ])
+};
+ru.pages.home.geoCluster = {
+  eyebrow: "GEO coverage",
+  title: "Сайт теперь также уходит в market-specific launch pages под реальные search intents.",
+  body:
+    "Эти страницы дают и поиску, и buyer более ясный вход в UAE, Saudi Arabia, Germany, Poland, Kazakhstan и Romania queries.",
+  items: geoLinkItems(["uae", "saudiArabia", "germany", "poland", "kazakhstan", "romania"])
+};
+ru.pages.services.marketCoverage = {
+  eyebrow: "Geo-specific entry pages",
+  title: "Market pages помогают service cluster ранжироваться и под реальные geography queries.",
+  body:
+    "Они построены под buyer, которые ищут market-specific TikTok help, и внутренними ссылками уводят их в правильные service pages.",
+  items: geoLinkItems(["uae", "saudiArabia", "germany", "poland", "kazakhstan", "romania"])
+};
+ru.footer.note =
+  "Коммерческий multi-page сайт Buzztm с 13 service pages, GEO landing pages, blog coverage и live first-screen project intake.";
+
 export default ru;

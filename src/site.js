@@ -12,13 +12,32 @@ export const STATIC_PAGE_PATHS = {
 export const SERVICE_DETAIL_PATHS = {
   signalSprint: "/services/signal-sprint/",
   launchBurst: "/services/launch-burst/",
-  multiGeoScale: "/services/multi-geo-scale/"
+  multiGeoScale: "/services/multi-geo-scale/",
+  ugcProduction: "/services/ugc-production-for-tiktok/",
+  creatorWhitelisting: "/services/creator-whitelisting-and-seeding/",
+  tiktokShopLaunch: "/services/tiktok-shop-launch-campaigns/",
+  landingLocalization: "/services/landing-page-localization/",
+  leadGenFunnels: "/services/tiktok-lead-generation-funnels/",
+  retargetingRecovery: "/services/retargeting-and-conversion-recovery/",
+  analyticsAttribution: "/services/tiktok-analytics-and-attribution/",
+  creativeStrategy: "/services/tiktok-creative-strategy-and-hook-testing/",
+  sparkAdsOps: "/services/tiktok-spark-ads-operations/",
+  communitySeeding: "/services/comment-seeding-and-community-ops/"
 };
 
 export const BLOG_POST_PATHS = {
   creativeTesting: "/blog/tiktok-creative-testing/",
   landingSystems: "/blog/localized-landing-systems/",
   launchSequencing: "/blog/multi-geo-launch-sequencing/"
+};
+
+export const GEO_DETAIL_PATHS = {
+  uae: "/geo/tiktok-agency-uae/",
+  saudiArabia: "/geo/tiktok-agency-saudi-arabia/",
+  germany: "/geo/tiktok-agency-germany/",
+  poland: "/geo/tiktok-agency-poland/",
+  kazakhstan: "/geo/tiktok-agency-kazakhstan/",
+  romania: "/geo/tiktok-agency-romania/"
 };
 
 export const SITEMAP_ROUTES = [
@@ -31,6 +50,11 @@ export const SITEMAP_ROUTES = [
   ...Object.values(SERVICE_DETAIL_PATHS).map((path) => ({
     path,
     priority: "0.8",
+    changefreq: "monthly"
+  })),
+  ...Object.values(GEO_DETAIL_PATHS).map((path) => ({
+    path,
+    priority: "0.76",
     changefreq: "monthly"
   })),
   ...Object.values(BLOG_POST_PATHS).map((path) => ({
@@ -60,6 +84,12 @@ export function resolveRoute(pathname = "/") {
     }
   }
 
+  for (const [geo, path] of Object.entries(GEO_DETAIL_PATHS)) {
+    if (normalized === path) {
+      return { kind: "geo", key: geo, navKey: "services", path };
+    }
+  }
+
   for (const [post, path] of Object.entries(BLOG_POST_PATHS)) {
     if (normalized === path) {
       return { kind: "post", key: post, navKey: "blog", path };
@@ -81,5 +111,10 @@ export function buildServiceHref(service, locale) {
 
 export function buildBlogPostHref(post, locale) {
   const path = BLOG_POST_PATHS[post] || STATIC_PAGE_PATHS.blog;
+  return `${path}?lang=${locale}`;
+}
+
+export function buildGeoHref(geo, locale) {
+  const path = GEO_DETAIL_PATHS[geo] || STATIC_PAGE_PATHS.services;
   return `${path}?lang=${locale}`;
 }

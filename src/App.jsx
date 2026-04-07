@@ -12,6 +12,7 @@ import { applySeo } from "./seo";
 import {
   NAV_PAGES,
   buildBlogPostHref,
+  buildGeoHref,
   buildPageHref,
   buildServiceHref,
   resolveRoute
@@ -29,13 +30,32 @@ const FOOTPRINT_LINKS = [
 const SERVICE_MEDIA = {
   signalSprint: caseInfobiz,
   launchBurst: heroCollage,
-  multiGeoScale: caseService
+  multiGeoScale: caseService,
+  ugcProduction: caseInfobiz,
+  creatorWhitelisting: buzztmLive,
+  tiktokShopLaunch: caseEcom,
+  landingLocalization: caseEcom,
+  leadGenFunnels: heroCollage,
+  retargetingRecovery: caseService,
+  analyticsAttribution: buzztmLive,
+  creativeStrategy: heroCollage,
+  sparkAdsOps: buzztmLive,
+  communitySeeding: caseInfobiz
 };
 
 const BLOG_MEDIA = {
   creativeTesting: caseInfobiz,
   landingSystems: caseEcom,
   launchSequencing: caseService
+};
+
+const GEO_MEDIA = {
+  uae: heroCollage,
+  saudiArabia: caseService,
+  germany: caseEcom,
+  poland: caseInfobiz,
+  kazakhstan: buzztmLive,
+  romania: caseService
 };
 
 const ARTICLE_LINK_LABEL = {
@@ -156,6 +176,12 @@ function buildBreadcrumbs({ route, t, routeContent, locale }) {
   if (route.kind === "service") {
     breadcrumbs.push({ name: t.nav.services, path: buildPageHref("services", locale) });
     breadcrumbs.push({ name: routeContent.hero.title, path: buildServiceHref(route.key, locale) });
+    return breadcrumbs;
+  }
+
+  if (route.kind === "geo") {
+    breadcrumbs.push({ name: t.nav.services, path: buildPageHref("services", locale) });
+    breadcrumbs.push({ name: routeContent.hero.title, path: buildGeoHref(route.key, locale) });
     return breadcrumbs;
   }
 
@@ -486,6 +512,46 @@ function HomePage({ t, locale }) {
         </div>
       </section>
 
+      {page.serviceCluster?.items?.length ? (
+        <section className="section-block reveal">
+          <SectionHeader
+            eyebrow={page.serviceCluster.eyebrow}
+            title={page.serviceCluster.title}
+            body={page.serviceCluster.body}
+          />
+          <div className="service-grid">
+            {page.serviceCluster.items.map((item) => (
+              <article key={item.key} className="service-card">
+                <span className="service-label">{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <a className="text-link" href={buildServiceHref(item.key, locale)}>
+                  {item.link}
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {page.geoCluster?.items?.length ? (
+        <section className="section-block reveal">
+          <SectionHeader eyebrow={page.geoCluster.eyebrow} title={page.geoCluster.title} body={page.geoCluster.body} />
+          <div className="story-grid">
+            {page.geoCluster.items.map((item) => (
+              <article key={item.key} className="info-card">
+                <span className="service-label">{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <a className="text-link" href={buildGeoHref(item.key, locale)}>
+                  {item.link}
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="section-block reveal">
         <div className="coverage-layout">
           <div className="coverage-copy">
@@ -611,6 +677,28 @@ function ServicesPage({ t, locale }) {
         </div>
       </section>
 
+      {page.marketCoverage?.items?.length ? (
+        <section className="section-block reveal">
+          <SectionHeader
+            eyebrow={page.marketCoverage.eyebrow}
+            title={page.marketCoverage.title}
+            body={page.marketCoverage.body}
+          />
+          <div className="story-grid">
+            {page.marketCoverage.items.map((item) => (
+              <article key={item.key} className="info-card">
+                <span className="service-label">{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <a className="text-link" href={buildGeoHref(item.key, locale)}>
+                  {item.link}
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="section-block reveal">
         <SectionHeader eyebrow={page.faq.eyebrow} title={page.faq.title} body={page.faq.body} center />
         <div className="faq-list">
@@ -712,6 +800,45 @@ function ServiceDetailPage({ service, locale, routeKey, contactLabel }) {
         </div>
       </section>
 
+      {service.relatedMarkets?.length ? (
+        <section className="section-block reveal">
+          <SectionHeader
+            eyebrow={service.marketCoverage.eyebrow}
+            title={service.marketCoverage.title}
+            body={service.marketCoverage.body}
+          />
+          <div className="story-grid">
+            {service.relatedMarkets.map((item) => (
+              <article key={item.key} className="info-card">
+                <span className="service-label">{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <a className="text-link" href={buildGeoHref(item.key, locale)}>
+                  {item.link}
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {service.faq?.items?.length ? (
+        <section className="section-block reveal">
+          <SectionHeader eyebrow={service.faq.eyebrow} title={service.faq.title} body={service.faq.body} center />
+          <div className="faq-list">
+            {service.faq.items.map((item) => (
+              <details key={item.q} className="faq-item">
+                <summary>
+                  <span>{item.q}</span>
+                  <span className="faq-symbol">+</span>
+                </summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="section-block reveal">
         <div className="cta-band">
           <div>
@@ -721,6 +848,102 @@ function ServiceDetailPage({ service, locale, routeKey, contactLabel }) {
           </div>
           <a className="btn btn-primary" href={buildPageHref("contact", locale)}>
             {service.cta.primary}
+          </a>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function GeoDetailPage({ geo, locale }) {
+  return (
+    <>
+      <section className="detail-hero reveal">
+        <div className="detail-hero__copy">
+          <p className="eyebrow eyebrow--strong">{geo.hero.eyebrow}</p>
+          <h1>{geo.hero.title}</h1>
+          <p className="hero-lede">{geo.hero.body}</p>
+
+          <div className="hero-stats">
+            {geo.hero.stats.map((item) => (
+              <div key={item.label} className="stat-card">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside className="detail-summary-card">
+          <img src={GEO_MEDIA[geo.key] || heroCollage} alt={geo.hero.title} />
+          <div className="detail-summary-card__body">
+            <h3>{geo.marketPanel.title}</h3>
+            <ul className="coverage-bullets">
+              {geo.marketPanel.points.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <a className="btn btn-primary" href={buildPageHref("contact", locale)}>
+              {geo.cta.primary}
+            </a>
+          </div>
+        </aside>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={geo.searchIntent.eyebrow} title={geo.searchIntent.title} body={geo.searchIntent.body} />
+        <div className="story-grid">
+          {geo.searchIntent.items.map((item) => (
+            <article key={item.title} className="info-card">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block reveal">
+        <SectionHeader eyebrow={geo.services.eyebrow} title={geo.services.title} body={geo.services.body} />
+        <div className="service-grid">
+          {geo.services.items.map((item) => (
+            <article key={item.key} className="service-card">
+              <span className="service-label">{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <a className="text-link" href={buildServiceHref(item.key, locale)}>
+                {item.link}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {geo.faq?.items?.length ? (
+        <section className="section-block reveal">
+          <SectionHeader eyebrow={geo.faq.eyebrow} title={geo.faq.title} body={geo.faq.body} center />
+          <div className="faq-list">
+            {geo.faq.items.map((item) => (
+              <details key={item.q} className="faq-item">
+                <summary>
+                  <span>{item.q}</span>
+                  <span className="faq-symbol">+</span>
+                </summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      <section className="section-block reveal">
+        <div className="cta-band">
+          <div>
+            <p className="eyebrow">{geo.cta.eyebrow}</p>
+            <h2>{geo.cta.title}</h2>
+            <p>{geo.cta.body}</p>
+          </div>
+          <a className="btn btn-primary" href={buildPageHref("contact", locale)}>
+            {geo.cta.primary}
           </a>
         </div>
       </section>
@@ -1054,6 +1277,7 @@ function ContactPage({ t, locale }) {
 function getRouteContent(t, route) {
   if (route.kind === "page") return t.pages[route.key];
   if (route.kind === "service") return t.serviceDetails[route.key];
+  if (route.kind === "geo") return t.geoDetails[route.key];
   return t.blogPosts[route.key];
 }
 
@@ -1067,6 +1291,10 @@ function renderRoute({ route, t, locale }) {
         contactLabel={t.cta.primary}
       />
     );
+  }
+
+  if (route.kind === "geo") {
+    return <GeoDetailPage geo={t.geoDetails[route.key]} locale={locale} />;
   }
 
   if (route.kind === "post") {
@@ -1087,7 +1315,7 @@ export default function App() {
   const route = typeof window === "undefined" ? resolveRoute("/") : resolveRoute(window.location.pathname);
   const t = content[locale] || content.en;
   const routeContent = getRouteContent(t, route);
-  const faqItems = route.kind === "page" ? routeContent.faq?.items || [] : [];
+  const faqItems = routeContent.faq?.items || [];
   const menuGroups = buildMenuGroups(t, locale);
   const breadcrumbs = buildBreadcrumbs({ route, t, routeContent, locale });
   const articleMeta =
@@ -1116,7 +1344,9 @@ export default function App() {
       faq: faqItems,
       article: articleMeta,
       pathname: route.path,
-      breadcrumbs
+      breadcrumbs,
+      routeKind: route.kind,
+      entity: routeContent
     });
     trackPageView({ locale, page: route.navKey, route_kind: route.kind });
   }, [locale, route.key, route.kind, route.navKey, route.path, routeContent, faqItems, articleMeta, breadcrumbs]);

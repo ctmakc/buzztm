@@ -172,7 +172,46 @@ function setBreadcrumbSchema(breadcrumbs = []) {
   });
 }
 
-export function applySeo({ locale, seo, faq, article, pathname, breadcrumbs }) {
+function setServiceSchema({ routeKind, entity, canonicalUrl, locale }) {
+  const existing = document.head.querySelector('script[data-seo-schema="service"]');
+
+  if (routeKind !== "service" && routeKind !== "geo") {
+    if (existing) existing.remove();
+    return;
+  }
+
+  let node = existing;
+  if (!node) {
+    node = document.createElement("script");
+    node.type = "application/ld+json";
+    node.dataset.seoSchema = "service";
+    document.head.appendChild(node);
+  }
+
+  const title = entity?.hero?.title || entity?.title || "Buzztm Service";
+  const description = entity?.hero?.body || entity?.lede || "";
+  const areaServed = routeKind === "geo"
+    ? [entity?.marketName || title]
+    : entity?.areaServed || ["Europe", "CIS", "GCC", "MENA"];
+
+  node.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    description,
+    url: canonicalUrl,
+    serviceType: title,
+    areaServed,
+    availableLanguage: locale === "ru" ? ["ru", "en"] : ["en", "ru"],
+    provider: {
+      "@type": "MarketingAgency",
+      name: "Buzztm",
+      url: getSiteOrigin()
+    }
+  });
+}
+
+export function applySeo({ locale, seo, faq, article, pathname, breadcrumbs, routeKind, entity }) {
   const canonicalUrl = buildCanonicalUrl(pathname || window.location.pathname, locale);
   const siteOrigin = getSiteOrigin();
   const ogType = article ? "article" : "website";
@@ -206,6 +245,7 @@ export function applySeo({ locale, seo, faq, article, pathname, breadcrumbs }) {
   setAgencySchema({ locale, canonicalUrl, seo });
   setFaqSchema(faq);
   setBreadcrumbSchema(breadcrumbs);
+  setServiceSchema({ routeKind, entity, canonicalUrl, locale });
   setArticleSchema({
     article: article
       ? {

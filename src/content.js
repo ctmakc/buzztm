@@ -1,5 +1,5 @@
-import en from "./locales/en";
-import ru from "./locales/ru";
+import en from "./site-content/en";
+import ru from "./site-content/ru";
 
 export const SUPPORTED_LOCALES = ["en", "ru"];
 export const DEFAULT_LOCALE = "en";

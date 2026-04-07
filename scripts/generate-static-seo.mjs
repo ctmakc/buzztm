@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { PAGE_PATHS, SITE_PAGES } from "../src/site.js";
+import { SITEMAP_ROUTES } from "../src/site.js";
 
 function readEnv(filePath) {
   if (!fs.existsSync(filePath)) return {};
@@ -18,9 +18,8 @@ function readEnv(filePath) {
   return out;
 }
 
-function buildPageEntry(siteUrl, page) {
-  const pagePath = PAGE_PATHS[page];
-  const loc = `${siteUrl}${pagePath === "/" ? "/" : pagePath}`;
+function buildPageEntry(siteUrl, route) {
+  const loc = `${siteUrl}${route.path === "/" ? "/" : route.path}`;
 
   return (
     `  <url>\n` +
@@ -28,8 +27,8 @@ function buildPageEntry(siteUrl, page) {
     `    <xhtml:link rel="alternate" hreflang="en" href="${loc}?lang=en" />\n` +
     `    <xhtml:link rel="alternate" hreflang="ru" href="${loc}?lang=ru" />\n` +
     `    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}?lang=en" />\n` +
-    `    <changefreq>weekly</changefreq>\n` +
-    `    <priority>${page === "home" ? "1.0" : "0.8"}</priority>\n` +
+    `    <changefreq>${route.changefreq}</changefreq>\n` +
+    `    <priority>${route.priority}</priority>\n` +
     `  </url>\n`
   );
 }
@@ -51,10 +50,10 @@ fs.writeFileSync(path.join(publicDir, "robots.txt"), `User-agent: *\nAllow: /\n\
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n` +
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
-  SITE_PAGES.map((page) => buildPageEntry(siteUrl, page)).join("") +
+  SITEMAP_ROUTES.map((route) => buildPageEntry(siteUrl, route)).join("") +
   `  <url>\n` +
-  `    <loc>${siteUrl}/thank-you.html</loc>\n` +
-  `    <changefreq>monthly</changefreq>\n` +
+    `    <loc>${siteUrl}/thank-you.html</loc>\n` +
+    `    <changefreq>monthly</changefreq>\n` +
   `    <priority>0.3</priority>\n` +
   `  </url>\n` +
   `</urlset>\n`;

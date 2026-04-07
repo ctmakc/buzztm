@@ -97,10 +97,47 @@ function setFaqSchema(faq = []) {
   });
 }
 
-export function applySeo({ locale, seo, faq }) {
+function setArticleSchema({ article, canonicalUrl }) {
+  const existing = document.head.querySelector('script[data-seo-schema="article"]');
+
+  if (!article) {
+    if (existing) existing.remove();
+    return;
+  }
+
+  let node = existing;
+  if (!node) {
+    node = document.createElement("script");
+    node.type = "application/ld+json";
+    node.dataset.seoSchema = "article";
+    document.head.appendChild(node);
+  }
+
+  node.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.headline,
+    description: article.description,
+    datePublished: article.datePublished,
+    dateModified: article.datePublished,
+    inLanguage: article.inLanguage,
+    mainEntityOfPage: canonicalUrl,
+    author: {
+      "@type": "Organization",
+      name: "Buzztm"
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Buzztm"
+    }
+  });
+}
+
+export function applySeo({ locale, seo, faq, article }) {
   const url = new URL(window.location.href);
   url.searchParams.set("lang", locale);
   const canonicalUrl = url.toString();
+  const ogType = article ? "article" : "website";
 
   document.title = seo.title;
   document.documentElement.lang = locale;
@@ -113,7 +150,7 @@ export function applySeo({ locale, seo, faq }) {
   );
   ensureMeta("name", "theme-color").setAttribute("content", "#081018");
 
-  ensureMeta("property", "og:type").setAttribute("content", "website");
+  ensureMeta("property", "og:type").setAttribute("content", ogType);
   ensureMeta("property", "og:site_name").setAttribute("content", "Buzztm");
   ensureMeta("property", "og:locale").setAttribute("content", locale === "ru" ? "ru_RU" : "en_US");
   ensureMeta("property", "og:title").setAttribute("content", seo.ogTitle);
@@ -130,4 +167,13 @@ export function applySeo({ locale, seo, faq }) {
   setAlternates(url.origin, url.pathname || "/");
   setAgencySchema({ locale, canonicalUrl, seo });
   setFaqSchema(faq);
+  setArticleSchema({
+    article: article
+      ? {
+          ...article,
+          inLanguage: locale === "ru" ? "ru" : "en"
+        }
+      : null,
+    canonicalUrl
+  });
 }

@@ -49,6 +49,8 @@ const POST_SERVICE_MAP = {
   launchSequencing: "multiGeoScale"
 };
 
+const MENU_KEYS = new Set(["services", "blog"]);
+
 function useRevealAnimations() {
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll(".reveal"));
@@ -108,6 +110,80 @@ function SectionHeader({ eyebrow, title, body, center = false }) {
       <p className="eyebrow">{eyebrow}</p>
       <h2>{title}</h2>
       <p>{body}</p>
+    </div>
+  );
+}
+
+function buildMenuGroups(t, locale) {
+  return {
+    services: t.pages.services.packages.items.map((item) => ({
+      href: buildServiceHref(item.key, locale),
+      label: item.title,
+      meta: item.label
+    })),
+    blog: t.pages.blog.posts.items.map((item) => ({
+      href: buildBlogPostHref(item.key, locale),
+      label: item.title,
+      meta: item.category
+    }))
+  };
+}
+
+function buildBreadcrumbs({ route, t, routeContent, locale }) {
+  const breadcrumbs = [
+    { name: t.nav.home, path: buildPageHref("home", locale) }
+  ];
+
+  if (route.kind === "page") {
+    if (route.key !== "home") {
+      breadcrumbs.push({ name: t.nav[route.key], path: buildPageHref(route.key, locale) });
+    }
+    return breadcrumbs;
+  }
+
+  if (route.kind === "service") {
+    breadcrumbs.push({ name: t.nav.services, path: buildPageHref("services", locale) });
+    breadcrumbs.push({ name: routeContent.hero.title, path: buildServiceHref(route.key, locale) });
+    return breadcrumbs;
+  }
+
+  breadcrumbs.push({ name: t.nav.blog, path: buildPageHref("blog", locale) });
+  breadcrumbs.push({ name: routeContent.title, path: buildBlogPostHref(route.key, locale) });
+  return breadcrumbs;
+}
+
+function NavLinkGroup({ item, label, href, active, entries, openMenu, onToggle, onClose }) {
+  const isOpen = openMenu === item;
+
+  return (
+    <div
+      className={`nav-item${isOpen ? " is-open" : ""}`}
+      onMouseEnter={() => onToggle(item)}
+      onMouseLeave={onClose}
+    >
+      <div className="nav-link-row">
+        <a href={href} className={active ? "is-active" : ""} onClick={onClose}>
+          {label}
+        </a>
+        <button
+          type="button"
+          className={`nav-caret${isOpen ? " is-open" : ""}`}
+          aria-label={`${label} menu`}
+          aria-expanded={isOpen}
+          onClick={() => onToggle(isOpen ? null : item)}
+        >
+          <span />
+        </button>
+      </div>
+
+      <div className="nav-dropdown">
+        {entries.map((entry) => (
+          <a key={entry.href} href={entry.href} className="nav-dropdown__link" onClick={onClose}>
+            <span>{entry.label}</span>
+            <small>{entry.meta}</small>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
@@ -1000,10 +1076,13 @@ function renderRoute({ route, t, locale }) {
 
 export default function App() {
   const [locale, setLocale] = useState(() => (typeof window === "undefined" ? DEFAULT_LOCALE : resolveInitialLocale()));
+  const [openMenu, setOpenMenu] = useState(null);
   const route = typeof window === "undefined" ? resolveRoute("/") : resolveRoute(window.location.pathname);
   const t = content[locale] || content.en;
   const routeContent = getRouteContent(t, route);
   const faqItems = route.kind === "page" ? routeContent.faq?.items || [] : [];
+  const menuGroups = buildMenuGroups(t, locale);
+  const breadcrumbs = buildBreadcrumbs({ route, t, routeContent, locale });
   const articleMeta =
     route.kind === "post"
       ? {
@@ -1024,9 +1103,20 @@ export default function App() {
     url.searchParams.set("lang", locale);
     window.history.replaceState({}, "", url);
     window.localStorage.setItem("locale", locale);
-    applySeo({ locale, seo: routeContent.seo, faq: faqItems, article: articleMeta });
+    applySeo({
+      locale,
+      seo: routeContent.seo,
+      faq: faqItems,
+      article: articleMeta,
+      pathname: route.path,
+      breadcrumbs
+    });
     trackPageView({ locale, page: route.navKey, route_kind: route.kind });
-  }, [locale, route.key, route.kind, route.navKey, routeContent, faqItems, articleMeta]);
+  }, [locale, route.key, route.kind, route.navKey, route.path, routeContent, faqItems, articleMeta, breadcrumbs]);
+
+  useEffect(() => {
+    setOpenMenu(null);
+  }, [route.key, route.kind, locale]);
 
   return (
     <>
@@ -1044,11 +1134,31 @@ export default function App() {
         </a>
 
         <nav className="nav" aria-label="Primary">
-          {NAV_PAGES.map((item) => (
-            <a key={item} href={buildPageHref(item, locale)} className={route.navKey === item ? "is-active" : ""}>
-              {t.nav[item]}
-            </a>
-          ))}
+          {NAV_PAGES.map((item) => {
+            const href = buildPageHref(item, locale);
+
+            if (!MENU_KEYS.has(item)) {
+              return (
+                <a key={item} href={href} className={route.navKey === item ? "is-active" : ""} onClick={() => setOpenMenu(null)}>
+                  {t.nav[item]}
+                </a>
+              );
+            }
+
+            return (
+              <NavLinkGroup
+                key={item}
+                item={item}
+                label={t.nav[item]}
+                href={href}
+                active={route.navKey === item}
+                entries={menuGroups[item]}
+                openMenu={openMenu}
+                onToggle={setOpenMenu}
+                onClose={() => setOpenMenu(null)}
+              />
+            );
+          })}
         </nav>
 
         <div className="topbar-actions">

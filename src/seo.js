@@ -22,6 +22,17 @@ function ensureLink(rel, hreflang) {
   return node;
 }
 
+function getSiteOrigin() {
+  const configured = import.meta.env.VITE_SITE_URL || "https://www.buzztm.com";
+  return new URL(configured).origin;
+}
+
+function buildCanonicalUrl(pathname, locale) {
+  const url = new URL(pathname || "/", getSiteOrigin());
+  url.searchParams.set("lang", locale);
+  return url.toString();
+}
+
 function setAlternates(origin, pathname) {
   const base = `${origin}${pathname}`;
   [
@@ -133,10 +144,37 @@ function setArticleSchema({ article, canonicalUrl }) {
   });
 }
 
-export function applySeo({ locale, seo, faq, article }) {
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", locale);
-  const canonicalUrl = url.toString();
+function setBreadcrumbSchema(breadcrumbs = []) {
+  const existing = document.head.querySelector('script[data-seo-schema="breadcrumbs"]');
+
+  if (!breadcrumbs.length) {
+    if (existing) existing.remove();
+    return;
+  }
+
+  let node = existing;
+  if (!node) {
+    node = document.createElement("script");
+    node.type = "application/ld+json";
+    node.dataset.seoSchema = "breadcrumbs";
+    document.head.appendChild(node);
+  }
+
+  node.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: new URL(item.path, getSiteOrigin()).toString()
+    }))
+  });
+}
+
+export function applySeo({ locale, seo, faq, article, pathname, breadcrumbs }) {
+  const canonicalUrl = buildCanonicalUrl(pathname || window.location.pathname, locale);
+  const siteOrigin = getSiteOrigin();
   const ogType = article ? "article" : "website";
 
   document.title = seo.title;
@@ -156,17 +194,18 @@ export function applySeo({ locale, seo, faq, article }) {
   ensureMeta("property", "og:title").setAttribute("content", seo.ogTitle);
   ensureMeta("property", "og:description").setAttribute("content", seo.ogDescription);
   ensureMeta("property", "og:url").setAttribute("content", canonicalUrl);
-  ensureMeta("property", "og:image").setAttribute("content", `${url.origin}/og-cover.jpg`);
+  ensureMeta("property", "og:image").setAttribute("content", `${siteOrigin}/og-cover.jpg`);
 
   ensureMeta("name", "twitter:card").setAttribute("content", "summary_large_image");
   ensureMeta("name", "twitter:title").setAttribute("content", seo.ogTitle);
   ensureMeta("name", "twitter:description").setAttribute("content", seo.ogDescription);
-  ensureMeta("name", "twitter:image").setAttribute("content", `${url.origin}/og-cover.jpg`);
+  ensureMeta("name", "twitter:image").setAttribute("content", `${siteOrigin}/og-cover.jpg`);
 
   ensureLink("canonical").setAttribute("href", canonicalUrl);
-  setAlternates(url.origin, url.pathname || "/");
+  setAlternates(siteOrigin, pathname || window.location.pathname || "/");
   setAgencySchema({ locale, canonicalUrl, seo });
   setFaqSchema(faq);
+  setBreadcrumbSchema(breadcrumbs);
   setArticleSchema({
     article: article
       ? {

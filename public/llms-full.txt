@@ -1,0 +1,147 @@
+# Buzztm Full Brief
+
+## Overview
+Buzztm is a TikTok growth systems and launch execution partner for brands that need qualified demand instead of vanity reach.
+
+Primary promise: Buzztm combines signal testing, UGC production, landing adaptation, and bilingual rollout into a tighter operator stack for brands that need revenue-facing TikTok work.
+
+Commercial framing:
+- The current public stack already includes Adacted and MMIX references.
+- The new site structure makes room for service depth, articles, and future category expansion.
+- The homepage now pushes project intake earlier instead of delaying it behind too much explanation.
+
+## Primary package pages
+### Signal Sprint
+URL: https://www.buzztm.com/services/signal-sprint/?lang=en
+Summary: Short-cycle validation for hooks, message-market fit, and landing promise before scaling spend.
+
+### Launch Burst
+URL: https://www.buzztm.com/services/launch-burst/?lang=en
+Summary: Buzztm’s main format for creator production, paid launch execution, and recurring signal reviews.
+
+### Multi-Geo Scale
+URL: https://www.buzztm.com/services/multi-geo-scale/?lang=en
+Summary: An extension layer for adapting the winning system across new geographies, languages, or customer segments.
+
+### UGC Production for TikTok Ads
+URL: https://www.buzztm.com/services/ugc-production-for-tiktok/?lang=en
+Summary: Creator scripting, shot planning, editing, subtitles, and ad-ready delivery built for recurring paid testing.
+
+### Creator Whitelisting and Seeding
+URL: https://www.buzztm.com/services/creator-whitelisting-and-seeding/?lang=en
+Summary: Source creators, structure whitelisting access, and turn seeded content into controlled paid distribution.
+
+### TikTok Shop Launch Campaigns
+URL: https://www.buzztm.com/services/tiktok-shop-launch-campaigns/?lang=en
+Summary: Launch Shop-led product pushes with short-form commerce creative, creator coordination, and conversion-focused offer framing.
+
+### Landing Page Localization
+URL: https://www.buzztm.com/services/landing-page-localization/?lang=en
+Summary: Adapt page copy, CTA sequence, proof framing, and buyer language so the click lands on a page built for the target market.
+
+### TikTok Lead Generation Funnels
+URL: https://www.buzztm.com/services/tiktok-lead-generation-funnels/?lang=en
+Summary: Build short-form lead capture paths for consultations, demos, registrations, and high-intent inbound requests.
+
+### Retargeting and Conversion Recovery
+URL: https://www.buzztm.com/services/retargeting-and-conversion-recovery/?lang=en
+Summary: Recover warm traffic with tighter retargeting sequences, remarketing creatives, and conversion-stage landing updates.
+
+### TikTok Analytics and Attribution
+URL: https://www.buzztm.com/services/tiktok-analytics-and-attribution/?lang=en
+Summary: Build a cleaner reporting layer around traffic quality, lead intent, sales signal, and market-by-market rollout learning.
+
+### TikTok Creative Strategy and Hook Testing
+URL: https://www.buzztm.com/services/tiktok-creative-strategy-and-hook-testing/?lang=en
+Summary: Shape the commercial angle, opening hook, proof sequence, and testing logic before production volume starts eating budget.
+
+### TikTok Spark Ads Operations
+URL: https://www.buzztm.com/services/tiktok-spark-ads-operations/?lang=en
+Summary: Run Spark Ads setup, creator-asset amplification, audience structuring, and live optimization around commercial outcomes.
+
+### Comment Seeding and Community Ops
+URL: https://www.buzztm.com/services/comment-seeding-and-community-ops/?lang=en
+Summary: Support launches with social proof in the comment layer, fast moderation logic, and community cues that improve buyer confidence.
+
+
+## Tactical service pages
+### TikTok Creative Strategy and Hook Testing
+URL: https://www.buzztm.com/services/tiktok-creative-strategy-and-hook-testing/?lang=en
+Summary: Shape the commercial angle, opening hook, proof sequence, and testing logic before production volume starts eating budget.
+
+### TikTok Spark Ads Operations
+URL: https://www.buzztm.com/services/tiktok-spark-ads-operations/?lang=en
+Summary: Run Spark Ads setup, creator-asset amplification, audience structuring, and live optimization around commercial outcomes.
+
+### UGC Production for TikTok Ads
+URL: https://www.buzztm.com/services/ugc-production-for-tiktok/?lang=en
+Summary: Creator scripting, shot planning, editing, subtitles, and ad-ready delivery built for recurring paid testing.
+
+### Creator Whitelisting and Seeding
+URL: https://www.buzztm.com/services/creator-whitelisting-and-seeding/?lang=en
+Summary: Source creators, structure whitelisting access, and turn seeded content into controlled paid distribution.
+
+### TikTok Shop Launch Campaigns
+URL: https://www.buzztm.com/services/tiktok-shop-launch-campaigns/?lang=en
+Summary: Launch Shop-led product pushes with short-form commerce creative, creator coordination, and conversion-focused offer framing.
+
+### Landing Page Localization
+URL: https://www.buzztm.com/services/landing-page-localization/?lang=en
+Summary: Adapt page copy, CTA sequence, proof framing, and buyer language so the click lands on a page built for the target market.
+
+### TikTok Lead Generation Funnels
+URL: https://www.buzztm.com/services/tiktok-lead-generation-funnels/?lang=en
+Summary: Build short-form lead capture paths for consultations, demos, registrations, and high-intent inbound requests.
+
+### Retargeting and Conversion Recovery
+URL: https://www.buzztm.com/services/retargeting-and-conversion-recovery/?lang=en
+Summary: Recover warm traffic with tighter retargeting sequences, remarketing creatives, and conversion-stage landing updates.
+
+### Comment Seeding and Community Ops
+URL: https://www.buzztm.com/services/comment-seeding-and-community-ops/?lang=en
+Summary: Support launches with social proof in the comment layer, fast moderation logic, and community cues that improve buyer confidence.
+
+
+## GEO launch pages
+### TikTok agency support for UAE launches
+URL: https://www.buzztm.com/geo/tiktok-agency-uae/?lang=en
+Summary: This page exists for brands entering the UAE market that need TikTok creative, localized landing logic, and commercial launch sequencing without relying on generic social media management.
+
+### TikTok agency support for Saudi Arabia campaigns
+URL: https://www.buzztm.com/geo/tiktok-agency-saudi-arabia/?lang=en
+Summary: Saudi-focused launches usually need stronger market framing, more deliberate proof, and cleaner conversion paths than broad social packages can provide.
+
+### TikTok agency support for Germany launches
+URL: https://www.buzztm.com/geo/tiktok-agency-germany/?lang=en
+Summary: Germany-focused launch work usually needs clearer offer framing, stronger proof discipline, and a landing layer that feels commercially native rather than mechanically translated.
+
+### TikTok agency support for Poland campaigns
+URL: https://www.buzztm.com/geo/tiktok-agency-poland/?lang=en
+Summary: Poland launch work often sits between regional expansion and localized lead generation, which makes message adaptation and page logic just as important as the creative itself.
+
+### TikTok agency support for Kazakhstan launches
+URL: https://www.buzztm.com/geo/tiktok-agency-kazakhstan/?lang=en
+Summary: Kazakhstan launch work often rewards bilingual EN/RU execution, stronger landing alignment, and clear signal reading across creator, paid, and conversion layers.
+
+### TikTok agency support for Romania launches
+URL: https://www.buzztm.com/geo/tiktok-agency-romania/?lang=en
+Summary: Romania launch work usually needs clearer offer sequencing, localized landing adaptation, and a stronger bridge between creator content and conversion logic.
+
+
+## Articles
+### How to test TikTok creative before you waste scale budget
+URL: https://www.buzztm.com/blog/tiktok-creative-testing/?lang=en
+Summary: Use a commercial filter before you scale production and media.
+
+### Why TikTok landing systems fail after the click
+URL: https://www.buzztm.com/blog/localized-landing-systems/?lang=en
+Summary: The page usually breaks the promise the short-form ad just made.
+
+### What a multi-geo TikTok rollout should look like
+URL: https://www.buzztm.com/blog/multi-geo-launch-sequencing/?lang=en
+Summary: Move from one proving ground to a repeatable expansion sequence.
+
+
+## Contact and next step
+Contact page: https://www.buzztm.com/contact/?lang=en
+Recommended first action: use the contact page or review the services index to match the offer to the stage of launch.

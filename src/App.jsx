@@ -7,7 +7,7 @@ import caseInfobiz from "../assets/stitch/case-infobiz.webp";
 import caseService from "../assets/stitch/case-service.webp";
 import heroCollage from "../assets/stitch/hero-collage.webp";
 import { initAnalytics, trackEvent, trackPageView } from "./analytics";
-import { content, DEFAULT_LOCALE, resolveInitialLocale, SUPPORTED_LOCALES } from "./content";
+import { DEFAULT_LOCALE, loadLocaleContent, resolveInitialLocale, SUPPORTED_LOCALES } from "./content";
 import { applySeo } from "./seo";
 import {
   NAV_PAGES,
@@ -61,6 +61,11 @@ const GEO_MEDIA = {
 const ARTICLE_LINK_LABEL = {
   en: "Read article",
   ru: "Открыть статью"
+};
+
+const LOCALE_SHORT_LABEL = {
+  en: "EN",
+  ru: "RU"
 };
 
 const POST_SERVICE_MAP = {
@@ -129,7 +134,7 @@ function LocaleSwitcher({ locale, onChange }) {
           onClick={() => onChange(code)}
           aria-pressed={locale === code}
         >
-          {content[code].shortLabel}
+          {LOCALE_SHORT_LABEL[code] || code.toUpperCase()}
         </button>
       ))}
     </div>
@@ -143,6 +148,17 @@ function SectionHeader({ eyebrow, title, body, center = false }) {
       <h2>{title}</h2>
       <p>{body}</p>
     </div>
+  );
+}
+
+function SmartImage({ priority = false, ...props }) {
+  return (
+    <img
+      {...props}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      decoding="async"
+    />
   );
 }
 
@@ -262,7 +278,11 @@ function PageIntro({ page, locale }) {
 
       <div className="hero-visual">
         <article className="hero-image-card">
-          <img src={page.intro.image === "live" ? buzztmLive : heroCollage} alt={page.intro.imageAlt} />
+          <SmartImage
+            src={page.intro.image === "live" ? buzztmLive : heroCollage}
+            alt={page.intro.imageAlt}
+            priority
+          />
           <div className="hero-image-overlay">
             <span>{page.intro.overlay.kicker}</span>
             <strong>{page.intro.overlay.title}</strong>
@@ -278,8 +298,8 @@ function PageIntro({ page, locale }) {
 
         <article className="floating-card floating-card--ops">
           <div className="logo-stack" aria-label="Partner footprint">
-            <img src={adactedLogo} alt="Adacted logo" />
-            <img src={mmixLogo} alt="MMIX logo" />
+            <SmartImage src={adactedLogo} alt="Adacted logo" />
+            <SmartImage src={mmixLogo} alt="MMIX logo" />
           </div>
           <span>{page.intro.footprint.kicker}</span>
           <strong>{page.intro.footprint.title}</strong>
@@ -450,7 +470,7 @@ function HomePage({ t, locale }) {
 
         <div className="hero-visual hero-visual--home">
           <article className="hero-image-card hero-image-card--home">
-            <img src={heroCollage} alt={page.hero.imageAlt} />
+            <SmartImage src={heroCollage} alt={page.hero.imageAlt} priority />
             <div className="hero-image-overlay">
               <span>{page.hero.overlay.kicker}</span>
               <strong>{page.hero.overlay.title}</strong>
@@ -466,8 +486,8 @@ function HomePage({ t, locale }) {
 
           <article className="floating-card floating-card--ops">
             <div className="logo-stack" aria-label="Partner footprint">
-              <img src={adactedLogo} alt="Adacted logo" />
-              <img src={mmixLogo} alt="MMIX logo" />
+              <SmartImage src={adactedLogo} alt="Adacted logo" />
+              <SmartImage src={mmixLogo} alt="MMIX logo" />
             </div>
             <span>{page.hero.footprint.kicker}</span>
             <strong>{page.hero.footprint.title}</strong>
@@ -565,15 +585,15 @@ function HomePage({ t, locale }) {
 
           <aside className="proof-stack">
             <article className="proof-stack__shot">
-              <img src={buzztmLive} alt="Buzztm public website screenshot" />
+              <SmartImage src={buzztmLive} alt="Buzztm public website screenshot" />
             </article>
             <article className="proof-stack__panel">
               <span>{page.hero.footprint.kicker}</span>
               <h3>{page.hero.footprint.title}</h3>
               <p>{page.hero.footprint.body}</p>
               <div className="inline-logos">
-                <img src={adactedLogo} alt="Adacted logo" />
-                <img src={mmixLogo} alt="MMIX logo" />
+                <SmartImage src={adactedLogo} alt="Adacted logo" />
+                <SmartImage src={mmixLogo} alt="MMIX logo" />
               </div>
               <div className="link-pills">
                 {FOOTPRINT_LINKS.map((item) => (
@@ -750,7 +770,7 @@ function ServiceDetailPage({ service, locale, routeKey, contactLabel }) {
         </div>
 
         <aside className="detail-summary-card">
-          <img src={SERVICE_MEDIA[routeKey] || SERVICE_MEDIA.launchBurst} alt={service.hero.title} />
+          <SmartImage src={SERVICE_MEDIA[routeKey] || SERVICE_MEDIA.launchBurst} alt={service.hero.title} priority />
           <div className="detail-summary-card__body">
             <h3>{service.hero.title}</h3>
             <ul className="coverage-bullets">
@@ -875,7 +895,7 @@ function GeoDetailPage({ geo, locale }) {
         </div>
 
         <aside className="detail-summary-card">
-          <img src={GEO_MEDIA[geo.key] || heroCollage} alt={geo.hero.title} />
+          <SmartImage src={GEO_MEDIA[geo.key] || heroCollage} alt={geo.hero.title} priority />
           <div className="detail-summary-card__body">
             <h3>{geo.marketPanel.title}</h3>
             <ul className="coverage-bullets">
@@ -998,8 +1018,8 @@ function AboutPage({ t, locale }) {
               <h3>{page.footprint.panel.title}</h3>
               <p>{page.footprint.panel.body}</p>
               <div className="inline-logos">
-                <img src={adactedLogo} alt="Adacted logo" />
-                <img src={mmixLogo} alt="MMIX logo" />
+                <SmartImage src={adactedLogo} alt="Adacted logo" />
+                <SmartImage src={mmixLogo} alt="MMIX logo" />
               </div>
               <div className="link-pills">
                 {FOOTPRINT_LINKS.map((item) => (
@@ -1042,7 +1062,7 @@ function CasesPage({ t, locale }) {
           {page.cases.items.map((item, index) => (
             <article key={item.title} className="case-card">
               <div className="case-media">
-                <img src={CASE_MEDIA[index % CASE_MEDIA.length]} alt={item.alt} />
+                <SmartImage src={CASE_MEDIA[index % CASE_MEDIA.length]} alt={item.alt} />
                 <span>{item.segment}</span>
               </div>
               <div className="case-copy">
@@ -1110,7 +1130,7 @@ function BlogPage({ t, locale }) {
             </a>
           </div>
           <div className="featured-article__media">
-            <img src={BLOG_MEDIA[page.featured.key]} alt={page.featured.title} />
+            <SmartImage src={BLOG_MEDIA[page.featured.key]} alt={page.featured.title} />
           </div>
         </div>
       </section>
@@ -1121,7 +1141,7 @@ function BlogPage({ t, locale }) {
           {page.posts.items.map((item) => (
             <article key={item.key} className="blog-card">
               <div className="blog-card__media">
-                <img src={BLOG_MEDIA[item.key]} alt={item.title} />
+                <SmartImage src={BLOG_MEDIA[item.key]} alt={item.title} />
               </div>
               <div className="blog-card__body">
                 <div className="blog-card__meta">
@@ -1174,7 +1194,7 @@ function BlogPostPage({ post, locale, routeKey }) {
       <section className="article-shell reveal">
         <aside className="article-sidebar">
           <article className="article-sidebar__card">
-            <img src={BLOG_MEDIA[routeKey] || BLOG_MEDIA.creativeTesting} alt={post.title} />
+            <SmartImage src={BLOG_MEDIA[routeKey] || BLOG_MEDIA.creativeTesting} alt={post.title} priority />
             <div>
               <p className="eyebrow">{post.cta.eyebrow}</p>
               <h3>{post.cta.title}</h3>
@@ -1309,11 +1329,14 @@ function renderRoute({ route, t, locale }) {
   return <HomePage t={t} locale={locale} />;
 }
 
-export default function App() {
-  const [locale, setLocale] = useState(() => (typeof window === "undefined" ? DEFAULT_LOCALE : resolveInitialLocale()));
+export default function App({ initialLocale = DEFAULT_LOCALE, initialContent }) {
+  const [locale, setLocale] = useState(initialLocale);
+  const [loadedContent, setLoadedContent] = useState(() =>
+    initialContent ? { [initialLocale]: initialContent } : {}
+  );
   const [openMenu, setOpenMenu] = useState(null);
   const route = typeof window === "undefined" ? resolveRoute("/") : resolveRoute(window.location.pathname);
-  const t = content[locale] || content.en;
+  const t = loadedContent[locale] || loadedContent[initialLocale];
   const routeContent = getRouteContent(t, route);
   const faqItems = routeContent.faq?.items || [];
   const menuGroups = buildMenuGroups(t, locale);
@@ -1330,10 +1353,30 @@ export default function App() {
   useRevealAnimations();
 
   useEffect(() => {
+    if (loadedContent[locale]) return;
+
+    let cancelled = false;
+
+    loadLocaleContent(locale).then((nextContent) => {
+      if (cancelled) return;
+      setLoadedContent((current) => {
+        if (current[locale]) return current;
+        return { ...current, [locale]: nextContent };
+      });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [loadedContent, locale]);
+
+  useEffect(() => {
     initAnalytics();
   }, []);
 
   useEffect(() => {
+    if (!loadedContent[locale]) return;
+
     const url = new URL(window.location.href);
     url.searchParams.set("lang", locale);
     window.history.replaceState({}, "", url);
@@ -1354,6 +1397,8 @@ export default function App() {
   useEffect(() => {
     setOpenMenu(null);
   }, [route.key, route.kind, locale]);
+
+  if (!t) return null;
 
   return (
     <>

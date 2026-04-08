@@ -1,6 +1,11 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import App from "./App";
+import en from "./site-content/en";
+
+function renderApp() {
+  render(<App initialLocale="en" initialContent={en} />);
+}
 
 describe("App", () => {
   afterEach(() => {
@@ -9,7 +14,7 @@ describe("App", () => {
   });
 
   it("renders the home page hero", () => {
-    render(<App />);
+    renderApp();
 
     expect(
       screen.getByRole("heading", {
@@ -23,7 +28,7 @@ describe("App", () => {
 
   it("renders the services page from pathname", () => {
     window.history.replaceState({}, "", "/services/");
-    render(<App />);
+    renderApp();
 
     expect(
       screen.getByRole("heading", {
@@ -34,7 +39,7 @@ describe("App", () => {
 
   it("renders a service detail page from pathname", () => {
     window.history.replaceState({}, "", "/services/launch-burst/");
-    render(<App />);
+    renderApp();
 
     expect(screen.getByRole("heading", { level: 1, name: /Launch Burst/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Request Launch Burst/i })).toBeInTheDocument();
@@ -42,7 +47,7 @@ describe("App", () => {
 
   it("renders the blog page from pathname", () => {
     window.history.replaceState({}, "", "/blog/");
-    render(<App />);
+    renderApp();
 
     expect(
       screen.getByRole("heading", {
@@ -54,7 +59,7 @@ describe("App", () => {
 
   it("renders the contact intake form above the fold content", () => {
     window.history.replaceState({}, "", "/contact/");
-    render(<App />);
+    renderApp();
 
     expect(screen.getByRole("heading", { name: /Tell us the market, the offer, and the timing/i })).toBeInTheDocument();
     expect(screen.getByRole("combobox", { name: /What do you need\?/i })).toBeInTheDocument();

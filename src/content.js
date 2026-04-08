@@ -1,10 +1,16 @@
-import en from "./site-content/en";
-import ru from "./site-content/ru";
-
 export const SUPPORTED_LOCALES = ["en", "ru"];
 export const DEFAULT_LOCALE = "en";
 
-export const content = { en, ru };
+const localeLoaders = {
+  en: () => import("./site-content/en.js"),
+  ru: () => import("./site-content/ru.js")
+};
+
+export async function loadLocaleContent(locale) {
+  const loader = localeLoaders[locale] || localeLoaders[DEFAULT_LOCALE];
+  const module = await loader();
+  return module.default;
+}
 
 export function resolveInitialLocale() {
   const url = new URL(window.location.href);

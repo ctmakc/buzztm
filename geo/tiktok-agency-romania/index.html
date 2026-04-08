@@ -28,13 +28,343 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <style>
+    :root {
+      color-scheme: dark;
+      --bg: #081018;
+      --panel: rgba(11, 20, 32, 0.92);
+      --line: rgba(130, 156, 184, 0.22);
+      --text: #f4f8fb;
+      --muted: #a6b5c5;
+      --accent: #35f6ed;
+      --accent-soft: #98fff8;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(53, 246, 237, 0.18), transparent 28%),
+        linear-gradient(180deg, #071019 0%, #09131d 42%, #071019 100%);
+    }
+
+    a { color: var(--accent-soft); }
+    .static-shell {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding: 1rem 0 3rem;
+    }
+
+    .static-header,
+    .static-section,
+    .static-hero,
+    .static-footer {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+    }
+
+    .static-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .static-brand {
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .static-nav,
+    .static-actions,
+    .static-footer-links,
+    .static-breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .static-nav a,
+    .static-actions a,
+    .static-footer a,
+    .static-breadcrumbs a {
+      text-decoration: none;
+    }
+
+    .static-main {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .static-breadcrumbs {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .static-breadcrumbs span {
+      opacity: 0.6;
+    }
+
+    .static-hero,
+    .static-section,
+    .static-footer {
+      padding: 1.35rem;
+    }
+
+    .static-hero h1,
+    .static-section h2 {
+      margin: 0 0 0.6rem;
+      line-height: 1.05;
+    }
+
+    .static-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      max-width: 14ch;
+    }
+
+    .static-eyebrow,
+    .static-label,
+    .static-meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .static-body {
+      max-width: 70ch;
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+
+    .static-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
+      color: #041013;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
+      font-weight: 700;
+    }
+
+    .static-metrics,
+    .static-bullets {
+      margin: 1rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .static-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.8rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .static-metrics li,
+    .static-card,
+    .static-faq details {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.95rem;
+    }
+
+    .static-metrics strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1.15rem;
+    }
+
+    .static-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .static-card h3 {
+      margin: 0.35rem 0 0.45rem;
+    }
+
+    .static-faq {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .static-faq summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .static-article-section + .static-article-section {
+      margin-top: 1.1rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .static-footer {
+      margin-top: 1rem;
+    }
+
+    .static-footer p {
+      margin-top: 0;
+      max-width: 70ch;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 720px) {
+      .static-shell {
+        width: min(calc(100% - 1rem), var(--max));
+      }
+
+      .static-header,
+      .static-hero,
+      .static-section,
+      .static-footer {
+        padding: 1rem;
+        border-radius: 18px;
+      }
+    }
+  </style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"MarketingAgency","name":"Buzztm","url":"https://www.buzztm.com/geo/tiktok-agency-romania/?lang=en","description":"Buzztm supports Romania-focused TikTok campaigns with creator production, landing adaptation, lead funnels, and multi-market launch planning.","sameAs":["https://www.instagram.com/adactedagency/","https://www.linkedin.com/company/73956025","https://www.facebook.com/Adacted-102016908383521","https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/","https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/"],"areaServed":["Europe","CIS","GCC","MENA"],"knowsLanguage":["English","Russian"],"serviceType":["TikTok growth strategy","UGC production","Performance creative testing","Landing localization","Multi-geo launch rollout"],"mainEntityOfPage":"https://www.buzztm.com/geo/tiktok-agency-romania/?lang=en","image":"https://www.buzztm.com/og-cover.jpg"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Buzztm","url":"https://www.buzztm.com","description":"Buzztm supports Romania-focused TikTok campaigns with creator production, landing adaptation, lead funnels, and multi-market launch planning.","inLanguage":["en","ru"]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.buzztm.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://www.buzztm.com/services/"},{"@type":"ListItem","position":3,"name":"Romania","item":"https://www.buzztm.com/geo/tiktok-agency-romania/"}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can Romania work as part of a broader regional rollout?","acceptedAnswer":{"@type":"Answer","text":"Yes. The structure here is designed for brands moving across several CEE markets without rebuilding the entire system each time."}},{"@type":"Question","name":"Do you handle only ads or also post-click conversion?","acceptedAnswer":{"@type":"Answer","text":"Both. Landing localization and conversion recovery are part of the same commercial system."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"TikTok agency support for Romania launches","description":"Romania launch work usually needs clearer offer sequencing, localized landing adaptation, and a stronger bridge between creator content and conversion logic.","url":"https://www.buzztm.com/geo/tiktok-agency-romania/?lang=en","serviceType":"TikTok agency support for Romania launches","areaServed":["Romania"],"availableLanguage":["en","ru"],"provider":{"@type":"MarketingAgency","name":"Buzztm","url":"https://www.buzztm.com"}}</script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="static-shell">
+        <header class="static-header">
+          <a class="static-brand" href="https://www.buzztm.com/?lang=en">Buzztm</a>
+          <nav class="static-nav" aria-label="Primary"><a href="https://www.buzztm.com/?lang=en">Home</a><a href="https://www.buzztm.com/services/?lang=en">Services</a><a href="https://www.buzztm.com/cases/?lang=en">Cases</a><a href="https://www.buzztm.com/about/?lang=en">About</a><a href="https://www.buzztm.com/blog/?lang=en">Blog</a><a href="https://www.buzztm.com/contact/?lang=en">Contact</a></nav>
+        </header>
+        <main class="static-main">
+          <nav class="static-breadcrumbs" aria-label="Breadcrumb"><a href="https://www.buzztm.com/?lang=en">Home</a><span>/</span><a href="https://www.buzztm.com/services/?lang=en">Services</a><span>/</span><a href="https://www.buzztm.com/geo/tiktok-agency-romania/?lang=en">Romania</a></nav>
+          <section class="static-hero">
+    <p class="static-eyebrow">GEO page</p>
+    <h1>TikTok agency support for Romania launches</h1>
+    <p class="static-body">Romania launch work usually needs clearer offer sequencing, localized landing adaptation, and a stronger bridge between creator content and conversion logic.</p>
+    
+    
+  </section><section class="static-section">
+    <p class="static-eyebrow">Market panel</p>
+    <h2>Where Buzztm fits in Romania work</h2>
+    <p class="static-body">A compact view of how Buzztm frames launch work for this market.</p>
+    <ul class="static-bullets"><li>Useful when Romania is part of a wider CEE launch pattern but still needs its own landing and proof layer</li><li>Strong fit for offers that need a clean path from ad promise to booked call or purchase intent</li><li>Designed for campaign logic, creator production, and market adaptation together</li></ul>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Search fit</p>
+    <h2>Romania queries usually mean buyers want market-ready execution.</h2>
+    <p class="static-body">The usual problem is not lack of traffic. It is weak continuity between the hook, the page, and the commercial next step.</p>
+    <div class="static-grid"><article class="static-card">
+        
+        
+        <h3>Localization shapes trust</h3>
+        <p>The page has to feel built for the buyer, not copied from another geography.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Lead funnels need cleaner next steps</h3>
+        <p>Form design, proof, and CTA pacing all change conversion quality.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Retargeting protects expensive clicks</h3>
+        <p>Recovery sequences matter once there is enough warm traffic to justify them.</p>
+        
+        
+        
+        
+      </article></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Relevant services</p>
+    <h2>Services that usually fit Romania-focused work</h2>
+    <p class="static-body">These services are the most relevant when the launch challenge is localized conversion quality.</p>
+    <div class="static-grid"><article class="static-card">
+        <span class="static-label">Creative ops</span>
+        
+        <h3>UGC Production for TikTok Ads</h3>
+        <p>Creator scripting, shot planning, editing, subtitles, and ad-ready delivery built for recurring paid testing.</p>
+        
+        
+        
+        <p><a href="https://www.buzztm.com/services/ugc-production-for-tiktok/?lang=en">View service page</a></p>
+      </article><article class="static-card">
+        <span class="static-label">Conversion</span>
+        
+        <h3>Landing Page Localization</h3>
+        <p>Adapt page copy, CTA sequence, proof framing, and buyer language so the click lands on a page built for the target market.</p>
+        
+        
+        
+        <p><a href="https://www.buzztm.com/services/landing-page-localization/?lang=en">View service page</a></p>
+      </article><article class="static-card">
+        <span class="static-label">Demand capture</span>
+        
+        <h3>TikTok Lead Generation Funnels</h3>
+        <p>Build short-form lead capture paths for consultations, demos, registrations, and high-intent inbound requests.</p>
+        
+        
+        
+        <p><a href="https://www.buzztm.com/services/tiktok-lead-generation-funnels/?lang=en">View service page</a></p>
+      </article><article class="static-card">
+        <span class="static-label">Expansion</span>
+        
+        <h3>Multi-Geo Scale</h3>
+        <p>An extension layer for adapting the winning system across new geographies, languages, or customer segments.</p>
+        
+        
+        
+        <p><a href="https://www.buzztm.com/services/multi-geo-scale/?lang=en">View service page</a></p>
+      </article></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Romania FAQ</p>
+    <h2>What buyers usually need answered first</h2>
+    <p class="static-body">These questions help separate page problems from creative problems and rollout problems.</p>
+    <div class="static-faq"><details><summary>Can Romania work as part of a broader regional rollout?</summary><p>Yes. The structure here is designed for brands moving across several CEE markets without rebuilding the entire system each time.</p></details><details><summary>Do you handle only ads or also post-click conversion?</summary><p>Both. Landing localization and conversion recovery are part of the same commercial system.</p></details></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Need a Romania launch path?</p>
+    <h2>Send the offer, target buyer, and current conversion bottleneck through the intake form.</h2>
+    <p class="static-body">That is enough to scope whether the first move should be UGC production, localization, lead funnels, or expansion support.</p>
+    <p><a href="https://www.buzztm.com/contact/?lang=en">Book Romania strategy call</a></p>
+  </section>
+        </main>
+        <footer class="static-footer">
+          <p>
+            This static snapshot is generated so search engines, AI crawlers, and low-JS browsers can read the site
+            structure immediately. The interactive React layer loads on top of the same route.
+          </p>
+          <div class="static-footer-links">
+            <a href="https://www.buzztm.com/llms.txt">llms.txt</a>
+            <a href="https://www.buzztm.com/llms-full.txt">llms-full.txt</a>
+            <a href="https://www.buzztm.com/sitemap.xml">sitemap.xml</a>
+          </div>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

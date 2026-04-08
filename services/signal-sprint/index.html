@@ -28,13 +28,371 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <style>
+    :root {
+      color-scheme: dark;
+      --bg: #081018;
+      --panel: rgba(11, 20, 32, 0.92);
+      --line: rgba(130, 156, 184, 0.22);
+      --text: #f4f8fb;
+      --muted: #a6b5c5;
+      --accent: #35f6ed;
+      --accent-soft: #98fff8;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(53, 246, 237, 0.18), transparent 28%),
+        linear-gradient(180deg, #071019 0%, #09131d 42%, #071019 100%);
+    }
+
+    a { color: var(--accent-soft); }
+    .static-shell {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding: 1rem 0 3rem;
+    }
+
+    .static-header,
+    .static-section,
+    .static-hero,
+    .static-footer {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+    }
+
+    .static-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .static-brand {
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .static-nav,
+    .static-actions,
+    .static-footer-links,
+    .static-breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .static-nav a,
+    .static-actions a,
+    .static-footer a,
+    .static-breadcrumbs a {
+      text-decoration: none;
+    }
+
+    .static-main {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .static-breadcrumbs {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .static-breadcrumbs span {
+      opacity: 0.6;
+    }
+
+    .static-hero,
+    .static-section,
+    .static-footer {
+      padding: 1.35rem;
+    }
+
+    .static-hero h1,
+    .static-section h2 {
+      margin: 0 0 0.6rem;
+      line-height: 1.05;
+    }
+
+    .static-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      max-width: 14ch;
+    }
+
+    .static-eyebrow,
+    .static-label,
+    .static-meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .static-body {
+      max-width: 70ch;
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+
+    .static-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
+      color: #041013;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
+      font-weight: 700;
+    }
+
+    .static-metrics,
+    .static-bullets {
+      margin: 1rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .static-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.8rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .static-metrics li,
+    .static-card,
+    .static-faq details {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.95rem;
+    }
+
+    .static-metrics strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1.15rem;
+    }
+
+    .static-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .static-card h3 {
+      margin: 0.35rem 0 0.45rem;
+    }
+
+    .static-faq {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .static-faq summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .static-article-section + .static-article-section {
+      margin-top: 1.1rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .static-footer {
+      margin-top: 1rem;
+    }
+
+    .static-footer p {
+      margin-top: 0;
+      max-width: 70ch;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 720px) {
+      .static-shell {
+        width: min(calc(100% - 1rem), var(--max));
+      }
+
+      .static-header,
+      .static-hero,
+      .static-section,
+      .static-footer {
+        padding: 1rem;
+        border-radius: 18px;
+      }
+    }
+  </style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"MarketingAgency","name":"Buzztm","url":"https://www.buzztm.com/services/signal-sprint/?lang=en","description":"Signal Sprint is Buzztm’s proof-first service for testing hooks, message-market fit, and landing alignment before larger TikTok spend.","sameAs":["https://www.instagram.com/adactedagency/","https://www.linkedin.com/company/73956025","https://www.facebook.com/Adacted-102016908383521","https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/","https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/"],"areaServed":["Europe","CIS","GCC","MENA"],"knowsLanguage":["English","Russian"],"serviceType":["TikTok growth strategy","UGC production","Performance creative testing","Landing localization","Multi-geo launch rollout"],"mainEntityOfPage":"https://www.buzztm.com/services/signal-sprint/?lang=en","image":"https://www.buzztm.com/og-cover.jpg"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Buzztm","url":"https://www.buzztm.com","description":"Signal Sprint is Buzztm’s proof-first service for testing hooks, message-market fit, and landing alignment before larger TikTok spend.","inLanguage":["en","ru"]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.buzztm.com/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://www.buzztm.com/services/"},{"@type":"ListItem","position":3,"name":"Signal Sprint","item":"https://www.buzztm.com/services/signal-sprint/"}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Signal Sprint only for new brands?","acceptedAnswer":{"@type":"Answer","text":"No. It is also useful for established brands entering a new market or fixing weak conversion before scale."}},{"@type":"Question","name":"Can this include landing updates too?","acceptedAnswer":{"@type":"Answer","text":"Yes. The point is to test the ad promise and landing promise together."}}]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Signal Sprint","description":"A short-cycle engagement for brands that need to validate the offer, hook, and landing path before they commit to a larger push.","url":"https://www.buzztm.com/services/signal-sprint/?lang=en","serviceType":"Signal Sprint","areaServed":["Europe","CIS","GCC","MENA"],"availableLanguage":["en","ru"],"provider":{"@type":"MarketingAgency","name":"Buzztm","url":"https://www.buzztm.com"}}</script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="static-shell">
+        <header class="static-header">
+          <a class="static-brand" href="https://www.buzztm.com/?lang=en">Buzztm</a>
+          <nav class="static-nav" aria-label="Primary"><a href="https://www.buzztm.com/?lang=en">Home</a><a href="https://www.buzztm.com/services/?lang=en">Services</a><a href="https://www.buzztm.com/cases/?lang=en">Cases</a><a href="https://www.buzztm.com/about/?lang=en">About</a><a href="https://www.buzztm.com/blog/?lang=en">Blog</a><a href="https://www.buzztm.com/contact/?lang=en">Contact</a></nav>
+        </header>
+        <main class="static-main">
+          <nav class="static-breadcrumbs" aria-label="Breadcrumb"><a href="https://www.buzztm.com/?lang=en">Home</a><span>/</span><a href="https://www.buzztm.com/services/?lang=en">Services</a><span>/</span><a href="https://www.buzztm.com/services/signal-sprint/?lang=en">Signal Sprint</a></nav>
+          <section class="static-hero">
+    <p class="static-eyebrow">Service detail</p>
+    <h1>Signal Sprint</h1>
+    <p class="static-body">A short-cycle engagement for brands that need to validate the offer, hook, and landing path before they commit to a larger push.</p>
+    
+    
+  </section><section class="static-section">
+    <p class="static-eyebrow">Best fit</p>
+    <h2>Where this offer works best</h2>
+    <p class="static-body">Use this service when the offer, landing, and creative need to be treated as one commercial system.</p>
+    <ul class="static-bullets"><li>Best when the product exists but the buyer message still feels soft</li><li>Useful before a larger launch window or media commitment</li><li>Built to produce commercial signal, not decorative activity</li></ul>
+  </section><section class="static-section">
+    <p class="static-eyebrow">What this service should answer</p>
+    <h2>The job is to reduce uncertainty before heavier spend.</h2>
+    <p class="static-body">Signal Sprint exists to tell you what deserves a wider push, what needs revision, and what should be dropped entirely.</p>
+    <div class="static-grid"><article class="static-card">
+        
+        
+        <h3>Find the opening angle worth scaling</h3>
+        <p>Pressure-test multiple hooks and proof frames before the production system gets too expensive.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Spot mismatch between ad promise and page promise</h3>
+        <p>Catch the drop-off point while the system is still cheap to adjust.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Clarify whether the market-language pairing is right</h3>
+        <p>Use early signal to decide if English, Russian, or both deserve the first launch wave.</p>
+        
+        
+        
+        
+      </article></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">What usually goes into Signal Sprint</p>
+    <h2>A focused scope designed to answer one hard question quickly.</h2>
+    <p class="static-body">The sprint is intentionally tight so the result is a clearer next move instead of another month of indecision.</p>
+    <ul class="static-bullets"><li>Offer and market audit</li><li>Hook and angle matrix</li><li>Short UGC scripting batch</li><li>Landing message alignment pass</li><li>Commercial signal readout with next-step recommendation</li></ul>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Best fit</p>
+    <h2>Most useful when the offer exists but the path to conversion is still blurry.</h2>
+    <p class="static-body">This service is for teams that want proof and direction before they commit to a broader rollout.</p>
+    <div class="static-grid"><article class="static-card">
+        
+        
+        <h3>New product or new market entry</h3>
+        <p>Use Signal Sprint to avoid scaling the wrong promise into the wrong audience.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Existing traffic but weak conversion</h3>
+        <p>This helps identify whether the issue sits in the hook, the page, the language layer, or the offer itself.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Pre-launch commercial calibration</h3>
+        <p>Run it when the launch window matters enough that guessing would be expensive.</p>
+        
+        
+        
+        
+      </article></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Market links</p>
+    <h2>Where Signal Sprint usually helps first</h2>
+    <p class="static-body">These market pages show where proof-first work is often the smartest first move.</p>
+    <div class="static-grid"><article class="static-card">
+        <span class="static-label">Germany</span>
+        
+        <h3>TikTok agency support for Germany launches</h3>
+        <p>Germany-focused launch work usually needs clearer offer framing, stronger proof discipline, and a landing layer that feels commercially native rather than mechanically translated.</p>
+        
+        
+        
+        <p><a href="https://www.buzztm.com/geo/tiktok-agency-germany/?lang=en">View market page</a></p>
+      </article><article class="static-card">
+        <span class="static-label">Poland</span>
+        
+        <h3>TikTok agency support for Poland campaigns</h3>
+        <p>Poland launch work often sits between regional expansion and localized lead generation, which makes message adaptation and page logic just as important as the creative itself.</p>
+        
+        
+        
+        <p><a href="https://www.buzztm.com/geo/tiktok-agency-poland/?lang=en">View market page</a></p>
+      </article><article class="static-card">
+        <span class="static-label">Romania</span>
+        
+        <h3>TikTok agency support for Romania launches</h3>
+        <p>Romania launch work usually needs clearer offer sequencing, localized landing adaptation, and a stronger bridge between creator content and conversion logic.</p>
+        
+        
+        
+        <p><a href="https://www.buzztm.com/geo/tiktok-agency-romania/?lang=en">View market page</a></p>
+      </article></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Service FAQ</p>
+    <h2>Questions around proof-first testing</h2>
+    <p class="static-body">These usually decide whether the first move should be validation or active rollout.</p>
+    <div class="static-faq"><details><summary>Is Signal Sprint only for new brands?</summary><p>No. It is also useful for established brands entering a new market or fixing weak conversion before scale.</p></details><details><summary>Can this include landing updates too?</summary><p>Yes. The point is to test the ad promise and landing promise together.</p></details></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">From proof to scope</p>
+    <h2>If you need clarity before scale, start here.</h2>
+    <p class="static-body">The intake form should tell us the market, offer, and what signal would make the sprint successful.</p>
+    <p><a href="https://www.buzztm.com/contact/?lang=en">Request Signal Sprint</a></p>
+  </section>
+        </main>
+        <footer class="static-footer">
+          <p>
+            This static snapshot is generated so search engines, AI crawlers, and low-JS browsers can read the site
+            structure immediately. The interactive React layer loads on top of the same route.
+          </p>
+          <div class="static-footer-links">
+            <a href="https://www.buzztm.com/llms.txt">llms.txt</a>
+            <a href="https://www.buzztm.com/llms-full.txt">llms-full.txt</a>
+            <a href="https://www.buzztm.com/sitemap.xml">sitemap.xml</a>
+          </div>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

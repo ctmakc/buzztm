@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.buzztm.com/sitemap.xml
+# AI discovery
+# https://www.buzztm.com/llms.txt
+# https://www.buzztm.com/llms-full.txt

@@ -1,0 +1,32 @@
+# Buzztm
+
+> Buzztm combines signal testing, UGC production, landing adaptation, and bilingual rollout into a tighter operator stack for brands that need revenue-facing TikTok work.
+
+Main site: https://www.buzztm.com/
+Sitemap: https://www.buzztm.com/sitemap.xml
+Canonical contact page: https://www.buzztm.com/contact/?lang=en
+Extended AI-readable brief: https://www.buzztm.com/llms-full.txt
+
+## Core pages
+- Home: https://www.buzztm.com/?lang=en
+- Services: https://www.buzztm.com/services/?lang=en
+- Cases: https://www.buzztm.com/cases/?lang=en
+- About: https://www.buzztm.com/about/?lang=en
+- Blog: https://www.buzztm.com/blog/?lang=en
+- Contact: https://www.buzztm.com/contact/?lang=en
+
+## Core offers
+- Signal Sprint: https://www.buzztm.com/services/signal-sprint/?lang=en
+- Launch Burst: https://www.buzztm.com/services/launch-burst/?lang=en
+- Multi-Geo Scale: https://www.buzztm.com/services/multi-geo-scale/?lang=en
+- UGC Production for TikTok Ads: https://www.buzztm.com/services/ugc-production-for-tiktok/?lang=en
+- Creator Whitelisting and Seeding: https://www.buzztm.com/services/creator-whitelisting-and-seeding/?lang=en
+- TikTok Shop Launch Campaigns: https://www.buzztm.com/services/tiktok-shop-launch-campaigns/?lang=en
+
+## GEO pages
+- TikTok agency support for UAE launches: https://www.buzztm.com/geo/tiktok-agency-uae/?lang=en
+- TikTok agency support for Saudi Arabia campaigns: https://www.buzztm.com/geo/tiktok-agency-saudi-arabia/?lang=en
+- TikTok agency support for Germany launches: https://www.buzztm.com/geo/tiktok-agency-germany/?lang=en
+- TikTok agency support for Poland campaigns: https://www.buzztm.com/geo/tiktok-agency-poland/?lang=en
+- TikTok agency support for Kazakhstan launches: https://www.buzztm.com/geo/tiktok-agency-kazakhstan/?lang=en
+- TikTok agency support for Romania launches: https://www.buzztm.com/geo/tiktok-agency-romania/?lang=en

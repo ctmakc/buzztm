@@ -28,11 +28,336 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <style>
+    :root {
+      color-scheme: dark;
+      --bg: #081018;
+      --panel: rgba(11, 20, 32, 0.92);
+      --line: rgba(130, 156, 184, 0.22);
+      --text: #f4f8fb;
+      --muted: #a6b5c5;
+      --accent: #35f6ed;
+      --accent-soft: #98fff8;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(53, 246, 237, 0.18), transparent 28%),
+        linear-gradient(180deg, #071019 0%, #09131d 42%, #071019 100%);
+    }
+
+    a { color: var(--accent-soft); }
+    .static-shell {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      padding: 1rem 0 3rem;
+    }
+
+    .static-header,
+    .static-section,
+    .static-hero,
+    .static-footer {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+    }
+
+    .static-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .static-brand {
+      color: var(--text);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .static-nav,
+    .static-actions,
+    .static-footer-links,
+    .static-breadcrumbs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .static-nav a,
+    .static-actions a,
+    .static-footer a,
+    .static-breadcrumbs a {
+      text-decoration: none;
+    }
+
+    .static-main {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .static-breadcrumbs {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .static-breadcrumbs span {
+      opacity: 0.6;
+    }
+
+    .static-hero,
+    .static-section,
+    .static-footer {
+      padding: 1.35rem;
+    }
+
+    .static-hero h1,
+    .static-section h2 {
+      margin: 0 0 0.6rem;
+      line-height: 1.05;
+    }
+
+    .static-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      max-width: 14ch;
+    }
+
+    .static-eyebrow,
+    .static-label,
+    .static-meta {
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .static-body {
+      max-width: 70ch;
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+
+    .static-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
+      color: #041013;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
+      font-weight: 700;
+    }
+
+    .static-metrics,
+    .static-bullets {
+      margin: 1rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .static-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.8rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .static-metrics li,
+    .static-card,
+    .static-faq details {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.95rem;
+    }
+
+    .static-metrics strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1.15rem;
+    }
+
+    .static-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .static-card h3 {
+      margin: 0.35rem 0 0.45rem;
+    }
+
+    .static-faq {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .static-faq summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .static-article-section + .static-article-section {
+      margin-top: 1.1rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .static-footer {
+      margin-top: 1rem;
+    }
+
+    .static-footer p {
+      margin-top: 0;
+      max-width: 70ch;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 720px) {
+      .static-shell {
+        width: min(calc(100% - 1rem), var(--max));
+      }
+
+      .static-header,
+      .static-hero,
+      .static-section,
+      .static-footer {
+        padding: 1rem;
+        border-radius: 18px;
+      }
+    }
+  </style>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"MarketingAgency","name":"Buzztm","url":"https://www.buzztm.com/about/?lang=en","description":"Learn how Buzztm is positioned: TikTok growth systems, bilingual EN/RU execution, UGC production, and a practical operating model for multi-geo demand capture.","sameAs":["https://www.instagram.com/adactedagency/","https://www.linkedin.com/company/73956025","https://www.facebook.com/Adacted-102016908383521","https://mmix.ua/en/nastrojka-reklamyi-v-tiktok/","https://mmix.ua/ua/nalashtuvannya-reklami-v-tiktok/"],"areaServed":["Europe","CIS","GCC","MENA"],"knowsLanguage":["English","Russian"],"serviceType":["TikTok growth strategy","UGC production","Performance creative testing","Landing localization","Multi-geo launch rollout"],"mainEntityOfPage":"https://www.buzztm.com/about/?lang=en","image":"https://www.buzztm.com/og-cover.jpg"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Buzztm","url":"https://www.buzztm.com","description":"Learn how Buzztm is positioned: TikTok growth systems, bilingual EN/RU execution, UGC production, and a practical operating model for multi-geo demand capture.","inLanguage":["en","ru"]}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.buzztm.com/"},{"@type":"ListItem","position":2,"name":"About","item":"https://www.buzztm.com/about/"}]}</script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="static-shell">
+        <header class="static-header">
+          <a class="static-brand" href="https://www.buzztm.com/?lang=en">Buzztm</a>
+          <nav class="static-nav" aria-label="Primary"><a href="https://www.buzztm.com/?lang=en">Home</a><a href="https://www.buzztm.com/services/?lang=en">Services</a><a href="https://www.buzztm.com/cases/?lang=en">Cases</a><a href="https://www.buzztm.com/about/?lang=en">About</a><a href="https://www.buzztm.com/blog/?lang=en">Blog</a><a href="https://www.buzztm.com/contact/?lang=en">Contact</a></nav>
+        </header>
+        <main class="static-main">
+          <nav class="static-breadcrumbs" aria-label="Breadcrumb"><a href="https://www.buzztm.com/?lang=en">Home</a><span>/</span><a href="https://www.buzztm.com/about/?lang=en">About</a></nav>
+          <section class="static-hero">
+    <p class="static-eyebrow">About Buzztm</p>
+    <h1>A growth execution layer built around short-form demand, localization, and clear commercial signal.</h1>
+    <p class="static-body">Buzztm sits between abstract strategy and messy execution: the layer that turns market intent, content production, landing adaptation, and launch operations into a working growth system.</p>
+    <div class="static-actions"><a href="https://www.buzztm.com/services/?lang=en" class="static-button">Review service model</a><a href="https://www.buzztm.com/contact/?lang=en" class="static-button">Start a conversation</a></div>
+    <ul class="static-metrics"><li><strong>Strategy + Ops</strong><span>Positioned between planning and execution</span></li><li><strong>Public footprint</strong><span>Adacted and MMIX references already visible</span></li><li><strong>Commercial filter</strong><span>Signal over vanity activity</span></li></ul>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Company story</p>
+    <h2>Presented as a modern growth partner, not a generic ads shop.</h2>
+    <p class="static-body">The company story is deliberately practical. It explains what role Buzztm plays inside a launch and why brands would use it.</p>
+    <div class="static-grid"><article class="static-card">
+        
+        
+        <h3>Closer to execution than strategy theater</h3>
+        <p>The promise is not abstract consulting. It is launch systems, creative production, and message-market alignment.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Closer to commercial output than content vanity</h3>
+        <p>Traffic, inquiries, registrations, booked demand, and scalable signal matter more than empty activity.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Closer to localization than copy-paste translation</h3>
+        <p>English and Russian versions are written as separate persuasion layers because different audiences read differently.</p>
+        
+        
+        
+        
+      </article></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Principles</p>
+    <h2>How the company is supposed to operate.</h2>
+    <p class="static-body">This page gives the business a stronger internal and external spine. It shows how Buzztm thinks about the work.</p>
+    <div class="static-grid"><article class="static-card">
+        
+        
+        <h3>Commercial clarity over agency fog</h3>
+        <p>Each engagement should be understandable through market, offer, launch goal, and signal.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Production and performance belong together</h3>
+        <p>Creative should not be made in a vacuum and handed off to media buying as a separate afterthought.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>Localization is part of the system</h3>
+        <p>Language adaptation affects hooks, proof, CTA tone, and landing conversion, so it belongs in the core process.</p>
+        
+        
+        
+        
+      </article><article class="static-card">
+        
+        
+        <h3>A site should sell the structure, not hide it</h3>
+        <p>This multi-page version makes the company easier to evaluate for clients, partners, and referrals.</p>
+        
+        
+        
+        
+      </article></div>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Footprint and trust layer</p>
+    <h2>The company now exposes more of its ecosystem context.</h2>
+    <p class="static-body">The public-facing stack supports trust: visible partner marks, related expertise, and a site structure that looks maintained instead of abandoned.</p>
+    <ul class="static-bullets"><li>Adacted and MMIX references create continuity with a visible broader ecosystem.</li><li>A proper about page supports partner conversations, intros, and outreach credibility.</li><li>The site now feels like a business platform rather than a temporary campaign page.</li></ul>
+  </section><section class="static-section">
+    <p class="static-eyebrow">Work with Buzztm</p>
+    <h2>If the positioning fits, the next move is to scope the first launch window.</h2>
+    <p class="static-body">The contact flow collects just enough detail to turn company interest into an actual project conversation.</p>
+    <p><a href="https://www.buzztm.com/contact/?lang=en">Open contact</a></p>
+  </section>
+        </main>
+        <footer class="static-footer">
+          <p>
+            This static snapshot is generated so search engines, AI crawlers, and low-JS browsers can read the site
+            structure immediately. The interactive React layer loads on top of the same route.
+          </p>
+          <div class="static-footer-links">
+            <a href="https://www.buzztm.com/llms.txt">llms.txt</a>
+            <a href="https://www.buzztm.com/llms-full.txt">llms-full.txt</a>
+            <a href="https://www.buzztm.com/sitemap.xml">sitemap.xml</a>
+          </div>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

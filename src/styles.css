@@ -432,6 +432,11 @@ img {
   padding: 3rem;
 }
 
+.section-block {
+  content-visibility: auto;
+  contain-intrinsic-size: 960px;
+}
+
 .hero-copy,
 .hero-visual,
 .section-header,

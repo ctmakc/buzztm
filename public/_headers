@@ -1,0 +1,30 @@
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/google11d97257abcd04e2
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/google11d97257abcd04e2.html
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/site.webmanifest
+  Content-Type: application/manifest+json; charset=utf-8
+  Cache-Control: public, max-age=300
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
